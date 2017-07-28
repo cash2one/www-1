@@ -1,0 +1,11 @@
+<div class="side_2 js_data" ng-controller="Data">
+    <h3 class="tit1">数据管理</h3>
+    <div class="list1 os_y js_h list1_con" >
+        <h5 class="tit2" ng-click="toggleCur($event)"><i class="icon_12"></i>地点管理</h5>
+        <a href="javascript:;" ng-class="{on: !pathParams.des}" ng-click="toggleSec($event,'load')">装车地点</a>
+        <a href="javascript:;" ng-class="{on: !!pathParams.des && pathParams.des == 'unload'}" ng-click="toggleSec($event,'unload')">卸车地点</a>
+        <!--<a href="javascript:;" ng-class="{on: pathParams.des == 'distance'}" ng-click="toggleSec($event,'distance')">自定义距离</a>-->
+        <h5 class="tit2 js_on" ng-class="{on: !!pathParams.des && pathParams.des == 'things'}" ng-click="toggleSec($event,'things')">装车内容</h5>
+        <!--<h5 class="tit2 js_on" ng-class="{on: pathParams.des == 'oil'}" ng-click="toggleSec($event,'oil')">油价</h5>-->
+    </div>
+</div>

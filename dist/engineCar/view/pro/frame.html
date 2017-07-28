@@ -1,0 +1,26 @@
+<div class="proSec" ng-controller="dateSelect">
+    <div ui-view="selectDate"></div>
+    <div class="sec_2">
+        <div class="table-responsive" ui-view="allTable" ng-cloak></div>
+    </div>
+</div>
+
+<style>
+    .modal_details span{
+        display: block;
+        line-height: 32px;
+        height:32px;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
+    .modal_details .right{
+        border: 1px solid #c1d3e2;
+        border-radius: 10px;
+        padding: 0px 10px;
+    }
+
+    .modal_details .col-sm-12,.modal_details div{
+      padding: 0px!important;
+    }
+</style>

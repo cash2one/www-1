@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app="firstApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/angular.js"></script>
+    <script src="../js/angular-ui-router.js"></script>
+    <script src="../js/angular-animate.js"></script>
+</head>
+<body>
+    <div ng-controller="test">
+        {{name}}
+    </div>
+    <div ng-controller="MainCtrl">
+        <input type="text" ng-model="name"/>
+        <p>{{updated}}</p>
+    </div>
+    <div ng-controller="MainCtrl1">
+        <clickable foo="foo" bar="bar"></clickable>
+        <hr />
+
+        {{ hello }} <button ng-click="setHello()">Change hello</button>
+        <hello-world2 title = '我是第二个directive' class="app1"></hello-world2>
+        <hello mycolor ="red">我是林炳文~~~</hello>
+    </div>
+
+    <script>
+        var app=angular.module("firstApp",[]);
+        app.controller("test",["$scope",function(sc){
+            sc.name="tom";
+        }]);
+        var app2=angular.module("testMoudle",["app"]);
+        console.log(app2);
+        app.controller('MainCtrl', function($scope) {
+            $scope.$watch('name', function() {
+                $scope.updated++;
+            });
+            $scope.name = "Angular";
+
+            $scope.updated = -1;
+
+        });
+
+        app.controller('MainCtrl1', function($scope) {
+            $scope.foo = 0;
+            $scope.bar = 0;
+
+            $scope.hello = "Hello";
+
+            $scope.setHello = function() {
+                $scope.hello = "World";
+            };
+        });
+        app.directive('clickable', function() {
+            return {
+                restrict: "E",
+                scope: {
+                    foo: '=',
+                    bar: '='
+                },
+                template: '<ul style="background-color: lightblue"><li>{{foo}}</li><li>{{bar}}</li></ul>',
+                link: function(scope, element, attrs) {
+                    element.bind('click', function() {
+//                        scope.foo++;
+//                        scope.bar++;
+//                        scope.$apply();
+                        scope.$apply(function() {
+                            scope.foo++;
+                            scope.bar++;
+                        });
+                    });
+                }
+            }
+
+        });
+        app.directive("helloWorld2",function(){
+            return{
+                restrict:'EAC',
+                template: function(tElement,tAttrs){
+                    console.log(tElement,tAttrs);
+                    var _html = '';
+                    _html += '<div>' +'hello '+tAttrs.title+'</div>';
+                    return _html;
+                }
+            };
+        });
+        app.directive('hello', function() {
+            return {
+                restrict: 'EA',
+                transclude: true, //注意此处必须设置为true
+                controller:
+                        function ($scope, $element,$attrs,$transclude,$log) { //在这里你可以注入你想注入的服务
+                            $transclude(function (clone) {
+                                var a = angular.element('<p>');
+                                a.css('color', $attrs.mycolor);
+                                a.text(clone.text());
+                                $element.append(a);
+                                $log.info(clone);
+                            });
+
+                        }
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="IE=7" />
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">  	
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+
+	<script src="/pingbanche/js/jquery-1.8.3.min.js"></script>
+	<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+	<script src="/pingbanche/js/city.js"></script>
+	<script src="/pingbanche/js/cities.js"  type="text/javascript"></script>
+	<script src="/pingbanche/js/jquery.autocomplete.js" type="text/javascript"></script>
+	<script src="/pingbanche/js/common.js"></script>
+</head>
+<!-- 进行中的  跳到订单 然后到货源详情 -->
+<!-- 已完成的  直接跳转到货源详情-->
+<body class="bgf2">
+  	<div data-role="page">
+		<div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+			<h1>当前城市-杭州</h1>
+			<a href="./getInfo.html" class="icon_goPrev_44"></a>
+		</div>
+		<div class="search-citys">				
+		    <input class="text" id="city_name" type="text" value="请输入城市中文或拼音 / 点击选择城市" onKeyUp="input_keyup();" onClick="append_city();" onBlur="input_blur()" onFocus="if(value=='请输入城市中文或拼音 / 点击选择城市'){value='';}" />	
+		    <input class="text" id="hid_city_name" name="index_city" style="display:none"> 
+		    <input class="text" id="hid_real_city_name" name="real_index_city" style="display:none">		  
+		</div>
+
+ 	    <div data-role="main" class="ui-content pr">
+			<div class="ovh_fixed">
+				<div class="city_w mb10">											
+				</div>	
+				<div class="fixed_side">
+				</div>
+			</div>
+		</div>
+  	</div>
+
+	<script>
+	$(function(){
+		//点击S
+		(function(){
+			var provinceArray = new Array("A","B","C","D","E","F","G","H","G","K","L","M","N","P","Q","R","S","T","W","X","Y","Z");
+			var len=provinceArray.length;
+			$(".ui-page-header-fixed").css("paddingTop",68);
+			var mh= $(window).height()-120;
+			var side_str="";
+			for (var i=0;i<len;i++){
+				side_str+="<a href='javascript:;'>"+provinceArray[i]+"</a>";
+			}
+			$(".fixed_side").html(side_str);
+			$(".fixed_side").find("a").height( Math.ceil(mh/len) );
+			$(".fixed_side").find("a").on('tap',function(){
+				var index=$(this).index();
+				$("html,body").animate({scrollTop: $(".city").eq(index).offset().top-120
+			  	}, 500);	
+			});
+			var str='';
+			for (var i=0;i<len;i++){
+				str+="<div class='city'><h3>"+provinceArray[i]+"</h3><ul></ul></div>";
+			}
+			$(".city_w").html(str);
+			$(".city_w").find("ul").each(function(index,element){
+				var brr=cityListOne(index);
+				var clen=brr.length;
+				var str1="";
+				for(var i=0;i<clen;i++){
+					str1+="<li><a href='javascript:;'>"+brr[i]+"</a></li>";
+				}
+				$(element).html(str1);
+			});		
+		})();
+		(function(){
+			$(".city_w").find("a").on("click",function(){
+				var str=$(this).html();
+				var data={
+					"token":localStorage.getItem("token"),
+					"city":str
+				}
+				ajax_pwd(data,"mobile/user/update",function(data){
+					alert(data.response_note);
+					window.location.href='./getInfo.html';					
+				});
+			});				
+		})();
+	});
+
+	$(function(){
+		var w=$(window).width();
+		var h=$(window).height()-68; 
+		
+		$('#city_name').autocomplete(cities, {
+			max: 12, //列表里的条目数
+			minChars: 0, //自动完成激活之前填入的最小字符
+			width: w, //提示的宽度，溢出隐藏
+			scrollHeight: h, //提示的高度，溢出显示滚动条
+			matchContains: true, //包含匹配，就是data参数里的数据，是否只要包含文本框里的数据就显示
+			autoFill: false, //自动填充
+			minChars:1,
+			formatItem: function(row, i, max) {
+			return row.name + '（'+row.pinyin+'）';
+		},
+		formatMatch: function(row, i, max) {
+			return row.match;
+		},
+		formatResult: function(row) {
+			return row.name;
+		},resultsClass:'search-text'
+		}).result(function(event, row, formatted) {
+			$("#hid_city_name").val(row.pinyin);
+			$("#hid_real_city_name").val(row.name);
+			$('#pop_cities').hide();
+		});
+	});	
+	
+	function append_city(){
+		$('#cityarea').show();
+		if($("#citylist").text()==""){
+			$("#citylist").append(cityarea);
+		}
+	}
+
+	function hide_div(e){
+		var biaoqian = "click";
+		var classname= $(e.target)[0].className;
+		if(classname.indexOf('click')>'-1' ||$(e.target)[0].id=='city_name')
+		return ;
+		if($('#city_name').val()=='')
+		{
+			$('#city_name').val('请输入城市中文或拼音 / 点击选择城市');
+		}
+		$("#cityarea").hide();
+	} 
+
+	//直接输入地址框的onblur事件
+	function input_blur()
+	{
+		var value = $('#city_name').val();
+		var all_city_val = $(".ac_over").text();
+
+		if(all_city_val && all_city_val!="")
+		{
+			var str = all_city_val.substr(0,(all_city_val.length-1));
+			strs=str.split("（");
+
+			$("#hid_city_name").val(strs[1]);
+			$("#hid_real_city_name").val(strs[0]);
+			$("#city_name").val(strs[0]);
+			$(".search-text").hide();
+
+			var data={
+				"token":localStorage.getItem("token"),
+				"city":strs[0]
+			}
+			ajax_pwd(data,"mobile/user/update",function(data){
+				alert(data.response_note);
+				window.location.href='./getInfo.html';				
+			});
+		}else if($.trim(value)==''&& $('#cityarea').css('display')=='none')
+		{
+			$('#city_name').val('请输入城市中文或拼音 / 点击选择城市');
+		}	
+	}
+	    
+	//直接输入地址框的onkeyup事件
+	function input_keyup()
+	{
+		var value = $('#city_name').val();
+		if($('#hid_real_city_name').val()!=value || $('#hid_real_city_name').val()=='')
+		{
+			$('#cityarea').hide();
+			$('.ovh_fixed').hide();		
+				
+		}else if(value==$('#hid_real_city_name').val())
+		{
+			$('#cityarea').hide();
+			$('.ovh_fixed').hide();
+		}	
+	}
+	function check_input(){
+		var value = $('#city_name').val();
+		if(value==$('#hid_real_city_name').val() && $("#hid_city_name").val()!=""){
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * 字母页面内链
+	 *
+	 */
+	function letter_scroll(letter)
+	{
+		 var obj = $("#c_"+letter);
+		 $('html,body').animate({scrollTop: obj.offset().top}, 500);
+	}
+	/*
+	 * 用户点击城市后，城市名填入input框
+	*/
+	function change_city_val(city, pinyin_city)
+	{
+		$('#city_name').css({ color: "#606060"});
+		$('#city_name').val(city);
+		$('#hid_city_name').val(pinyin_city);
+		$("#hid_real_city_name").val(city);
+		$('#cityarea').hide();
+	}
+	function tabCutover(c,d){$(c).parent().attr("class");$(c).parent().children().removeClass("current");$(c).addClass("current");$("."+d).parent().children().hide();$("."+d).show();}
+	</script>
+  </body>
+</html>

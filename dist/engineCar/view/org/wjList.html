@@ -1,0 +1,155 @@
+<div class="content" ng-controller="wj">
+    <div class="sec_8">
+        <div class="sec_1_r">
+            <i class="icon_27 icon_return"></i>
+            <a href="#" ng-click = "goOrg()">返回经理列表</a>
+        </div>
+        <div class="sec_1_l">
+            <a href="javascript:;"  ng-click="saveM($event,'#addCar')">
+                <i class="icon_27 icon_add_27"></i>新&nbsp;&nbsp;&nbsp;&nbsp;增
+            </a>
+            <!--<a href="#"><i class="icon_27 icon_minus_27"></i>删&nbsp;&nbsp;&nbsp;&nbsp;除</a>-->
+        </div>
+    </div>
+
+    <div class="sec_2 table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="bold_th">
+            <tr>
+                <th>编号</th>
+                <!--<th>所属人员手机</th>-->
+                <th>功率大小</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in wjList" data-id="{{item.id}}">
+                <td><span  class="no">{{item.no}}</span>&nbsp;&nbsp;</td>
+                <td>
+                    <span class="num">{{item.power || '0'}}</span>&nbsp;&nbsp;(kw.h)
+                </td>
+                <td>
+                    <button class="btn btn-link" data-id="{{item.id}}" ng-click="saveM($event,'#editC')">编辑</button>
+                    <button class="btn btn-link" data-id="{{item.id}}" ng-click="delete($event,'#deleteC')">删除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 新增挖机 S-->
+    <div class="modal fade" id="addCar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">新增挖机</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" name="wjForm">
+                        <div class="form-group form_btn tl">
+                            <button type="button" class="btn btn-primary" ng-disabled="wjForm.$invalid" ng-click="saveFn('#addCar')">保&nbsp;&nbsp;存</button>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': wjForm.carrier.$invalid}">
+                            <label class="col-sm-3 control-label" for="carrier">编号:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="carrier" class="form-control" ng-model="desC.digMachineNo" required>
+                                <span class="cl_red lh36" ng-show="wjForm.carrier.$invalid">请输入编号</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-error': wjForm.power.$invalid}">
+                            <label class="col-sm-3 control-label" for="power">功率:</label>
+                            <div class="col-sm-9">
+                                <input type="text" string-to-number name="power" class="form-control" ng-model="desC.power" required
+                                       ng-pattern="/^[0-9]+(.[0-9]{0,4})?$/">
+                                <span class="cl_red lh36" ng-show="wjForm.power.$invalid">请输入功率(必须为数字,小数点位数为0-4位)</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 新增挖机  E-->
+
+    <!-- 编辑挖机  S-->
+    <div class="modal fade" id="editC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header  modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">编辑挖机</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" name="wjForm2">
+                        <div class="form-group"  ng-class="{'has-error': wjForm2.carrier.$invalid}">
+                            <label class="col-sm-3 control-label" for="carrier">编号:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="carrier" class="form-control" ng-model="desC.digMachineNo" disabled required>
+                                <span class="cl_red lh36" ng-show="wjForm2.carrier.$invalid">编号不能为空</span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': wjForm2.power.$invalid}">
+                            <label class="col-sm-3 control-label" for="power">功率:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="power" string-to-number class="form-control" ng-model="desC.power" required ng-pattern="/^[0-9]+(.[0-9]{0,4})?$/">
+                                <span class="cl_red lh36" ng-show="wjForm.power.$invalid">请输入正确的功率(必须为数字,小数点位数为0-4位)</span>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<button type="button" class="btn btn-primary" ng-disabled="wjForm2.$invalid" ng-click="saveFn('#editC')">保&nbsp;&nbsp;存</button>-->
+                            <!--<button type="button" class="btn btn-primary" ng-click="delete2('#deleteC')">删&nbsp;&nbsp;除</button>-->
+                        <!--</div>-->
+                        <!--<button type="button" class="btn btn-primary" ng-click="delete2('#deleteC')">删&nbsp;&nbsp;除</button>-->
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-primary btn-block btn-h50" ng-disabled="wjForm2.$invalid" ng-click="saveFn('#editC')">保&nbsp;&nbsp;存</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-default btn-h50" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑挖机  E-->
+
+    <!-- 删除挖机  S-->
+    <div class="modal fade" id="deleteC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header  modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">删除挖机</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tit3 mb15">
+                        <p class="cl_red">您确定删除吗？删除后数据不可恢复</p>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-default btn-h50" data-dismiss="modal">取消</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-primary btn-h50" ng-click="deleteFn('#deleteC')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 删除挖机 E-->
+</div>
+
+
+

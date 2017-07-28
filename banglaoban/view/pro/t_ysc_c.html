@@ -1,0 +1,87 @@
+<div ng-controller="yscTable">
+    <div class="sec_6 mb15 oh">
+        <form class="form-inline" role="form" class="form_inline">
+            <div class="form-group col-sm-6 mb10" ng-show="showE">
+                <label class="control-label">员工姓名</label>
+                <input type="text" class="form-control" ng-model="employee">
+            </div>
+            <div class="form-group col-sm-6 mb10" ng-show="showS">
+                <label class="control-label">驾车编号</label>
+                <input type="text" class="form-control" ng-model="serial">
+            </div>
+
+            <div class="form-group col-sm-6 mb10">
+                <label class="control-label">卸车地点</label>
+                <select class="form-control" style="min-width:200px;" ng-model="unload">
+                    <option class="form-control" ng-repeat="x in unloadList" value="{{x.name}}">{{x.name}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <table class="table table-bordered table-striped table_img">
+        <thead class="bold_th">
+            <tr>
+                <th>员工姓名</th>
+                <th>运输车编号</th>
+                <th>卸车地点</th>
+                <th>卸车照片</th>
+                <th>创建时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in carList | filter:{employeeName:employee, carrierCarNo: serial,unloadPlace: unload} ">
+                <td>
+                    {{item.employeeName}}
+                </td>
+                <td>
+                    {{item.carrierCarNo}}
+                </td>
+                <td>{{item.unloadPlace}}</td>
+                <td style="padding-left: 30px">
+                    <div class="img_w">
+                        <img data-img="{{item.bgPhotos}}"  data-ng-src="{{item.photos}}" ng-click="showBigImg($event)"/>
+                    </div>
+                </td>
+                <td>{{item.createdDate}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div ng-controller="yscCarPageCtrl" class="cs_pagination">
+        共{{totalItems}}条，每页{{pageSize}}条,第 {{currentPage}} / {{totalPage}}页
+        <input type="text" ng-model="pageSelect" />
+        <button type="button" class="btn btn-default" ng-click="setPage()">跳转</button>
+        <uib-pagination
+                total-items="totalItems"
+                ng-model="currentPage"
+                max-size="maxSize"
+                boundary-links="true"
+                num-pages="totalPage"
+                force-ellipses="false"
+                items-per-page="pageSize"
+                previous-text="上一页" next-text="下一页"
+                first-text="首页" last-text="尾页"
+                ng-change="pageChanged()"
+                max-size="maxSize"
+                rotate="true"
+                >
+        </uib-pagination>
+    </div>
+</div>
+<style>
+    .table_img .img_w{
+        width: 58px;
+        height: 44px;
+        background: #f5f5f5;
+        border:1px solid #ddd;
+        /*margin: 0px auto;*/
+    }
+    .table_img .img_w img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+    .table_img td{vertical-align:middle!important;}
+</style>

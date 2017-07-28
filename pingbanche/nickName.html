@@ -1,0 +1,70 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+  <link rel="stylesheet" href="/pingbanche/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/pingbanche/css/cropper.css">
+</head>
+<body>   
+  <div data-role="page">
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1><p id="db">昵称修改</p>
+        <a href="#" class="id_sure">确定</a>   
+      </h1>
+      <a href="./getInfo.html" class="icon_goPrev_44" data-ajax="false"></a>
+    </div>
+    <div data-role="main" class="ui-content form4 pt10">
+    <textarea placeholder="请填写详细内容，我们会尽快回复您" id="text"></textarea>
+  </div>  
+  </div>
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  $(function(){
+      var arg1,
+          arg2,
+          c_arr=[
+            ["昵称修改","nickname"],
+            ["微信号","weixin"],
+            ["开户银行","detail.bankName"],
+            ["银行卡号","detail.bankNo"],
+            ["户名","detail.bankUser"],
+            ["支付宝账户","detail.alipayId"],
+            ["支付宝姓名","detail.alipayTruename"],
+            ["车辆品牌","car.brand"],
+            ["购买年份","car.buyDate"],
+            ["车牌号码","car.number"]
+        ];  
+      arg1 =getQueryString("id");
+      arg2=window.localStorage.getItem("nickCon");
+      $("#db").html( c_arr[arg1][0] );
+      $("#text").val(arg2);
+
+      $(".id_sure").bind("click",function(){ 
+
+        if( !$("#text").val() ){
+          alert("内容不能为空");
+          return false;
+        }
+
+        var modal=c_arr[arg1][1],
+            data={
+              "token":localStorage.getItem("token")
+            };
+        data[modal]=$("#text").val();
+        ajax_pwd(data,"mobile/user/update",function(data){
+          if(data.response_state==1){
+            window.location.href="getInfo.html";
+          }else if(data.response_state==-1){
+            alert(data.response_note);        
+          }          
+        });
+      });
+  });
+  </script>
+ </body>
+ </html>
+

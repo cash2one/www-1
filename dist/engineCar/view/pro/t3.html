@@ -1,0 +1,148 @@
+<table class="table table-bordered">
+    <thead class="bold_th thead">
+        <tr class="active">
+            <th rowspan="2" class="v_c fz18">运输车编号</th>
+            <th rowspan="2" class="v_c fz18">总车数</th>
+            <th rowspan="2" class="v_c fz18">总工时</th>
+            <th colspan="{{thLen}}" class="v_c fz18">合计方量</th>
+            <th rowspan="2" class="v_c fz18">总方量</th>
+            <th rowspan="2" class="v_c fz18">总金额</th>
+            <th rowspan="2" class="v_c fz18">操作</th>
+        </tr>
+        <tr class="active">
+            <th ng-repeat = "item in things track by item.id" data-carId="{{item.id}}">
+                {{item.name}}&nbsp;&nbsp;
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="($index,item) in yscList" ng-class="{active: $index%2==1}">
+            <td>
+                <span class="js_name">{{item.name}}</span>
+            </td>
+            <td>
+                <button class="btn btn-link" data-id="{{item.id}}" data-number="{{item.totalTimes}}"
+                        ng-click="gocar($event,'y','ysc_c')">{{item.totalTimes || '0'}}</button>
+            </td>
+            <td>
+                <button class="btn btn-link" data-id="{{item.id}}" data-number="{{item.workHours}}"
+                        ng-click="goAllTime($event,'y','ysc_c')">{{item.workHours || '0'}}</button>
+            </td>
+            <td ng-repeat="(th,$index) in things track by $index">
+                {{ item.items[$index]["amount"] || '0'}}&nbsp;
+            </td>
+            <td>
+                {{item.totalAmount  || '0'}}
+            </td>
+            <td>
+                {{item.totalMoney | currency:"￥ " : 0}}元
+            </td>
+            <td>
+                <button class="btn btn-link" data-id="{{item.id}}" ng-click="showyDetails($event)">详情</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 运输车 -->
+<div class="modal fade" id="yDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header  modal_tit1">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title">详情</h4>
+            </div>
+            <div class="modal-body container-fluid modal_details">
+
+                <div class="col-sm-12 mb10">
+                    <span class="col-sm-3">
+                        运输车编号
+                    </span>
+                    <span class="col-sm-3 right">
+                        {{carModel.name}}
+                    </span>
+                </div>
+
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">
+                        总车数
+                    </span>
+                    <span class="col-sm-6 right">
+                        {{carModel.totalTimes || '0'}}
+                    </span>
+                </div>
+                <!--<div class="col-sm-6 mb10">-->
+                    <!--<span class="col-sm-6">-->
+                        <!--匹配车数-->
+                    <!--</span>-->
+                    <!--<span class="col-sm-6 right">-->
+                        <!--{{carModel.matchedTimes || '0'}}-->
+                    <!--</span>-->
+                <!--</div>-->
+                <div class="col-sm-12" ng-repeat="($index,th) in things track by $index" >
+                    <div class="col-sm-6 mb10" >
+                        <span class="col-sm-6">
+                            {{th.name}}(方量)
+                        </span>
+                        <span class="col-sm-6 right">
+                            {{ carModel.items[$index]["amount"] || '0'}}
+                        </span>
+                    </div>
+                    <div class="col-sm-6 mb10"  >
+                        <span class="col-sm-6">
+                            {{th.name}}(金额)
+                        </span>
+                        <span class="col-sm-6 right" ng-show="!!carModel.items[$index]['money']">
+                            {{ carModel.items[$index]['money'] | currency: "￥" : 0}}
+                        </span>
+                        <span class="col-sm-6 right" ng-show="!carModel.items[$index]['money']">
+                        ￥0
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">
+                       总方量
+                    </span>
+                    <span class="col-sm-6 right">
+                        {{ carModel.totalAmount || '0'}}
+                    </span>
+                </div>
+
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">
+                       总金额
+                    </span>
+                    <span class="col-sm-6 right">
+                        {{carModel.totalMoney | currency:"￥ " : 0}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 运输车 -->
+
+<div ng-controller="yscPageCtrl" class="cs_pagination">
+    共{{totalItems}}条，每页{{pageSize}}条,第 {{currentPage}} / {{totalPage}}页
+    <input type="text" ng-model="pageSelect" />
+    <button type="button" class="btn btn-default" ng-click="setPage()">跳转</button>
+    <uib-pagination
+            total-items="totalItems"
+            ng-model="currentPage"
+            max-size="maxSize"
+            boundary-links="true"
+            num-pages="totalPage"
+            force-ellipses="false"
+            items-per-page="pageSize"
+            previous-text="上一页" next-text="下一页"
+            first-text="首页" last-text="尾页"
+            ng-change="pageChanged()"
+            max-size="maxSize"
+            rotate="true"
+            >
+    </uib-pagination>
+</div>

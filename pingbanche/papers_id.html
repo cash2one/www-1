@@ -1,0 +1,99 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+  	<link rel="stylesheet" href="/pingbanche/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/pingbanche/css/cropper.css">
+</head>
+<body class="bgf2">
+	<div data-role="page" id="pageTwo">
+	    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+			<h1>上传图片</h1>
+			<a href="./getInfo.html" class="icon_goPrev_44" data-ajax="false"></a>
+	    </div>
+	    <div data-role="main" class="ui-content pt10">
+	    	<div class="form5">
+	    		<h3>身份证</h3>
+		        <form action=""> 
+		        	<span>平铺证件，使用自然光,两面都要清晰哦</span>
+					<div class="label_w">
+						<label for="" class="upload_img_w">
+						  <div class="img_w js_card_f"></div>
+							<input type="hidden" class="js_hidden">						  
+						  <input type="file" />
+						</label>
+
+						<label for="" class="upload_img_w">
+						  <div class="img_w js_card_b"></div>
+							<input type="hidden" class="js_hidden">							  
+						  <input type="file" />
+						</label>							
+					</div>				
+		            <input value="上 传" type="button" class="js_sure">
+		        </form>  
+	    	</div>   
+		</div>	
+	</div>
+	<div class="img-container">  
+	  <img src="" alt="">	
+	  <div class="img_tf">
+	  	<button id="img_f">取消</button>  	
+	  	<button id="img_t">确认</button>  	  	
+	  </div> 
+	</div>
+	<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+	<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+	<script src="/pingbanche/js/common.js"></script>
+	<script src="/pingbanche/js/cropper.js"></script>
+	<script src="/pingbanche/js/img_copper2.js"></script>
+	<script>
+	$(function(){
+		ajax_get({"token":localStorage.getItem("token")},
+			"mobile/user/getInfo",function(data){
+			var $img1=$("<img>"),
+				$img2=$("<img>");
+			$(".js_card_f").append($img1);
+			$(".js_card_b").append($img2);	
+			if(!!data.idCardFront){
+				$img1.attr("src",imgSrc+data.idCardFront);
+			}else{
+				$img1.attr("src","./images/user_90.png");
+			}	
+			if(!!data.idCardBack){
+				$img2.attr("src",imgSrc+data.idCardBack);
+			}else{
+				$img2.attr("src","./images/user_90.png");
+			}	
+		});
+
+		$(".js_sure").on("click",function(){
+			if(!$(".js_hidden").eq(0).val()&&!$(".js_hidden").eq(1).val()){
+				window.location.href="./getInfo.html";
+			}else{
+				var data={
+					"token":localStorage.getItem("token"),
+				};
+				if( !!$(".js_hidden").eq(0).val() ){
+					data["idCardFront"]=$(".js_hidden").eq(0).val();
+				}
+				if( !!$(".js_hidden").eq(1).val() ){
+					data["idCardBack"]=$(".js_hidden").eq(1).val();
+				}	
+				ajax_pwd(data,"mobile/user/update",function(data){
+					if(data.response_state==1){
+						alert(data.response_note);
+						$(".js_hidden").eq(0).val("");
+						$(".js_hidden").eq(0).val("");	
+						window.location.href="./getInfo.html";				
+					}else{
+						alert(data.response_note);
+					}
+				});	
+			}
+		});
+	});
+	</script>
+</body>
+</html>

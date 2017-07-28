@@ -1,0 +1,264 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+	<link rel="stylesheet" href="/pingbanche/css/order.css">
+  	<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+    <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+</head>
+<!-- 已完成 -->
+<body class="bgf2">
+  <div data-role="page" >
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1 class="js_hd_h1">订单详情</h1>
+      <a href="#" class="icon_goPrev_44" data-ajax='false'></a>
+    </div>
+    <div data-role="main" class="ui-content">
+		<div class="bgf2 pb10">
+			<div class="pt10_lr20 bdbd3">
+				<div class="user_xx1 pr mb10">
+					<div class="user_xx1_img pa">
+						<img src="/pingbanche/images/user_162.png" alt="">
+					</div>
+					<p class="user_name"></p>
+					<p class="js_user"></p>	
+					<p>
+						<span class="js_star">
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+						</span>
+						<em></em>
+					</p>
+				</div>			
+			</div>			
+		</div>
+		<div class="pt10_lr20 bdtd3 bdbd3">
+			<h3 class="bdbd3 time_line1 pb10">
+				<i class="icon icon_zp"></i>
+				司机&nbsp;:&nbsp;&nbsp;<em class="js_d_phone">1892929191</em>
+				<span class="js_data">2015-03-21</span>
+			</h3>
+			<div class="ul_list2 text_pt1">
+				<p>
+					<i class="icon_g"></i>
+					起点：
+					<b class="js_start"></b>
+				</p>
+				<p>
+					<i class="icon_r"></i>
+					终点：
+					<b class="js_end"></b>
+				</p>
+				<p>
+					<span class="js_mileage">公里数:</span>
+				</p>	
+				<p>
+					<span>
+						<b class="js_tp">总价: </b>
+						<em class="js_lx">单程板</em>
+					</span>
+				</p>							
+			</div>	
+		</div>
+		<div class="pt10_lr20 bdbd3 mb10">
+			<div class="ul_list2 text_pt2">
+				<p class="js_model"></p>
+				<p class="js_rece"></p>
+				<p class="js_repho"></p>	
+				<p>
+					<span class="js_status"></span>
+				</p>	
+				<p class="js_note"></p>					
+			</div>	
+		</div>
+		<div class="pt10_lr20 bdbd3 bdtd3 mb10">
+			<div class="link_list">
+				<a href="#" class="js_depart">
+					发车验货单
+					<i class="icon"></i>
+				</a>
+				<a href="#" class="js_receipt">
+					收车验货单
+					<i class="icon"></i>
+				</a>			
+			</div>	
+		</div>
+<!-- 		<div class="pt10_lr20 bdbd3 bdtd3">
+	<div class="eval_con">
+		<p>信誉度：
+			<span class="js_star_c">
+				<i class="cur"></i><i></i><i></i><i></i><i></i>
+			</span>
+		</p>
+		<p class="js_forc">拍的</p>	
+	</div>
+</div> -->
+	</div>	
+  </div>
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  $(function(){
+	var orderId=getQueryString("orderId"),
+		statusNum=getQueryString("status"),
+		log_id=window.localStorage.getItem("log_id"),
+		log_role=window.localStorage.getItem("log_role");
+  	$(".icon_goPrev_44").attr("href","./order_d.html?status="+statusNum);
+
+
+	ajax_get({
+		"token":window.localStorage.getItem("token")
+	},"mobile/order/"+orderId,function(opt){
+		var str_start,str_end;
+		if(!!opt.customer){
+			var star_num=Math.floor( opt.customer.ratePercent/20 );
+			if(!opt.customer.nickname){
+				opt.customer.nickname="";
+			}
+			if(!opt.customer.username){
+				opt.customer.username="";
+			}
+			if(!opt.customer.orderNum){
+				opt.customer.orderNum=0;
+			}
+			if(!opt.customer.ratePercent){
+				opt.customer.ratePercent=0;
+			}
+			$(".user_name").html( opt.customer.nickname );
+			$(".js_user").html( opt.customer.username );
+			$(".user_xx1").find("em").html(opt.customer.orderNum+"单");
+			if(!!opt.customer.photo){
+				$(".user_xx1_img").find("img").attr("src",imgSrc+opt.customer.photo);
+			}else{
+				$(".user_xx1_img").find("img").attr("src","./images/icon_user_225.png");
+			}
+
+			$(".js_star").find("i").each(function(index,element){
+				if(index<=star_num){
+					$(this).addClass("cur");
+				}else{
+					$(this).removeClass("cur");
+				}
+			});				
+		}
+		if(!!opt.driver){
+			var star_num=Math.floor( opt.driver.ratePercent/20 );
+			if(!opt.driver.nickname){
+				opt.driver.nickname="";
+			}
+			if(!opt.driver.username){
+				opt.driver.username="";
+			}
+			if(!opt.driver.orderNum){
+				opt.driver.orderNum=0;
+			}
+			if(!opt.driver.ratePercent){
+				opt.driver.ratePercent=0;
+			}	
+			$(".user_name").html( opt.driver.nickname );
+			$(".js_user").html( opt.driver.username );
+			$(".user_xx1").find("em").html(opt.driver.orderNum+"单");
+			if(!!opt.driver.photo){
+				$(".user_xx1_img").find("img").attr("src",imgSrc+opt.driver.photo);
+			}else{
+				$(".user_xx1_img").find("img").attr("src","./images/icon_user_225.png");
+			}
+			$(".js_star").find("i").each(function(index,element){
+				if(index<=star_num){
+					$(this).addClass("cur");
+				}else{
+					$(this).removeClass("cur");
+				}
+			});				
+		}
+		if(!opt.fromProvince){
+			opt.fromProvince="";
+		}
+		if(!opt.fromCity){
+			opt.fromCity="";
+		}
+		if(!opt.fromCounty){
+			opt.fromCounty="";
+		}
+		if(!opt.fromAddress){
+			opt.fromAddress="";
+		}
+		if(!opt.toProvince){
+			opt.toProvince="";
+		}
+		if(!opt.toCity){
+			opt.toCity="";
+		}
+		if(!opt.toCounty){
+			opt.toCounty="";
+		}
+		if(!opt.toAddress){
+			opt.toAddress="";
+		}
+		if(!opt.distance){
+			opt.distance="";
+		}	
+		if(!opt.total){
+			opt.total=0;
+		}
+		//订单详情里面要判断是客户还是司机
+		if(!opt.customerId){
+			alert(opt.customerId);
+		}
+		if(!opt.driverId){
+			alert(opt.driverId);
+		}
+		str_start=opt.fromProvince+opt.fromCity+opt.fromCounty+opt.fromAddress;
+		str_end=opt.toProvince+opt.toCity+opt.toCounty+opt.toAddress;
+		$(".js_start").html(str_start);
+		$(".js_end").html(str_end);
+		
+		if( log_role=="ROLE_MANAGER" && log_id!=opt.customerId ){
+			$(".time_line1").html( "<i class='icon icon_zp'></i>司机&nbsp;:&nbsp;&nbsp;<em class='js_d_phone'>"+opt.customer.username+"</em><span class='js_data'>"+
+				format(opt.createdDate)+"</span>" );
+		}else{
+			$(".time_line1").html( format(opt.createdDate) );
+		}
+		
+		$(".js_mileage").html("公里数: "+opt.distance);
+		$(".js_tp").html("总价: "+opt.total);
+		if(opt.routeType=="SINGLE"){
+			opt.routeType="单程";
+		}else if(opt.routeType=="RETURN"){
+			opt.routeType="返程";
+		}else if(opt.routeType=="FIXED"){
+			opt.routeType="一口价";
+		}
+		$(".js_lx").html("&nbsp;&nbsp;&nbsp;&nbsp;"+opt.routeType );
+		$(".js_model").html("车辆类型&nbsp;:&nbsp;&nbsp;"+opt.carModel);
+		$(".js_rece").html("收货姓名&nbsp;:&nbsp;&nbsp;"+opt.receiverName);
+		$(".js_repho").html("收货电话&nbsp;:&nbsp;&nbsp;"+opt.receiverPhone);
+		if(!!opt.status){
+			if(opt.status=="START"){
+				$(".js_status").html("订单进行中");
+			}else if(opt.status=="SUCCESS"){
+				$(".js_status").html("订单已完成");
+			}
+		}
+		if(!!opt.note){
+			$(".js_note").css("display","block");
+			$(".js_note").html("备注"+opt.note);	
+		}else{
+			$(".js_note").css("display","none");
+		}	
+	});
+	$(".js_depart").on("click",function(){
+		window.location.href="./inspection.html?orderId="+orderId+"&type=DEPART";
+	}); 
+	$(".js_receipt").on("click",function(){
+		window.location.href="./inspection.html?orderId="+orderId+"&type=RECEIPT";		
+	}); 
+  });
+  </script>
+</body>
+</html>

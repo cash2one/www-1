@@ -1,0 +1,120 @@
+CACHE MANIFEST
+#上面一句必须
+#v1.0.1
+#需要缓存的文件
+CACHE:
+	css/jquery.mobile.custom.structure.css
+	css/mobiscroll.custom-2.5.0.min.css
+	css/cropper.css
+	css/iscroll.css
+	css/order.css
+	css/reset.css
+	css/scrollbar.css
+	css/style.css
+
+
+	js/jquery-1.8.3.min.js
+	js/jquery-1.11.0.min.js
+	js/jquery.mobile.custom.js		
+	js/mobiscroll.custom-2.5.0.min.js
+	js/jquery.autocomplete.js
+	js/cities.js
+	js/city.js
+	js/common.js
+	js/cropper.js
+	js/img_copper2.js
+	js/img_copper3.js
+	js/iscroll.js
+	js/purl.js
+	js/style.js
+	http://api.map.baidu.com/api?v=2.0&ak=TMDrGeosWbaA1QKTc42GsW077QUoo9NF
+
+	images/ajax-loader.gif
+	images/arr_b_f.png
+	images/arr_r.png
+	images/arr_t_f.png
+	images/banche.gif
+	images/check.gif
+	images/cs_phone.png
+	images/dimension.png
+	images/dot_cf.png
+	images/driver_img.jpg
+	images/hwx_pic.jpg
+	images/icon_54_c.png
+	images/icon_54_d.png
+	images/icon_68_tz.png
+	images/icon_72_arr.png
+	images/icon_72_start.png
+	images/icon_72_start_d.png
+	images/icon_204.png
+	images/icon_alert_48.png
+	images/icon_arr_black_b.png
+	images/icon_arr_l.png
+	images/icon_arr_r.png
+	images/icon_c_35.png
+	images/icon_car_f_66.png
+	images/icon_car_r_66.png
+	images/icon_clock_48.png
+	images/icon_close_48.png
+	images/icon_cx.png
+	images/icon_d_35.png
+	images/icon_date_48.png
+	images/icon_dd_44.png
+	images/icon_dialog.png
+	images/icon_dmz_132.png
+	images/icon_ds_208.png
+	images/icon_ds_208_r.png
+	images/icon_face.png
+	images/icon_gl.png
+	images/icon_goprev_44.png
+	images/icon_hy_44.png
+	images/icon_kfmm_57.png
+	images/icon_link_48.png
+	images/icon_menu.png
+	images/icon_message_54.png
+	images/icon_mm_57.png
+	images/icon_mm2_57.png
+	images/icon_pay_96.png
+	images/icon_ph_57.png
+	images/icon_ph_f44.png
+	images/icon_phone_g_48.png
+	images/icon_q.png
+	images/icon_radio_42.png
+	images/icon_read_w.png
+	images/icon_read_y.png
+	images/icon_t_35.png
+	images/icon_true_48.png
+	images/icon_user_138.png
+	images/icon_user_225.png
+	images/icon_weixin_96.png
+	images/icon_write_48.png
+	images/icon_zp.png
+	images/icon_zp_60.png
+	images/icons.png
+	images/logo_288.png
+	images/map_cb.png
+	images/map_sate.png
+	images/progress_loading_image_02.png
+	images/pull-icon@2x.png
+	images/road_one.png
+	images/road_two.png
+	images/scrollbar.png
+	images/transparent.gif
+	images/upload_b.png
+	images/upload_t.png
+	images/user_90.jpg
+	images/user_90.png
+	images/user_162.png
+
+#不需要缓存的文件
+NETWORK:
+	images/id_1.jpg
+	images/id_1.png
+	images/id_2.jpg
+	images/psb.jpg
+	images/user_img.png
+	images/zj_pic.jpg
+*
+#无法访问页面
+FALLBACK:
+404.html

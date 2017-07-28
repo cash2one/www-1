@@ -1,0 +1,42 @@
+<div ui-view="content" class="content" ng-controller="proSec" ></div>
+    <!-- 图片 S-->
+    <div class="modal fade" id="bgImgShow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="bgImg">
+        <div class="modal-dialog" >
+            <div class="modal-body imgBody">
+                <div class="modal-header bdbn">
+                    <button type="button" class="close close_red" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                </div>
+            </div>
+            <div class="imgBody">
+                <img src="{{item}}" alt="" ng-repeat="item in imgArray" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 图片 E-->
+<style>
+    .imgBody{
+        width:100%;
+    }
+    .imgBody img{
+        display: block;
+        margin:0px auto;
+        width:90%;
+        height:auto;
+    }
+    .bdbn{
+        border-bottom: 0px!important;
+    }
+    .close_red{
+        font-size:30px;
+        color:#327ccb;
+        border: 1px solid #327ccb;
+        border-radius: 50%;
+    }
+    .close:focus, .close:hover{
+        color:#327ccb;
+    }
+</style>

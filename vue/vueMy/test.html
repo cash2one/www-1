@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        .bacR{
+            background-color: beige;
+            width: 200px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+
+        Vue.component("t-div",{
+            template: '<div v-show="someChildProperty" class="bacR">' +
+            '<slot text2="hello from child" text="k">{{someChildProperty}}</slot>'+
+            '</div>',
+            data: function () {
+                return {
+                    someChildProperty: true
+                }
+            }
+        });
+        Vue.component("t-div2",{
+            template: '<span>{{data}}</span>',
+            props:['data'],
+            data: function () {
+                return {
+                    someChildProperty: true
+                }
+            }
+        })
+    </script>
+    <div id="app">
+        <t-div>
+            <template scope="props">
+                <span>hello from parent</span><br/>
+                <span v-on:click="fn($event,props)">{{ props.text2 }}</span>
+            </template>
+        </t-div>
+        <div>
+            <button value="按钮" v-on:click="click2">我是按钮</button>
+        </div>
+        <div v-for=" item in data">
+            <t-div2 v-bind:data="item"></t-div2>
+        </div>
+    </div>
+    <script>
+        var date2=[1,2,3,4,5,6,7,8];
+        var app=new Vue({
+            el:"#app",
+            data:{
+                data:date2,
+            },
+            methods:{
+                fn:function (event,a) {
+                    console.log(event.target,a);
+                },
+                click2:function () {
+//                    var e=document.createElement("t-div");
+//                    console.log(e);
+//                    document.getElementById("app").appendChild(e);
+//                    date2.length--;
+//                    console.log(date2)
+//                    Vue.set(this.data,4,10);
+                    this.data.push(9);
+                    this.data.shift();
+                    console.log(this);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

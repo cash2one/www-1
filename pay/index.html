@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="no">
+    <title>Title</title>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="./jquery-1.10.2.min.js"></script>
+    <script src="./sha1.js"></script>
+</head>
+<body>
+
+<script>
+    var TOTAL={
+        time:new Date(),
+        access_token:'',
+        expires_in_a:'',
+        expires_in_t:'',
+        ticket:'',
+        noncestr:'Wm3WZYTPz0wzccnW',
+        href:window.location.href,
+        strSH1:''
+    };
+    //获取access__taken
+//    function ajax({method="GET",url,scc,fail}) {
+//        let xhr=new XMLHttpRequest();
+//            xhr.open(method,url);
+//            xhr.onreadystatechange=function () {
+//                if(xhr.readyState==4&&xhr.status==200){
+//
+//                }
+//            }
+//    }
+    $.ajax({
+        url:"https://api.weixin.qq.com/cgi-bin/token",
+        type:"GET",
+        data:{
+            appid:'wxe6a0251e0e2900c5',
+            secret:'KHHSOFTMNBVCXZ123456POIUYTREWQLK',
+            grant_type:'client_credential',
+        },
+        success:function (e) {
+            if(e.access_token){
+                TOTAL.access_token=e.access_token;
+                TOTAL.expires_in_a=e.expires_in;
+                $.ajax({
+                    url:"https://api.weixin.qq.com/cgi-bin/ticket/getticket",
+                    type:"GET",
+                    data:{
+                        access_token:TOTAL.access_token,
+                        type:'jsapi',
+                    },
+                    success:function (e) {
+                        if(e.errcode==0&&e.ticket){
+                            TOTAL.ticket=e.ticket;
+                            TOTAL.expires_in_t=e.expires_in;
+                            var str='jsapi_ticket='+TOTAL.ticket+'&noncestr=Wm3WZYTPz0wzccnW' +
+                                '&timestamp='+TOTAL.time+
+                                '&url='+TOTAL.href;
+                            TOTAL.strSH1=hex_sha1(str);
+                            config();
+                        }
+                    }
+                })
+            }
+        }
+    });
+
+function config() {
+    wx.config({
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: 'wxe6a0251e0e2900c5', // 必填，公众号的唯一标识
+        timestamp:TOTAL.time , // 必填，生成签名的时间戳
+        nonceStr: TOTAL.noncestr, // 必填，生成签名的随机串
+        signature: TOTAL.strSH1,// 必填，签名，见附录1
+        jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+}
+
+</script>
+</body>
+</html>

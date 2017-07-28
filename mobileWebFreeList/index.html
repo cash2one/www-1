@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="no">
+    <title>Title</title>
+    <link rel="stylesheet" href="/mobileWebFreeList/css/main.css">
+    <script>
+        var _html=document.getElementsByTagName("html")[0];
+        _html.style.fontSize=document.documentElement.clientWidth/10+"px";
+
+        (function oresize() {
+//                var evt="onorientationchange" in window?"onorientationchange":"resize";
+//                console.log(evt);
+            window.addEventListener("resize",function (e) {
+                var e=e||event;
+                var _html=document.getElementsByTagName("html")[0];
+                _html.style.fontSize=document.documentElement.clientWidth/10+"px";
+//                    alert(document.documentElement.clientWidth);
+            })
+        }());
+    </script>
+    <script src="/mobileWebFreeList/js/jquery-1.10.2.min.js"></script>
+    <!--<script src="js/vue.js"></script>-->
+</head>
+<body>
+    <div class="on-eorr">
+        <span>服务器未响应</span>
+    </div>
+    <div id="myApp">
+        <div class="no-list">
+            <span>订单已经抢完，不存在空闲订单</span>
+        </div>
+    </div>
+    <div class="no-more">
+        <span>已经加载到了最后</span>
+    </div>
+    <div class="show-more">
+        <span>正在加载中.....</span>
+    </div>
+    <script type="text/template" id="tpl">
+        <a class="contain">
+            <div class="contain-head">
+                <div class="contain-head-left">
+                    <div class="contain-area">
+                        <span class="contain-area-mian">滨江区</span>
+                        <span class="contain-area-minor">杭州市</span>
+                    </div>
+                    <div class="bg-right-arrow">
+
+                    </div>
+                    <div class="contain-area">
+                        <span class="contain-area-mian cam-color">滨江区</span>
+                        <span class="contain-area-minor">杭州市</span>
+                    </div>
+                </div>
+                <div class="contain-head-right">
+                    <div>
+                        <span>里程：121公里</span>
+                    </div>
+                    <div>
+                        <span>总价：321元</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contain-body">
+                <div class="contain-body-first">
+                    <span class="cbf-color">可装车时间：</span>
+                    <span>2017-5-17  上午</span>
+                </div>
+                <div class="contain-body-second">
+                    <span class="cbs-first">123</span>
+                    <span class="cbs-second">备注</span>
+                </div>
+            </div>
+        </a>
+    </script>
+    <script src="/mobileWebFreeList/js/mian.js"></script>
+</body>
+</html>

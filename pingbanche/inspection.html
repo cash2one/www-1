@@ -1,0 +1,102 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+  <link rel="stylesheet" href="/pingbanche/css/style.css">
+</head>
+<body class="bgf2">
+  <div data-role="page">
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1 class="js_h1">发车验货单</h1>
+      <a href="javascript:history.go(-1)" class="icon_goPrev_44" data-ajax="false"></a>
+    </div>
+    <div data-role="main" class="ui-content pt10">
+      <ul class="s_h_nav s_h_nav2 s_h_li_auto">
+        <li class="h62">
+          <b class="js_b">装车照片</b>
+          <div class="img_w w_auto">
+            <a href="javascript:;" class="ui-link js_img_org" style="width: 0px;">
+              <img src="" alt="图像" class="js_loadPhoto">
+            </a>
+          </div>
+        </li> 
+        <li class="h62"> 
+          <b>里程表照片</b>
+          <div class="img_w w_auto">
+          <a href="javascript:;" class="ui-link js_img_org" style="width: 0px;">
+            <img src="" alt="图像" class="js_odometer">
+          </a>
+          </div>
+        </li>                                   
+      </ul> 
+      <div class="textarea_w">
+        <div class="textarea js_note">
+        </div>  
+      </div>
+		</div>
+  </div>
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  $(function(){
+
+    (function(){
+      $(".img_w").find("a").css({"width":5+"rem","text-align":"center","line-height":5+"rem"});
+      $(".img_w").find("img").css({"width":100+"%"});    
+    })();
+
+
+    var orderId=getQueryString("orderId"),
+        type=getQueryString("type"),
+        data={
+          "token":window.localStorage.getItem("token"),
+          "orderId":orderId,
+          "type":type
+        };
+
+    switch(type){
+      case "DEPART":
+        $(".js_h1").html("发车验货单");
+        $(".js_b").html("装车照片");
+        break;
+      case "RECEIPT":
+        $(".js_h1").html("收车验货单");
+        $(".js_b").html("卸车照片");        
+        break;        
+    };
+    
+    ajax_get(data,"mobile/order/inspection",function(data){
+      if(!!data.loadPhoto){
+        $(".js_loadPhoto").attr("src",imgSrc+data.loadPhoto);  
+        $(".js_img_org").on("click",function(){
+          var img_src=$(this).find("img").attr("src");
+          window.localStorage.setItem("img_org",img_src);
+          window.location.href="./img_org.html";
+        });           
+      }else{
+        $(".js_loadPhoto").attr("src","./images/user_90.png"); 
+      }
+
+      if(!!data.odometerPhoto){
+        $(".js_odometer").attr("src",imgSrc+data.odometerPhoto);  
+        $(".js_img_org").on("click",function(){
+          var img_src=$(this).find("img").attr("src");
+          window.localStorage.setItem("img_org",img_src);
+          window.location.href="./img_org.html";
+        });                  
+      }else{
+        $(".js_odometer").attr("src","./images/user_90.png");         
+      }
+      if(!!data.note){
+        $(".js_note").html(data.note);
+      }else{
+        $(".js_note").html("无");    
+      }
+    });
+  });
+  </script>
+</body>
+</html>

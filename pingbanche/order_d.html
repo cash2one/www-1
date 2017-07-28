@@ -1,0 +1,352 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+  <link rel="stylesheet" href="/pingbanche/css/iscroll.css"> 
+  <link rel="stylesheet" href="/pingbanche/css/order.css">
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>  
+</head>
+<body class="bgf2">
+  <div data-role="page" class="js_pt100 p_pt100">
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>订单</h1>
+      <a href="javascript:;" class="icon_goPrev_44" data-ajax="false"></a>
+    </div>
+    <div class="navbar2">
+      <span data-ajax="false">全部订单</span>
+      <span data-ajax="false">进行中</span>
+      <span data-ajax="false">已完成</span>
+    </div>
+    <div data-role="main" class="ui-content con_scroll">
+        <div id="tab1"  class="d_tab">
+          <div class="scroller">
+            <ul class="ul_list1 ul_list1_1"></ul>
+            <div class="pullUp">
+              <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+            </div>
+          </div>
+        </div> 
+        <div id="tab2"  class="d_tab">
+          <div class="no_start">
+             <img src="/pingbanche/images/banche.gif" alt=""> 
+             <p>抱歉!暂时没找到你要的信息耶~</p>
+          </div>
+        </div> 
+        <div id="tab3"  class="d_tab">
+          <div class="scroller">
+            <ul class="ul_list1 ul_list1_1"></ul>
+            <div class="pullUp">
+              <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+            </div>
+          </div>
+        </div> 
+        <div id="pop_conf">
+          <h3>提示!</h3>
+          <p>确定抢单？</p>
+          <span>
+            <a href="#" class="js_delete ui-link">取消</a>
+            <a href="#" class="js_btn ui-link">确定</a>
+          </span>
+        </div>
+        <div class="pop_bg"></div>
+		</div>
+  </div>
+  <div class="spinner js_spinner"></div>
+  <script src="/pingbanche/js/iscroll.js"></script>
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  var log_id=window.localStorage.getItem("log_id"),
+      log_role=window.localStorage.getItem("log_role"),
+      myScroll,num=1,myScroll1,num1=1,
+      pageSize1=20,pageSize2=15;
+
+  var ajax_init1=function(num,status){
+    var data={
+        token:localStorage.getItem("token"),
+        pageSize:pageSize1,
+        pageNum:num
+    }
+    if(!!status){
+      data["status"]=status;
+    }
+    ajax_get(data,"mobile/order",function(data){
+      post_ord(data);
+    });
+  } 
+
+    //滚动翻页 （自定义实现此方法）
+  var pullUpAction=function (that,num) {
+    if(!!window.localStorage.getItem("ord_page") ){
+      var totalNum=window.localStorage.getItem("ord_page");
+      if(num>totalNum){
+        num=totalNum;
+        $("#tab1").find(".pullUpLabel").html("已经是最后一页了");          
+      }else{
+        $(".js_spinner").css("display","block");
+        setTimeout(function(){
+          $(".js_spinner").css("display","none"); 
+          ajax_init1(num);                    
+        },1000);
+      }
+    }
+    that.refresh();   
+  }
+
+  function post_ord(data){ 
+    if(data.response_state==1){
+      ord_forFn(data);
+    }else{
+       $(".d_tab").html("");
+        var $str_div=$("<div class='no_start'><div>"),
+            str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+        $str_div.html(str_con);
+        $(".d_tab").append($str_div);      
+    }
+  }
+
+  function ord_forFn(data){
+    var str="",
+      len=data.list.length,
+      listArr=data.list;
+
+    window.localStorage.setItem("ord_page",data.totalPage);
+    if(len<pageSize1){
+      $(".pullUp").css("display","none");
+    }  
+    if(!!listArr[0]){
+      for(var i=0;i<len;i++){
+        var $li=$('<li>'),
+          $a=$("<a>"),
+          $h4=$("<h4>"),
+          d=new Date(listArr[i].createdDate),
+          $p1=$("<p>"),
+          $p2=$("<p>"),
+          $note,
+          $p1_str="<i class='icon icon_g'></i>起点："+listArr[i].fromProvince+""+listArr[i].fromCity+""+listArr[i].fromCounty+""+listArr[i].fromAddress,
+          $p2_str="<i class='icon icon_r'></i>"+listArr[i].toProvince+""+listArr[i].toCity+""+listArr[i].toCounty+""+listArr[i].toAddress,
+          date =d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+"  "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();  
+        
+        switch(listArr[i].status){
+          case "START":
+            $note="进行中";
+            break;
+          case "SUCCESS":
+            $note="已完成";
+            break;                  
+        }
+
+        $h4.html(date+"<em>"+$note+"</em>");
+        if(log_role=="ROLE_MANAGER"){ //是调度的话
+          var $b=$("<b>");
+          if(log_id==listArr[i].customerId){
+            $b.addClass("c");
+            $b.html("客户订单");
+          }else{
+            $b.addClass("z");
+            $b.html("指派订单");
+          }
+          $h4.append($b);
+        }
+        $p1.html($p1_str);
+        $p2.html($p2_str);
+        $a.attr("data-ajax","false");
+        if($note=="进行中"){
+          $a.attr("href","./order_details_1.html?orderId="+listArr[i].id+"&status="+window.localStorage.getItem("statusNum") );
+        }else if($note=="已完成"){
+          $a.attr("href","./order_details_2.html?orderId="+listArr[i].id+"&status="+window.localStorage.getItem("statusNum") );
+        }
+        $a.append($h4);
+        $a.append($p1);
+        $a.append($p2);          
+        $li.append($a);
+        $(".ul_list1_1").append($li); 
+      }
+    }else{
+      var $str_div=$("<div class='no_start'><div>"),
+          str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+      $(".d_tab").html("");  
+      $str_div.html(str_con);
+      $(".d_tab").append($str_div);      
+    }
+  }
+
+  var ajax_init2=function(){
+    var data={
+        token:localStorage.getItem("token"),
+        status:"START"
+    }
+    ajax_get(data,"mobile/order",function(data){
+      if(data.response_state==1){
+        post_ord1(data);
+      }  
+    });
+  } 
+  //滚动翻页 （自定义实现此方法）
+  var pullUpAction1=function (that,num) {
+    if(!!window.localStorage.getItem("ord_page") ){
+      var totalNum=window.localStorage.getItem("ord_page");
+      if(num>totalNum){
+        num=totalNum;
+        $("#tab3").find(".pullUpLabel").html("已经是最后一页了");  
+      }else{
+        $(".js_spinner").css("display","block");
+        setTimeout(function(){
+          $(".js_spinner").css("display","none"); 
+          ajax_init1(num1,"SUCCESS");                
+        },1000);
+      }
+    }
+    that.refresh();   
+  } 
+
+  var getTabNum=function(){
+    var tab_num=0;
+    var pram=getQueryString("status");
+    if(!!pram){
+        tab_num=pram;
+    }else{
+      tab_num=0;
+    } 
+    return tab_num;     
+  }
+  function post_ord1(data){ 
+    if(data.response_state==1){
+      ord_forFn1(data);
+    }else{
+     $("#tab2").html("");
+      var $str_div=$("<div class='no_start'><div>"),
+          str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+      $str_div.html(str_con);
+      $("#tab2").append($str_div);
+    }
+  } 
+  function ord_forFn1(data){  
+    var str="",
+      listArr=data.list,
+      len=listArr.length,
+      $ul=$("<ul class='ul_list1 ul_list1_2'>");
+
+    if(len<pageSize1){
+      $(".pullUp").css("display","none");
+    }  
+    if(!!listArr[0]){
+
+      console.log( listArr );
+      $("#tab2").html("");
+      for (var i =0; i<listArr.length; i++) {    
+        var $li=$('<li>'),
+          $a=$("<a>"),
+          $h4=$("<h4>"),
+          d=new Date(listArr[i].createdDate),
+          $p1=$("<p>"),
+          $p2=$("<p>"),
+          $p1_str="<i class='icon icon_g'></i>起点："+listArr[i].fromProvince+""+listArr[i].fromCity+""+listArr[i].fromCounty+""+listArr[i].fromAddress,
+          $p2_str="<i class='icon icon_r'></i>"+listArr[i].toProvince+""+listArr[i].toCity+""+listArr[i].toCounty+""+listArr[i].toAddress,
+          date =d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+"  "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(), 
+          $div2=$("<div class='link_wrap'></div>"),
+            $link_right;
+
+        $h4.html(date+"<em>进行中</em>");
+        if(log_role=="ROLE_MANAGER"){ //是调度的话
+          var $b=$("<b>");
+          if(log_id==listArr[i].customerId){
+            $b.addClass("c");
+            $b.html("客户订单");
+          }else{
+            $b.addClass("z");
+            $b.html("指派订单");
+          }
+          $h4.append($b);
+        } 
+        $p1.html($p1_str);
+        $p2.html($p2_str);
+        $a.attr("data-ajax","false");
+        $a.attr("href","./order_details_1.html?orderId="+listArr[i].id+"&status="+window.localStorage.getItem("statusNum") );
+        $a.append($h4);
+        $a.append($p1);
+        $a.append($p2); 
+        $li.append($a);
+        if( window.localStorage.getItem("log_role")=="ROLE_CUSTOMER"  ){ //客户的话 查看足迹
+          $link_right=$("<a class='link_right'>查看足迹</a>");
+          $link_right.attr({"href":"./footprint.html?orderId="+listArr[i].id,"data-ajax":"false"});
+        }
+        if( window.localStorage.getItem("log_role")=="ROLE_DRIVER"  ){ //客户的话 查看足迹
+          $link_right=$("<a class='link_right'>查看导航</a>");
+          $link_right.attr({"href":"./footprint.html?orderId="+listArr[i].id,"data-ajax":"false"});
+        }
+        if( window.localStorage.getItem("log_role")=="ROLE_MANAGER"  ){ //调度的话 查看足迹
+          $link_right=$("<a class='link_right'>查看导航</a>");
+          $link_right.attr({"href":"./footprint.html?orderId="+listArr[i].id,"data-ajax":"false"});
+        }
+        $div2.append($link_right);
+        $li.append($div2);
+        $ul.append($li);
+      };
+      $("#tab2").append($ul);
+    }else{ 
+       $("#tab2").html("");
+        var $str_div=$("<div class='no_start'><div>"),
+            str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+        $str_div.html(str_con);
+        $("#tab2").append($str_div);
+    }
+  }
+  
+  $(function(){
+    $(".icon_goPrev_44").on("click",function(){
+      window.localStorage.setItem("statusNum",0); 
+      $(this).attr("href","./home.html");
+    });  
+    $(".js_pt100").css({
+      "paddingTop":110,
+      "paddingBottom":0,
+      "height":$(window).height()-110,
+      "min-height":0
+    });
+    $(".js_body_100").css("height",$(window).height());
+    $(".con_scroll").height(  $(window).height()-110);  
+    document.addEventListener('touchmove',function(e){ 
+      e.preventDefault(); 
+    },false); 
+    loaded(myScroll,"tab1",num,pullUpAction); 
+    loaded(myScroll1,"tab3",num1,pullUpAction1);  
+    var prame=window.localStorage.getItem("statusNum");
+    
+    if(!prame){ prame=0; }
+    $(".navbar2").find("span").eq(prame).addClass("cur");
+    $(".d_tab").eq(prame).css("display","block");
+    if(prame==0){
+      ajax_init1(num);   
+    }else if(prame==1){
+      ajax_init2();
+    }else if(prame==2){
+      ajax_init1(num1,"SUCCESS"); 
+    }
+    $(".navbar2").find("span").bind("click",function(){
+      $(this).addClass("cur").siblings().removeClass("cur");
+      var index=$(this).index();
+      $(".d_tab").css("display","none");
+      $(".d_tab").eq(index).css("display","block");
+      if(index==0){ 
+        window.location.href="./order_d.html?status=0";
+        window.localStorage.setItem("statusNum",0);  
+        ajax_init1(num); 
+      }else if(index==2){
+        window.location.href="./order_d.html?status=2";
+        window.localStorage.setItem("statusNum",2); 
+        ajax_init1(num1,"SUCCESS"); 
+      }else if(index==1){
+        window.location.href="./order_d.html?status=1";
+        window.localStorage.setItem("statusNum",1); 
+        ajax_init2(); 
+      }
+    });
+  });
+  //初始化iScroll控件
+  </script>
+</body>
+</html>

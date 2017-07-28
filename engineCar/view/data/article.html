@@ -1,0 +1,145 @@
+<div class="sec_8 row" ng-show="roleBoss">
+
+    <div class="sec_1_l col-sm-8">
+        <a href="javascript:;" data-toggle="modal" data-target="#add">
+            <i class="icon_27 icon_add_27"></i>新&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;增
+        </a>
+        <!--<a href="javascript:;">-->
+            <!--<i class="icon_27 icon_minus_27"></i>删&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除-->
+        <!--</a>-->
+    </div>
+    <!--<div class="col-sm-4">-->
+        <!--<form class="bs-example bs-example-form pb15" role="form" >-->
+            <!--<div class="input-group">-->
+                <!--<input type="text" class="form-control">-->
+                <!--<span class="input-group-btn">-->
+                    <!--<button class="btn btn-default glyphicon glyphicon-search" type="button"></button>-->
+                <!--</span>-->
+            <!--</div>-->
+        <!--</form>-->
+    <!--</div>-->
+</div>
+<div class="sec_2 table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="bold_th">
+        <tr>
+            <th>装车内容</th>
+            <th>挖机单价</th>
+            <th ng-show="roleBoss">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat = "item in thList">
+                <td class="name">{{item.name || '&nbsp;&nbsp;'}}</td>
+                <td><span class="price">{{item.priceForDigMachine}}</span>&nbsp;&nbsp;元/立方米</td>
+                <td ng-show="roleBoss">
+                    <button class="btn btn-link" data-id="{{item.id}}" ng-click="saveM($event,'#edit')">编辑</button>
+                    <button class="btn btn-link" data-id="{{item.id}}" ng-click="delete($event,'#delete')">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 新增装车内容 S-->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header  modal_tit1">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title">新增装车内容</h4>
+            </div>
+            <div class="modal-body row">
+                <form class="form-horizontal col-sm-9" role="form" name="addArticle">
+                    <div class="form-group" ng-class="{'has-error': addArticle.model.$invalid}">
+                        <label class="col-sm-3 control-label" for="model">装车内容:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="model" class="form-control" ng-model="modelM.name" required>
+                            <span class="cl_red lh36" ng-show="addArticle.model.$invalid">请输入装车内容</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': addArticle.price.$invalid}">
+                        <label class="col-sm-3 control-label" for="price">挖机单价:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="price" class="form-control" ng-model="modelM.priceForDigMachine" required ng-pattern="/^[0-9]+(.[0-9]{0,4})?$/">
+                            <span class="cl_red lh36" ng-show="addArticle.price.$invalid">请输入挖机单价(只能为数字小数位数不超过4)</span>
+                        </div>
+                    </div>
+                </form>
+                <div class="col-sm-3 form-group form_btn tl">
+                    <button type="button" class="btn btn-primary" ng-disabled="addArticle.$invalid" ng-click="saveFn('#add')">保&nbsp;&nbsp;存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 新增油 E-->
+
+<!-- 编辑油  S-->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header  modal_tit1">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title">编辑装车内容</h4>
+            </div>
+            <div class="modal-body row">
+                <form class="form-horizontal col-sm-9" role="form" name="editArticle">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="model">装车内容:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="model" disabled class="form-control" ng-model="modelM.name" required>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': editArticle.price.$invalid}">
+                        <label class="col-sm-3 control-label" for="price">挖机单价:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="price" class="form-control" ng-model="modelM.priceForDigMachine" required ng-pattern="/^[0-9]+(.[0-9]{0,4})?$/">
+                            <span class="cl_red lh36" ng-show="addArticle.price.$invalid">请输入挖机单价(只能为数字小数位数不超过4)</span>
+                        </div>
+                    </div>
+                </form>
+                <div class="col-sm-3 form-group form_btn tl">
+                    <button type="button" class="btn btn-primary mb15" ng-click="saveFn('#edit')">保&nbsp;&nbsp;存</button>
+                    <!--<button type="button" class="btn btn-default" ng-click="delete2('#delete')">删&nbsp;&nbsp;除</button>-->
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取&nbsp;&nbsp;消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 编辑油  E-->
+
+<!-- 删除油  S-->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header  modal_tit1">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title">装车内容</h4>
+            </div>
+            <div class="modal-body">
+                <div class="tit3 mb15">
+                    <p class="cl_red">您确定删除吗？删除后数据不可恢复</p>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-block btn-default btn-h50" data-dismiss="modal">取消</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-block btn-primary btn-h50" ng-click="deleteFn('#delete')">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 删除油  E-->

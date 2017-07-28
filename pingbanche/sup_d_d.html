@@ -1,0 +1,133 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+</head>
+<!-- 2016-09-12 此处添加一个接口 通过ID获取货源详情 -->
+<body class="bgf2">
+  <div data-role="page" >
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>资源详情</h1>
+      <a href="./sup_goods_d.html?status=1" class="icon_goPrev_44" data-ajax='false'></a>
+    </div>
+    <div data-role="main" class="ui-content v100p">
+		<div class="bgf2 pb10">
+			<div class="pt10_lr20 bdbd3">
+				<div class="user_xx1 pr mb10">
+					<div class="user_xx1_img pa">
+						<img src="/pingbanche/images/user_162.png" alt="">
+					</div>
+					<p class="user_name">昵称</p>
+					<p class="js_user">15088688868</p>	
+					<p><span class="js_star"><i class="cur"></i><i class="cur"></i><i class="cur"></i><i class="cur"></i><i></i></span><em>3580单</em></p>
+				</div>			
+			</div>			
+		</div>
+		<div class="pt10_lr20 bdtd3 bdbd3">
+			<h3 class="bdbd3 time_line1 pb10">2016-08-12&nbsp;&nbsp;17:09</h3>
+			<div class="ul_list2 text_pt1">
+				<p>
+					<i class="icon_g"></i>
+					起点：
+					<b class="js_start"></b>
+				</p>
+				<p>
+					<i class="icon_r"></i>
+					终点：
+					<b class="js_end"></b>
+				</p>
+				<p>
+					<span class="js_wfc"></span>
+				</p>				
+			</div>	
+		</div>
+		<div class="pt10 plr45 js_bz">
+			<p></p>
+		</div>		
+	</div>	
+  </div>
+
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  $(function(){
+  	var dr_id=window.localStorage.getItem("dr_my_num");
+	ajax_resource(dr_id,"mobile/resource",function(data){
+		var arr=data.list;
+		for(var i=0;i<arr.length;i++){
+			if(dr_id==arr[i].id){
+				var data=format( arr[i].createdDate );
+				$(".time_line1").html( data );
+				if(!arr[i].fromProvince){
+					arr[i].fromProvince="";
+				}
+				if(!arr[i].fromCity){
+					arr[i].fromCity="";
+				}
+				if(!arr[i].fromCounty){
+					arr[i].fromCounty="";
+				}
+				if(!arr[i].fromAddress){
+					arr[i].fromAddress="";
+				}
+				if(!arr[i].toProvince){
+					arr[i].toProvince="";
+				}
+				if(!arr[i].toCity){
+					arr[i].toCity="";
+				}
+				if(!arr[i].toCounty){
+					arr[i].toCounty="";
+				}
+				if(!arr[i].toAddress){
+					arr[i].toAddress="";
+				}
+				var str_start=arr[i].fromProvince+arr[i].fromCity+arr[i].fromCounty+arr[i].fromAddress,
+					str_end=arr[i].toProvince+arr[i].toCity+arr[i].toCounty+arr[i].toAddress;	
+
+				$(".js_start").html(str_start);
+				$(".js_end").html(str_end);
+				if(arr[i].routeType=="SINGLE"){
+					$(".js_wfc").html("单程");
+				}else if( arr[i].routeType=="RETURN" ){
+					$(".js_wfc").html("返程");
+				}
+				if(!!arr[i].note){
+					$(".js_bz").find("p").html("备注: <em>"+arr[i].note+"</em>");
+				}else{
+					$(".js_bz").find("p").html("");
+				}	
+			}
+		}	
+	});
+
+    getUserById(window.localStorage.getItem("log_id"),function(data){
+    	var star_num=Math.floor( data.ratePercent/20 );
+    	if(!!data.photo){
+    		$(".user_xx1_img").find("img").attr({
+    			"src":imgSrc+data.photo,"alt":"用户头像"
+    		});	
+    	}else{
+    		$(".user_xx1_img").find("img").attr({
+    			"src":"./images/icon_user_225.png","alt":"用户头像"
+    		});					
+    	}
+		$(".user_name").html( data.nickname );
+		$(".user_xx1 p").find("em").html(data.orderNum+"单");	
+		$(".js_user").html(data.username);	
+		$(".js_star").find("i").each(function(index,element){
+			if(index<=star_num){
+				$(this).addClass("cur");
+			}else{
+				$(this).removeClass("cur");
+			}
+		});	
+    });
+  });
+  </script>
+</body>
+</html>

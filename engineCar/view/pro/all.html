@@ -1,0 +1,20 @@
+<div ng-controller="carOilSec">
+    <div class="sec_3">
+        <div class="nav">
+            <a ng-class="{'on': name=='car'}" ng-click="ocTab($event,'car')">{{tabTitle1}}</a>
+            <!-- 油的入口 -->
+            <!--<a ng-show="oilShow" ng-class="{'on': name=='oil'}" ng-click="ocTab($event,'oil')">{{tabTitle2}}</a>-->
+        </div>
+    </div>
+    <div class="sec_10">
+
+        <div class="sec_1_r">
+            <i class="icon_27 icon_return"></i>
+            <a href="javascript:;" ng-click="goBack()">返回总列表</a>
+        </div>
+        <div class="sec_1_l">
+            <p>{{mName}} (经理) > {{belong}}{{bread}}</p>
+        </div>
+    </div>
+</div>
+<div ui-view="con" class="pd"></div>

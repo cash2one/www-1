@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="no">
+    <title>支付订单</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/axios.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+        var GLOBAL = {
+            url: './mimicry.json',
+            appid: 'wxe6a0251e0e2900c5',
+            basePath: 'http://test.51pingbanche.com/haul/',
+            basePathWeb: 'http://test.51pingbanche.com/haul/html/payOrder/',
+            status:'normal',
+        };
+        //        地址选择query
+        function query(outX) {
+            var arr1 = outX.split('?'),
+                arr2 = [],
+                arr3 = [],
+                obj = {},
+                name = '',
+                value = '';
+            if (arr1.length != 2) {
+                console.log('不是正常query对象');
+                return false;
+            }
+            arr2 = arr1[1].split('&');
+            for (var i = 0; i < arr2.length; i++) {
+                arr3 = arr2[i].split('=');
+                name = arr3[0];
+                value = arr3[1];
+                obj[name] = value;
+            }
+            return obj;
+        }
+        //判断微信浏览器
+        function is_weixin(){
+            var ua = navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i)=="micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        (function () {
+            var href = window.location.href,
+                obj = query(href);
+            if (!obj['no']) {
+//                不存在就跳出到错误页
+                GLOBAL.status='error';
+            } else {
+                localStorage.no = obj['no'];
+                localStorage.href=window.location.href;
+            }
+
+        }());
+        (function oresize() {
+            var _html = document.getElementsByTagName("html")[0];
+            _html.style.fontSize = document.documentElement.clientWidth / 10 + "px";
+            window.addEventListener("resize", function (e) {
+                var e = e || event;
+                var _html = document.getElementsByTagName("html")[0];
+                _html.style.fontSize = document.documentElement.clientWidth / 10 + "px";
+            })
+        }());
+
+        if(is_weixin()){
+            (function jadgeOpenId() {
+                var appid = GLOBAL.appid;
+                var basePath = GLOBAL.basePath;
+                var openid = localStorage.getItem('openid');
+                var basePathWeb = GLOBAL.basePathWeb;
+                console.log(openid, appid, 'appid', basePath, 'basePath');
+                if (!openid) {
+                    var redirectUri = encodeURI(basePath + 'h5/wxOauth/get?target=' + basePathWeb);
+                    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
+                        appid + '&redirect_uri=' + redirectUri
+                        + '&response_type=code&scope=snsapi_base&state=1234#wechat_redirect';
+                }
+            }())
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <pay-list></pay-list>
+</div>
+<script type="text/x-template" id="pay_template">
+<div class="shell">
+    <div v-if="status=='normal'">
+        <div class="pay-head">
+            <ul>
+                <li class="phead-main phead-start" :title="formAdress">{{formAdress?formAdress:'未知'}}</li>
+                <li class="phead-main phead-end" :title="toAdress">{{toAdress?toAdress:'未知'}}</li>
+                <li class="phead-fix">{{distance}}</li>
+            </ul>
+        </div>
+        <div class="pay-body">
+            <ul>
+                <li class="pbody-list">
+                    <span class="pbody-left">运费金额</span>
+                    <span class="pbody-right">{{ajaxData.total?('￥'+ajaxData.total):0}}</span>
+                </li>
+                <li class="pbody-list">
+                    <span class="pbody-left">已缴定金</span>
+                    <span class="pbody-right">{{ajaxData.earnest?("+￥"+ajaxData.earnest):0}}</span>
+                </li>
+                <li class="pbody-list">
+                    <span class="pbody-left">保险费用</span>
+                    <span class="pbody-right">{{ajaxData.premiumPaid?0:ajaxData.premium?('-￥'+ajaxData.premium):0}}</span>
+                </li>
+                <li class="pbody-list">
+                    <span class="pbody-left">应付金额</span>
+                    <span class="pbody-right pb-red">{{ajaxData.balancePay?('￥'+ajaxData.balancePay):0}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="pay-footer">
+            <ul>
+                <li class="pfooter-title">
+                    <span>请选择支付方式</span>
+                </li>
+                <li class="pfooter-contain" @click="choiceZ" v-if="chosePaid=='zfb'">
+                    <span class="pfooter-img1 ">
+
+                    </span>
+                    <span class="pfooter-word ">
+                        支付宝支付
+                    </span>
+                    <span :class="zfbC">
+<!--pfppter-choice -->
+                    </span>
+                </li>
+                <li class="pfooter-contain" v-if="chosePaid=='zfb'">
+                    <span class="pfooter-img2 ">
+
+                    </span>
+                    <span class="pfooter-word ">
+                        请使用微信扫码
+                    </span>
+                </li>
+                <li class="pfooter-contain"  v-if="chosePaid=='wx'">
+                    <span class="pfooter-img1">
+
+                    </span>
+                    <span class="pfooter-word">
+                        请使用支付宝扫码
+                    </span>
+                </li>
+                <li class="pfooter-contain" @click="choiceW" v-if="chosePaid=='wx'">
+                    <span class="pfooter-img2">
+
+                    </span>
+                    <span class="pfooter-word">
+                        微信支付
+                    </span>
+                    <span :class="wxC">
+<!--pfppter-choice pbb-red-->
+                    </span>
+                </li>
+            </ul>
+
+        </div>
+        <div class="pfooter-tail">
+        <span class="pfoot-left">
+            收款方：
+        </span>
+            <span class="pfoot-right">
+            杭州沃盛软件有限公司
+        </span>
+        </div>
+
+        <div v-if="payStatus=='START'" class="pay-submit" @click="pay">
+            <span>付款</span>
+        </div>
+        <div v-else-if="payStatus=='PAYING'" class="pay-submit pd-grey">
+            <span>支付中...</span>
+        </div>
+        <div v-else class="pay-submit pd-grey">
+            <span>已支付</span>
+        </div>
+    </div>
+    <div v-if="status=='error'" class="error">
+        <span>订单出错！</span>
+    </div>
+</div>
+</script>
+<script src="js/main.js"></script>
+</body>
+
+</html>

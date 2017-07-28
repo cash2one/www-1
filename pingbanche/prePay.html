@@ -1,0 +1,94 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+</head>
+<body class="bgf2">
+	<div data-role="page">
+	    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+			<h1>支付</h1>
+			<a href="javascript:history.back();" class="icon_goPrev_44" data-ajax="false"></a>
+	    </div>
+	    <div data-role="main" class="ui-content">
+			<p class="cla0_38">费用明细</p>
+			<div class="bgff_bdcf">
+				<p>运费总额<em class="js_total"></em></p>
+				<p>已缴定金<em class="js_earnest"></em></p>
+				<p>剩余尾款<em class="js_prem"></em></p>
+			</div>
+			<p class="cla0_38">收款方：<em>浙江金汉弘软件有限公司</em></p>
+			<div class="pay_wrap bdbn">
+				<img src="/pingbanche/images/icon_pay_96.png" alt="">
+				<p>支付宝客户端支付</p>
+				<i class="cur"></i>
+			</div>
+<!-- 			<div class="pay_wrap">
+		<img src="images/icon_weixin_96.png" alt="">
+		<p>微信支付</p>
+		<p class="cla0">亿万用户的选择，又快又方便</p>
+		<i></i>
+	</div> -->	
+			<div class="pay_w_f">
+				<p>应付金额：<em class="js_prePay"></em></p>
+				<button>支付</button>
+			</div>	
+			<form name="pay" method='post' action='http://192.168.1.150:9999/haul/alipay/wapPay' id='pay'>
+				<input type="hidden" class="totalFee" name="totalFee">
+				<input type="hidden" class="outTradeNo" name="outTradeNo">
+				<input type="hidden" class="payFor" name="payFor">
+				<input type="hidden" class="returnUrl" name="returnUrl">	
+			</form>	 
+		</div>	
+	</div>
+	<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+	<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+	<script src="/pingbanche/js/common.js"></script>
+	<script>
+	$(function(){
+		var orderId=getQueryString("orderId");
+		var total,
+			earnest,
+			balancePay,
+			orderNo;
+
+		ajax_get(
+		{
+			"token":window.localStorage.getItem("token"),
+			"orderId":orderId,
+		}
+		,"mobile/order/prePay",
+		function(data){
+			if(data.response_state==1){
+				total=data.total,
+				earnest=data.earnest,
+				balancePay=data.balancePay;
+				orderNo=data.orderNo;
+				
+				$(".js_total").html(total);
+				$(".js_earnest").html(earnest);
+				$(".js_prem").html(balancePay);
+				$(".js_prePay").html(balancePay);	
+				$("#pay").find(".totalFee").val(balancePay);
+				$("#pay").find(".outTradeNo").val(orderNo);				
+				$("#pay").find(".payFor").val("order");
+				$("#pay").find(".returnUrl").val("http://192.168.1.100/pingbanche/order_d.html?status=2");
+			}
+		});
+
+		$(".pay_w_f").find("button").on("click",function(){
+			$("#pay").submit();
+		});
+
+		$(".pay_wrap").find("i").on("tap",function(){
+			$(this).toggleClass("cur");
+			if( $(this).hasClass("cur") ){
+				$(this).parents(".pay_wrap").siblings().find("i").removeClass("cur");
+			}
+		});		
+	});
+	</script>
+</body>
+</html>

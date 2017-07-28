@@ -1,0 +1,95 @@
+<!DOCTYPE html >
+<html lang="en"  ng-app="ui-router-test">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/angular.js"></script>
+    <script src="../js/angular-ui-router.js"></script>
+    <script src="../js/angular-animate.js"></script>
+</head>
+<body>
+<ul>
+    <li><a ui-sref="home" >home</a></li>
+    <li><a ui-sref="index">first</a></li>
+    <li><a ui-sref="content">second</a></li>
+    <div ng-controller="main">
+
+    </div>
+    <div ui-view="left"></div>
+    <div ui-view="right"></div>
+
+    <div ui-view="content"></div>
+    <script>
+        var app=angular.module("ui-router-test",["ui.router"]);
+        app.config(function($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.when("", "/h");
+            $stateProvider
+                .state("home",{
+                    url:"/h",
+                    views:{
+                        'left@':{
+                            templateUrl:'template/homeL.html'
+                        },
+                        'right@':{
+                            templateUrl:'template/homeR.html'
+                        },
+                        'content@':{
+                            templateUrl:'template/homeC.html'
+                        }
+                    }
+                })
+                .state("index.leftChildren",{
+                    url:"/leftChildren",
+                    views:{
+                        'contentC@index':{
+                            templateUrl:'template/homeChired.html'
+                        },
+//                        'right@':{
+//                            templateUrl:'template/homeR.html'
+//                        },
+//                        'content@':{
+//                            templateUrl:'template/homeC.html'
+//                        }
+                    }
+                })
+                .state("index",{
+                    url:"/in",
+                    views:{
+                        'left@':{
+                            templateUrl:'template/homeL.html'
+                        },
+//                        'right@':{
+//                            templateUrl:'template/homeR.html'
+//                        },
+                        'content@':{
+                            templateUrl:'template/homeC.html'
+                        }
+                    }
+                })
+                .state("content",{
+                    url:"/content",
+                    views:{
+//                        'left@':{
+//                            templateUrl:'template/homeL.html'
+//                        },
+                        'right@':{
+                            templateUrl:'template/homeR.html'
+                        },
+//                        'content@':{
+//                            templateUrl:'template/homeC.html'
+//                        }
+                    }
+                })
+        })
+        app.controller("chirdrenD",function ($scope) {
+//            $scope.name=1;
+            console.log(1);
+        });
+        app.controller("main",function ($scope) {
+            $scope.name=2;
+            console.log(2);
+        });
+    </script>
+</ul>
+</body>
+</html>

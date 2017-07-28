@@ -1,0 +1,151 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+	<link rel="stylesheet" href="/pingbanche/css/order.css">
+</head>
+<!-- 2016-09-12 此处添加一个接口 通过ID获取货源详情 -->
+<body class="bgf2">
+  <div data-role="page" >
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>货源详情</h1>
+      <a href="javascript:history.back();" class="icon_goPrev_44" data-ajax='false'></a>
+    </div>
+    <div data-role="main" class="ui-content v100p">
+		<div class="bgf2 pb10">
+			<div class="pt10_lr20 bdbd3">
+				<div class="user_xx1 pr mb10">
+					<div class="user_xx1_img pa">
+						<img src="/pingbanche/images/user_162.png" alt="">
+					</div>
+					<p class="user_name">昵称</p>
+					<p class="js_user">15088688868</p>	
+					<p><span class="js_star"><i class="cur"></i><i class="cur"></i><i class="cur"></i><i class="cur"></i><i></i></span><em>3580单</em></p>
+				</div>			
+			</div>			
+		</div>
+		<div class="pt10_lr20 bdtd3 bdbd3">
+			<h3 class="bdbd3 time_line1 pb10">2016-08-12&nbsp;&nbsp;17:09</h3>
+			<div class="ul_list2 text_pt1">
+				<p>
+					<i class="icon_g"></i>
+					起点：
+					<b class="js_start"></b>
+				</p>
+				<p>
+					<i class="icon_r"></i>
+					终点：
+					<b class="js_end"></b>
+				</p>
+				<p>
+					<span class="js_mileage">公里数: 2</span> <span class="js_wfc"></span>
+				</p>
+				<p>
+					<span class="js_fee">总价</span>
+				</p>
+			</div>	
+		</div>
+		<div class="pt10_lr20  mb10">
+			<div class="ul_list2 text_pt2">
+				<p>车辆类型&nbsp;:&nbsp;&nbsp;<em class="js_model"></em></p>
+				<p>收货姓名&nbsp;:&nbsp;&nbsp;<em class="js_rece"></em></p>
+				<p>收货电话&nbsp;:&nbsp;&nbsp;<em class="js_repho"></em></p>			
+			</div>	
+		</div>	
+	</div>	
+  </div>
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  $(function(){
+  	var dc_id=getQueryString("dc_num");
+	var data={
+		token:window.localStorage.getItem("token"),
+		pageSize:10000
+	};
+
+	ajax_get(data,"mobile/desire/driver",function(data){
+		var arr=data.list;
+		for(var i=0;i<arr.length;i++){
+			if(dc_id==arr[i].id){
+		    	if(!!arr[i].customer.photo){
+		    		$(".user_xx1_img").find("img").attr({
+		    			"src":imgSrc+arr[i].customer.photo,"alt":"用户头像"
+		    		});	
+		    	}else{
+		    		$(".user_xx1_img").find("img").attr({
+		    			"src":"./images/icon_user_225.png","alt":"用户头像"
+		    		});					
+		    	}
+				$(".user_name").html(arr[i].customer.nickname );
+				$(".user_xx1 p").find("em").html(arr[i].customer.orderNum+"单");	
+					$(".js_user").html(arr[i].customer.username);	
+				var star_num=Math.floor(arr[i].customer.ratePercent/20 );
+				$(".js_star").find("i").each(function(index,element){
+					if(index<=star_num){
+						$(this).addClass("cur");
+					}else{
+						$(this).removeClass("cur");
+					}
+				});	
+				var data=format( arr[i].createdDate );
+				$(".time_line1").html( data );
+				if(!arr[i].fromProvince){
+					arr[i].fromProvince="";
+				}
+				if(!arr[i].fromCity){
+					arr[i].fromCity="";
+				}
+				if(!arr[i].fromCounty){
+					arr[i].fromCounty="";
+				}
+				if(!arr[i].fromAddress){
+					arr[i].fromAddress="";
+				}
+				if(!arr[i].toProvince){
+					arr[i].toProvince="";
+				}
+				if(!arr[i].toCity){
+					arr[i].toCity="";
+				}
+				if(!arr[i].toCounty){
+					arr[i].toCounty="";
+				}
+				if(!arr[i].toAddress){
+					arr[i].toAddress="";
+				}
+				var str_start=arr[i].fromProvince+arr[i].fromCity+arr[i].fromCounty+arr[i].fromAddress;
+				$(".js_start").html(str_start);
+				var str_end=arr[i].toProvince+arr[i].toCity+arr[i].toCounty+arr[i].toAddress;
+				$(".js_end").html(str_end);
+				if(arr[i].routeType=="SINGLE"){
+					$(".js_wfc").html("单程");
+				}else if( arr[i].routeType=="RETURN" ){
+					$(".js_wfc").html("返程");
+				}
+				if(!!arr[i].estimateFee){
+					$(".js_fee").html("总价:&nbsp;&nbsp;"+arr[i].estimateFee);
+				}else{
+					$(".js_fee").html("总价:&nbsp;&nbsp;"+未知);
+				}
+				if(!!arr[i].carModel){
+					$(".js_model").html( arr[i].carModel );
+				}
+				if(!!arr[i].receiverName){
+					$(".js_rece").html( arr[i].receiverName );
+				}
+				if(!!arr[i].receiverPhone){
+					$(".js_repho").html( arr[i].receiverPhone );
+				}
+			}
+		}	
+	});
+   
+  });
+  </script>
+</body>
+</html>

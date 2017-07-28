@@ -1,0 +1,202 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/mobiscroll.custom-2.5.0.min.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+</head>
+<body class="bgf2">
+	<div data-role="page">
+	    <div data-role="header" class="header2" data-title="fixed" data-position="fixed" >
+			<h1>注册</h1>
+			<a href="./login.html" data-ajax="false" class="icon_goPrev_44"></a>
+	    </div>
+	    <div data-role="main" class="ui-content pt10">
+	        <div class="form1">
+	          <form action="">
+				<div class="form_radio_2 js_radio mb10">
+					<div class="ui_radio">客户</div>
+					<div class="ui_radio">司机</div>
+				</div>
+	            <div class="form1_wrap mb10">
+	              <label for="">
+	                  <span class="icon_ph_57"></span>
+	                  <input type="tel" placeholder="请输入手机号码" id="js_user">
+	              </label>
+	              <label for="">
+	                  <span class="icon_mm2_57"></span>
+	                  <input type="password" placeholder="请输入验证码" id="js_verify">
+	                  <em class="verify js_verify" >
+	                  	获取验证码
+	                  </em>
+	              </label> 	              
+	              <label for="">
+	                  <span class="icon_mm_57"></span>
+	                  <input type="password" placeholder="请输入密码" id="js_password">
+	              </label>
+	              <label for="">
+	                  <span class="icon_mm_57"></span>
+	                  <input type="password" placeholder="请再次输入密码" id="js_password2">
+	              </label>  	                            
+	            </div>
+				<div class="form1_wrap mb10">
+					<a href="#kf" class="label js_kf">        
+						<span class="icon_kfmm_57"></span>
+						<p class="kf_id"></p>
+	                  	<i class="icon3 icon_arr_r"></i>
+	            	</a>
+	            </div>
+	            <input type="button" value="注 册" id="js_reg">
+	          </form>  
+	        </div>	
+        	<div class="txt_ca9">
+				<p>一经创建小板车账户即表示您同意我们的<br>
+					<a href="./service.html" data-ajax="false">条款以及隐私声明</a>
+				</p>
+			</div>	
+		</div>
+		<div data-role="footer"  data-title="fixed" data-position="fixed">
+			<div class="txt_bg27">
+				<p>想马上开始？请进入【个人设置】补充信息</p>
+			</div>
+		</div>
+		<div id="kf" data-position-to="window">
+			<ul>
+			</ul>	
+		</div>	
+		<div class="pop_bg"></div>
+	</div>
+	<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+	<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+	<script src="/pingbanche/js/mobiscroll.custom-2.5.0.min.js"></script>
+	<script src="/pingbanche/js/common.js"></script>
+	<script>
+	$(function(){
+		(function(){
+			$(".pay_wrap").find("i").on("tap",function(){
+				$(this).toggleClass("cur");
+			});
+			ajax_kf("mobile/user/cs",function(data){
+				if(data.response_state==1){
+					forFn(data.list);
+				}else{
+					alert(data.response_note);
+				}	
+			});
+			function forFn(arr){
+				for(var i=0;i<arr.length;i++){
+					var $li=$("<li>"),
+						$p=$("<p>");
+
+					$li.attr("data-val",arr[i].id);
+					$p.html(arr[i].nickname);
+					$li.append($p);
+					$("#kf ul").append($li);		
+				}
+			}
+			$(".js_kf").on("click",function(){
+				$("#kf").css({
+					"display":"block",
+					"width":$(window).width()*0.9,
+					"top": ($(window).height()-$("#kf").height())/2
+				});
+				$(".pop_bg").stop().fadeIn();
+				$("#kf li").bind("click",function(){
+					$(".kf_id").html( $(this).data("val") );
+					$("#kf").stop().fadeOut();
+					$(".pop_bg").stop().fadeOut();
+				});				
+			});	
+
+			$(".js_radio .ui_radio").on("click",function(){
+				$(this).toggleClass("on");
+				if($(this).hasClass("on")){
+					$(this).siblings().removeClass("on");
+				}
+			});
+			$(".js_verify").on("click",function(){ 
+				//获取验证码
+				var data={};
+				data["mobile"]=$.trim($("#js_user").val());
+				ajax_pwd(data,"mobile/verficationCode",function(data){
+					switch(data.response_state)
+					{
+						case 1:
+							alert("验证码已经发送请注意查看手机");	
+						  break;
+						case -1:
+						  alert("短信获取失败,请重新获取"); //失败
+						  $(".js_verify").html("重新获取验证码");
+						  break;							  
+						case 1004:
+						  alert(data.response_note+'请稍后操作');
+						  break;						
+					}	
+				});
+			});
+		})();
+
+
+		(function(){
+			$("#js_reg").click(function(){ //注册
+				var val=$.trim($(".js_radio").find(".on").html());
+				if( $("#js_password").val()!=$("#js_password2").val() ){
+					alert("两次输入的密码不一致");
+					return false;
+				}
+				if(!!val){
+					switch(val){
+						case "客户":
+							val="ROLE_CUSTOMER";
+							break;
+						case "司机":
+							val="ROLE_DRIVER";
+							break;
+						default:
+							break;							
+					}
+				}else{
+					alert("请选择角色");
+					return false;
+				}
+				var data={};
+				data["username"]=$.trim($("#js_user").val());
+				data["password"]=$.trim($("#js_password").val());			
+				data["verificationCode"]=$.trim( $("#js_verify").val() );
+				data["password"]=$.trim($("#js_password").val());		
+				data["role"]=val;
+				data["password"]=$.trim($("#js_password").val());		
+				data["csId"]=$.trim( $("#kf_dummy").val() );
+				ajax_pwd(data,"mobile/register",function(data){
+					switch(data.response_state){
+						case 1:
+						  alert(data.response_note);
+						  window.location.href="./login.html";
+						  break;						
+						case 1102:
+						  alert(data.response_note);
+						  break;
+						case 1105:
+						  alert(data.response_note);
+						  break;
+						case 1003:
+						  alert(data.response_note);
+						  break;				
+						case 1103:
+						  alert(data.response_note);
+						  break;
+						case 1107:
+						  alert(data.response_note);
+						  break;					
+						default:
+							alert("注册失败");	
+					}				
+				});
+			});	
+		})();
+	});
+	</script>
+</body>
+</html>

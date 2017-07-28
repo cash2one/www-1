@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">12</div>
+    <script>
+//        const app=new Vue({
+//
+//        });
+        const component=new Vue({
+            template:'<div id="app" class="red">' +
+                    '<p>来一份</p>'+
+            '</div>',
+        });
+        component.$mount("#app");
+    </script>
+</body>
+</html>

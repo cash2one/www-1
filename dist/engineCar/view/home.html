@@ -1,0 +1,67 @@
+<div class="sec_4" ng-controller="homeCon">
+    <div class="sec_4_t mb10">
+        <div class="row">
+            <div class="col-sm-2">
+                <p class="bold tc lh72">运输车</p>
+            </div>
+            <div class="col-sm-3">
+                <p class="bold">当日值</p>
+                <p>{{indicatorC.today}}(方量)</p>
+            </div>
+            <div class="col-sm-2">
+                <p class="bold">同比</p>
+                <p>
+                    <i class="icon_12 mr5 icon_arr_t" ng-show="indicator['dayc']"></i>
+                    <i class="icon_12 mr5 icon_arr_b" ng-hide="indicator['dayc']"></i>
+                    {{indicatorC.dayp}}
+                </p>
+            </div>
+            <div class="col-sm-3">
+                <p class="bold">本月累计</p>
+                <p>{{indicatorC.thisMonth}}(方量)</p>
+            </div>
+            <div class="col-sm-2">
+                <p class="bold">同比</p>
+                <p>
+                    <i class="icon_12 mr5 icon_arr_t" ng-show="indicator['monthc']"></i>
+                    <i class="icon_12 mr5 icon_arr_b" ng-hide="indicator['monthc']"></i>
+                    {{indicatorC.monthp}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="sec_4_t" ng-show="!roleBoss">
+        <div class="row">
+            <div class="col-sm-2">
+                <p class="bold tc lh72">挖机</p>
+            </div>
+            <div class="col-sm-3">
+                <p class="bold">当日值</p>
+                <p>{{indicatorD.today}}(方量)</p>
+            </div>
+            <div class="col-sm-2">
+                <p class="bold">同比</p>
+                <p>
+                    <i class="icon_12 mr5 icon_arr_t" ng-show="indicator['dayc']"></i>
+                    <i class="icon_12 mr5 icon_arr_b" ng-hide="indicator['dayc']"></i>
+                    {{indicatorD.dayp}}
+                </p>
+            </div>
+            <div class="col-sm-3">
+                <p class="bold">本月累计</p>
+                <p>{{indicatorD.thisMonth}}(方量)</p>
+            </div>
+            <div class="col-sm-2">
+                <p class="bold">同比</p>
+                <p>
+                    <i class="icon_12 mr5 icon_arr_t" ng-show="indicator['monthc']"></i>
+                    <i class="icon_12 mr5 icon_arr_b" ng-hide="indicator['monthc']"></i>
+                    {{indicatorD.monthp}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

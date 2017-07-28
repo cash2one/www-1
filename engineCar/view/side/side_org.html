@@ -1,0 +1,32 @@
+<!--<div class="side_1 ">-->
+    <!--<p>搜索经理</p>-->
+    <!--<form class="bs-example bs-example-form pb15" role="form" >-->
+    <!--<div class="input-group">-->
+    <!--<input type="text" class="form-control">-->
+    <!--<span class="input-group-addon glyphicon glyphicon-search"></span>-->
+    <!--</div>-->
+    <!--</form>-->
+<!--</div>-->
+<!-- 暂时隐藏搜索功能  E -->
+
+<div class="side_2" ng-controller="mList">
+    <h3 class="tit1"><a ng-click="goOrg($event)">经理列表</a></h3>
+    <ul class="list1 os_y js_h js_m_list">
+        <li ng-repeat="item in mList" ng-class="{cur: pathParams.mid == item.id}">
+            <h5 class="tit2 js_tit" ng-click="mToggle($event)">
+                <i class="icon_12" ng-class="{ icon_add: pathParams.mid != item.id }"></i>
+                {{item.trueName}}
+            </h5>
+            <nav class="list1_con">
+                <a href="javascript:;" class="js_on"
+                   ng-class="{on: pathParams.mid == item.id && pathParams.role == 'WJ'}"
+                   data-mid="{{item.id}}" ng-click="toggleTab($event,'WJ')">
+                    挖机司机
+                </a>
+                <a href="javascript:;" class="js_on" data-mid="{{item.id}}"  ng-class="{on: pathParams.mid == item.id && pathParams.role == 'YSC'}" ng-click="toggleTab($event,'YSC')">运输车司机</a>
+                <a href="javascript:;" class="js_on" data-mid="{{item.id}}"  ng-class="{on: pathParams.mid == item.id && pathParams.role == 'wj_c'}" ng-click="toggleTab($event,'wj_c')">挖机</a>
+                <a href="javascript:;" class="js_on" data-mid="{{item.id}}"  ng-class="{on: pathParams.mid == item.id && pathParams.role == 'ysc_c'}" ng-click="toggleTab($event,'ysc_c')">运输车</a>
+            </nav>
+        </li>
+    </ul>
+</div>

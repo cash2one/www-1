@@ -1,0 +1,143 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+  	<link rel="stylesheet" href="/pingbanche/css/iscroll.css">  	
+</head>
+<body class="bgf2">
+  <div data-role="page" class="js_pt100">
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>消息</h1>
+      <a href="./home.html" class="icon_goPrev_44" data-ajax="false"></a>
+    </div>
+    <div data-role="main" class="ui-content">
+        <div id="newsList" class="d_tab">
+          <div class="scroller news_list">
+      			<ul>
+      			</ul>            
+            <div class="pullUp">
+              <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+            </div>
+          </div>
+        </div>         
+		</div>
+  </div>
+  <div class="spinner js_spinner"></div>  
+
+<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+<script src="/pingbanche/js/iscroll.js"></script>  
+<script src="/pingbanche/js/common.js"></script>
+<script>
+var myScroll,num=1,
+    totalNum=window.localStorage.getItem("ord_page");
+
+var dataFn=function(data){
+	if(data.response_state==1){	
+		var len=data.list.length,
+			arr=data.list;
+    if(len<10){
+      $(".pullUp").css("display","none");      
+    }  
+    if(len<1){
+      $(".d_tab").html("");
+      var $str_div=$("<div class='no_start'><div>"),
+          str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+      $str_div.html(str_con);
+      $(".d_tab").append($str_div);   
+    }else{
+      for(var i=0;i<len;i++){
+        var $li=$("<li>"),
+          $a=$("<a href='#'></a>"),
+          $span=$("<span>"),
+          $h3=$("<h3>"),
+          $p=$("<p>"),
+          $em=$("<em>"),
+          $b=$("<b>");
+          $icon=$("<i class='icon_24_16 icon_read_w'></i>");
+          if(!!arr[i].createdDate){
+            $b.html( format(arr[i].createdDate) );
+          }else{
+            $b.html(); 
+          } 
+          $em.html(arr[i].title);
+        if(data.list.status=="Viewed"){
+          $span.remove($icon);
+        }else{
+          $span.append($icon);
+        }
+        $span.append($b);
+        $h3.append($em);
+        $h3.append($span);
+
+        $p.html( arr[i].content );
+        $a.append($h3);
+        $a.append($p);
+        $li.append($a);
+        $li.attr("data-id",arr[i].id);
+        $(".news_list").find("ul").append($li); 
+      }      
+    }
+	}else{
+      $(".d_tab").html("");
+      var $str_div=$("<div class='no_start'><div>"),
+          str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+      $str_div.html(str_con);
+      $(".d_tab").append($str_div);   
+	} 
+}	
+var ajax=function(num){
+  var data={
+    "token":localStorage.getItem("token"),
+    "pageSize":15,
+    "pageNum":num
+  };
+  ajax_get(data,"mobile/message",function(data){
+
+    window.localStorage.setItem("total",data.totalPage );
+    dataFn(data);
+  });  		
+}
+
+//滚动翻页 （自定义实现此方法）
+var pullUpAction=function (that,num) {
+  if(!!window.localStorage.getItem("ord_page") ){
+    if(num>totalNum){
+      num=totalNum;
+      $("#newsList").find(".pullUpLabel").html("已经是最后一页了");
+    }else{
+      $(".js_spinner").css("display","block");
+      setTimeout(function(){
+        $(".js_spinner").css("display","none"); 
+        ajax(num);                      
+      },1000);
+    }
+  }
+  that.refresh();
+}
+
+$(function(){
+  $(".d_tab").css("display","block");	
+  $(".js_pt100").css({
+    "paddingTop":70,
+    "paddingBottom":0,
+    "height":$(window).height()-70,
+    "min-height":0
+  });
+
+  $(".con_scroll").height(  $(window).height()-70);  
+  ajax(num);
+
+	document.addEventListener('touchmove', function (e) { e.preventDefault(); },false); 
+	loaded(myScroll,"newsList",num,pullUpAction);
+	$("#newsList").delegate("li","click",function(){
+		var id=$(this).data("id");
+		window.location.href="./open_m.html?id="+id;	
+	});
+});
+</script>
+</body>
+</html>

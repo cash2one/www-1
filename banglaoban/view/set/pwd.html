@@ -1,0 +1,42 @@
+<div class="sec_8"></div>
+<div class="pd">
+    <div class="col-sm-offset-2 col-sm-8 sec_7">
+        <p class="cl_red bgf7">&nbsp;&nbsp;(新增员工默认密码：123456,请新员工登陆后更换新密码! 备注：如果是老用户密码不变!)</p>
+    </div>
+
+    <form class="form-horizontal col-sm-offset-3 col-sm-6" role="form" name="myPwd">
+
+        <div class="form-group" ng-class="{'has-error': myPwd.oldPassword.$invalid && myPwd.oldPassword.$dirty }">
+            <label class="col-sm-4 control-label" for="oldPassword">原始密码:</label>
+            <div class="col-sm-8">
+                <input type="password" name="oldPassword" class="form-control" ng-model="pwd.oldPassword" required ng-pattern="/^\S{6,10}$/">
+                <span class="cl_red lh36" ng-show="myPwd.oldPassword.$invalid && myPwd.oldPassword.$dirty">*密码长度6-10位且不能为空</span>
+            </div>
+        </div>
+        <!-- 这里怎么验证原始密码输入是否正确  -->
+
+        <div class="form-group" ng-class="{'has-error': myPwd.newPassword1.$invalid && myPwd.newPassword1.$dirty }">
+            <label class="col-sm-4 control-label" for="newPassword1">新密码:</label>
+            <div class="col-sm-8">
+                <input type="password" class="form-control" name="newPassword1" ng-model="pwd.newPassword1" required ng-pattern="/^\S{6,10}$/" >
+                <span class="cl_red lh36" ng-show="myPwd.newPassword1.$invalid && myPwd.newPassword1.$dirty">*密码长度6-10位且不能为空</span>
+                <span class="cl_red lh36" ng-show="myPwd.newPassword1.$valid">
+                    <span ng-show="pwd.oldPassword == pwd.newPassword1">*新密码和原密码相同</span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': myPwd.newPassword1.$invalid && myPwd.newPassword1.$dirty }">
+            <label class="col-sm-4 control-label" for="newPassword2">重新输入新密码:</label>
+            <div class="col-sm-8">
+                <input type="password" name="newPassword2" class="form-control" ng-model="pwd.newPassword2" required ng-pattern="/^\S{6,10}$/">
+                <span class="cl_red lh36" ng-show="myPwd.newPassword2.$valid">
+                    <span ng-show="pwd.newPassword2!=pwd.newPassword1">*两次密码输入不一致</span>
+                </span>
+                <span class="cl_red lh36" ng-show="myPwd.newPassword2.$invalid && myPwd.newPassword2.$dirty">*密码长度6-10位且不能为空</span>
+            </div>
+        </div>
+        <div class="col-sm-offset-4 col-sm-4">
+            <button type="button" class="btn btn-primary" ng-disabled="myPwd.$invalid" ng-click="subPwd()">保存</button>
+        </div>
+    </form>
+</div>

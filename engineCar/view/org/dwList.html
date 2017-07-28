@@ -1,0 +1,191 @@
+<div class="content" ng-controller="dw">
+    <div class="sec_8">
+        <div class="sec_1_r">
+            <i class="icon_27 icon_return"></i>
+            <a href="#" ng-click = "goOrg()">返回经理列表</a>
+        </div>
+        <div class="sec_1_l">
+            <a href="javascript:;"  ng-click="saveM($event,'#addDw')">
+                <i class="icon_27 icon_add_27"></i>新&nbsp;&nbsp;&nbsp;&nbsp;增
+            </a>
+            <!--<a href="javascript:;"><i class="icon_27 icon_minus_27"></i>删&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除</a>-->
+        </div>
+    </div>
+
+    <div class="sec_2 table-responsive">
+        <div class="sec_6 mb15">
+            <form class="form-inline ng-pristine ng-valid" role="form">
+                <div class="col-sm-10">
+                    <label class="control-label">姓名:</label>
+                    <input type="text" class="form-control" ng-model="dwFilter"/>
+                </div>
+                <!--<div class="col-sm-2">-->
+                    <!--<button type="button" class="btn btn-primary" ng-click="dwFilterFn()">查&nbsp;&nbsp;&nbsp;&nbsp;询</button>-->
+                <!--</div>-->
+            </form>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead class="bold_th">
+                <tr>
+                    <th>姓名</th>
+                    <th>手机</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in dList | filter: { trueName : dwFilter } " >
+                    <td class="truename">{{item.trueName || '&nbsp;&nbsp;'}}</td>
+                    <td class="username">{{item.username || '&nbsp;&nbsp;'}}</td>
+                    <td>
+                        <button class="btn btn-link" data-id="{{item.id}}" data-mid="{{item['manager.id']}}" ng-click="saveM($event,'#editDw')">编辑</button>
+                        <button class="btn btn-link" data-id="{{item.id}}" ng-click="delete($event,'#deleteDw')">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 新增司机 S-->
+    <div class="modal fade" id="addDw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog w700">
+    <div class="modal-content">
+        <div class="modal-header  modal_tit1">
+            <button type="button" class="close" data-dismiss="modal"
+            aria-hidden="true">×
+            </button>
+            <h4 class="modal-title">新增司机</h4>
+        </div>
+    <div class="modal-body">
+        <div class="tit3 mb15">
+            <p class="cl_red">（新增员工默认密码:123456,请新员工登陆后更换新密码！备注:如果是老用户，密码不变!）</p>
+        </div>
+        <form class="form-horizontal" role="form" name="addDriver">
+            <div class="form-group" ng-class="{'has-error': addDriver.username.$invalid}">
+                <label class="col-sm-3 control-label" for="username">登录名:</label>
+                <div class="col-sm-9">
+                    <input type="text" name="username" class="form-control" ng-model="desM.username" required ng-pattern ="/^1[34578]\d{9}$/">
+                    <span class="cl_red lh36" ng-show="addDriver.username.$invalid">登录名为您的手机号</span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': addDriver.trueName.$invalid}">
+                <label class="col-sm-3 control-label" for="trueName">真实姓名:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="trueName" ng-model="desM.trueName" required>
+                    <span class="cl_red lh36" ng-show="addDriver.trueName.$invalid">请输入真实姓名</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">司机类型:</label>
+
+                <div class="col-sm-9">
+
+                    <!--<select ng-model="selectedD" class="form-control">-->
+                        <!--<option ng-repeat="x in moption" value="{{x.value}}">{{x.name}}</option>-->
+                    <!--</select>-->
+
+                    <select ng-model="selectedD" class="form-control">
+                        <option value="WJ" ng-selected = "selectedD">挖机司机</option>
+                        <option value="YSC">运输车司机</option>
+                    </select>
+
+                </div>
+
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary btn-block btn-h50" ng-disabled="addDriver.$invalid"
+                        ng-click="saveFn('#addDw')">
+                    保&nbsp;&nbsp;存</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- 新增司机 E-->
+
+    <!-- 编辑司机 S-->
+    <div class="modal fade" id="editDw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header  modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">编辑司机</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="tit3 mb15">
+                        <p class="cl_red">（新增员工默认密码:123456,请新员工登陆后更换新密码！备注:如果是老用户，密码不变!）</p>
+                    </div>
+
+                    <form class="form-horizontal" role="form" name="editDriver">
+                        <div class="form-group" ng-class="{'has-error': editDriver.username.$invalid}">
+                            <label class="col-sm-3 control-label" for="username">登录名:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="username" class="form-control" ng-model="desM.username" disabled required ng-pattern ="/^1[34578]\d{9}$/">
+                                <span class="cl_red lh36" ng-show="editDriver.username.$invalid">请输入登录名</span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': editDriver.trueName.$invalid}">
+                            <label class="col-sm-3 control-label" for="trueName">真实姓名:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="trueName" class="form-control" ng-model="desM.trueName" required >
+                                <span class="cl_red lh36" ng-show="editDriver.trueName.$invalid">请输入真实姓名</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">司机类型:</label>
+                            <div class="col-sm-9">
+                                <input type="text" disabled ng-model = "roledes"  class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!--<button type="button" class="btn btn-default btn-w160h50" ng-click="delete2('#deleteDw')">删&nbsp;&nbsp;除</button>-->
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-primary btn-h50" ng-click="saveFn('#editDw')"  ng-disabled="editDriver.$invalid">保&nbsp;&nbsp;存</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-default btn-h50" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑司机 E-->
+
+    <!-- 删除司机 S-->
+    <div class="modal fade" id="deleteDw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal_tit1 mb15">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">×
+                        </button>
+                        <h4 class="modal-title">删除司机</h4>
+                    </div>
+                    <div class="tit3 mb15">
+                        <p class="cl_red">您确定删除吗？删除后数据不可恢复</p>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6 tc">
+                                <button type="button" class="btn btn-block btn-default btn-h50" data-dismiss="modal">取消</button>
+                            </div>
+                            <div class="col-sm-6 tc">
+                                <button type="button" class="btn btn-block btn-primary btn-h50" ng-click="deleteFn('#deleteDw')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 删除司机 E-->
+</div>
+
+

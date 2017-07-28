@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/mobileWebFreeList/js/vue.js"></script>
+</head>
+<body>
+    <script>
+        Vue.component("add-item",{
+            props:["do1"],
+            template:"<p class='a'>{{do1}}</p>"
+        })
+    </script>
+    <div id="v-app">
+        <p>{{message}}</p>
+        <p v-if="choice">{{choice}}</p>
+        <input type="text" v-model.trim="message">
+        <input type="text" v-model="choice">
+        <ol>
+            <li v-for="item in arry" v-if="item==2">
+                {{item}}
+            </li>
+        </ol>
+        <input type="button" value="按钮" v-on:click="clickHandle">
+        <add-item v-bind:do1="count" class="e"></add-item>
+        <div v-html="rawHtml"></div>
+        <input type="checkbox" v-model="seen">
+        <p v-if="seen">Now you see me</p>
+        <div v-else>
+            Now you don't see me1
+        </div>
+        <p v-if="seen">Now you see me</p>
+        <div v-else>
+            Now you don't see me2
+        </div>
+        <p>{{reversedMessage}}</p>
+        <p>{{fullName}}</p>
+        <input type="text" v-model="fullName">
+        <div @click.ctrl="doSomething">Do something</div>
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+        <div id="example-5" class="demo">
+            <select v-model="selected" multiple>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+            <span>Selected: {{ selected }}</span>
+        </div>
+    </div>
+    <script>
+        var app=new  Vue({
+            el:"#v-app",
+            data:{//实例数据
+                message:"hello world",
+                choice:"",
+                count:"i'm here now!",
+                checkedNames:[],
+                arry:[
+                    1,
+                    2,
+                    3
+                ],
+                rawHtml:"<div>laiyici</div>",
+                seen:true,
+                firstName: 'Foo',
+                lastName: 'Bar',
+                selected:[],
+            },
+            methods:{//实例方法
+                clickHandle:function () {
+                    console.log("click");
+                },
+                doSomething:function () {
+                    console.log("doSomething");
+                }
+            },
+            created:function () {
+                console.log("created",this);//this指代实例
+            },
+            computed:{//计算属性
+                reversedMessage: function () {
+                    // `this` points to the vm instance
+                    return this.message.split('').reverse().join('');
+                },
+                fullName: {
+                    // getter
+                    get: function () {
+                        return this.firstName + ' 2' + this.lastName
+                    },
+                    // setter
+                    set: function (newValue) {
+                        var names = newValue.split(' ')
+                        this.firstName = names[0]+"1";
+                        this.lastName = names[names.length - 1]
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

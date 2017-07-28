@@ -1,0 +1,39 @@
+<div class="sec_3">
+    <div class="nav">
+        <a href="javascript:;" ng-class="{on: t=='day'}" ng-click="choseDate('day')">日</a>
+        <a href="javascript:;" ng-class="{on: t=='period'}" ng-click="choseDate('period')">时间区间</a>
+    </div>
+</div>
+
+<div class="pd">
+    <div class="sec_6">
+        <form class="form-inline" role="form" class="form_inline">
+            <div class="col-sm-10">
+                    <input ng-model="time1" date-picker class="form-control" ng-show=" t=='day' "/>
+                    <input ng-model="time2" date-picker2 class="form-control" ng-show=" t=='period' " />
+                    <input ng-model="time3" date-picker3 class="form-control" ng-show=" t=='period' " />
+            </div>
+            <div class="col-sm-2">
+                <button ng-show=" t=='day' " type="button" class="btn btn-primary" ng-click="getTime1(time1)">查&nbsp;&nbsp;&nbsp;&nbsp;询</button>
+                <button ng-show=" t=='period' " type="button" class="btn btn-primary" ng-click="getPeriod(time2,time3)">查&nbsp;&nbsp;&nbsp;&nbsp;询</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
+    }
+    .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
+    }
+</style>
+
+
+
+

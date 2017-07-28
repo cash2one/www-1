@@ -1,0 +1,149 @@
+<div class="content" ng-controller="ysc">
+    <div class="sec_8">
+        <div class="sec_1_r">
+            <i class="icon_27 icon_return"></i>
+            <a href="#" ng-click = "goOrg()">返回经理列表</a>
+        </div>
+        <div class="sec_1_l">
+            <a href="javascript:;"  ng-click="saveM($event,'#addCar')">
+                <i class="icon_27 icon_add_27"></i>新&nbsp;&nbsp;&nbsp;&nbsp;增
+            </a>
+            <!--<a href="#"><i class="icon_27 icon_minus_27"></i>删&nbsp;&nbsp;&nbsp;&nbsp;除</a>-->
+        </div>
+    </div>
+
+    <div class="sec_2 table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="bold_th">
+                <tr>
+                    <th>编号</th>
+                    <th>方量</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in yscList" data-id="{{item.id}}">
+                    <td><span class="no">{{item.no}}</span>&nbsp;&nbsp;</td>
+                    <td><span class="num">{{item.tonnage}}</span>&nbsp;&nbsp;</td>
+                    <td>
+                        <button class="btn btn-link" data-id="{{item.id}}" ng-click="saveM($event,'#editC')">编辑</button>
+                        <button class="btn btn-link" data-id="{{item.id}}" ng-click="delete($event,'#deleteC')">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 新增运输车 S-->
+    <div class="modal fade" id="addCar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header  modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">新增运输车</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" name="yscForm">
+                        <div class="form-group" ng-class="{'has-error': yscForm.carrier.$invalid}">
+                            <label class="col-sm-3 control-label" for="carrier">编号:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="carrier" class="form-control" ng-model="desC.carrierCarNo" required>
+                                <span class="cl_red lh36" ng-show="yscForm.carrier.$invalid">请输入编号</span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': yscForm.tonnage.$invalid}">
+                            <label class="col-sm-3 control-label" for="tonnage">方量:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="text" string-to-number name="tonnage" ng-model="desC.tonnage" required>
+                                <span class="cl_red lh36" ng-show="yscForm.tonnage.$invalid">请输入方量(必须为数字,小数点位数为0-4位)</span>
+                            </div>
+                        </div>
+                        <div class="form-group form_btn tl">
+                            <button type="button" class="btn btn-primary btn-block btn-h50"  ng-disabled="yscForm.$invalid" ng-click="saveFn('#addCar')">保&nbsp;&nbsp;存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 新增运输车 E-->
+
+    <!-- 编辑运输车 S-->
+    <div class="modal fade" id="editC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header  modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">编辑运输车</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" name="yscForm2">
+                        <div class="form-group" ng-class="{'has-error': yscForm2.carrier.$invalid}">
+                            <label class="col-sm-3 control-label" for="carrier">编号:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="carrier" disabled class="form-control" ng-model="desC.carrierCarNo" required >
+                                <span class="cl_red lh36" ng-show="yscForm2.carrier.$invalid">请输入编号</span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': yscForm2.tonnage.$invalid}">
+                            <label class="col-sm-3 control-label" for="tonnage">方量:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="number" string-to-number name="tonnage" ng-model="desC.tonnage" required
+                                       ng-pattern="/^[0-9]+(.[0-9]{0,4})?$/">
+                                <span class="cl_red lh36" ng-show="yscForm2.tonnage.$invalid">请输入方量(必须为数字,小数点位数为0-4位)</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-default btn-h50" data-dismiss="modal">取消</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-primary btn-h50" ng-disabled="yscForm2.$invalid" ng-click="saveFn('#editC')">保&nbsp;&nbsp;存</button>
+                            </div>
+                            <!--<button type="button" class="btn btn-primary" ng-click="delete2('#deleteC')">删&nbsp;&nbsp;除</button>-->
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑运输车 E-->
+
+    <!-- 删除运输车 S-->
+    <div class="modal fade" id="deleteC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header  modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">删除运输车</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tit3 mb15">
+                        <p class="cl_red">您确定删除吗？删除后数据不可恢复</p>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-default btn-h50" data-dismiss="modal">取消</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-primary btn-h50" ng-click="deleteFn('#deleteDy')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 删除运输车 E-->
+
+</div>
+

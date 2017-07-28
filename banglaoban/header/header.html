@@ -1,0 +1,23 @@
+<div class="logo">
+    <a ui-sref="index">
+        <img src="image/logo.png" alt=""/>
+    </a>
+</div>
+<div class="header_r">
+    <span>
+       <i class="icon_16 icon_user"></i>
+       欢迎您:{{trueName}}
+    </span>
+
+    <a ng-show="!!trueName" ng-click="logOut()">
+        <i class="icon_16 icon_exit"></i>
+        退出系统
+    </a>
+
+    <a ng-show="!trueName" ng-click="showLog()">
+        <i class="icon_16 icon_exit"></i>
+        登录
+    </a>
+</div>
+
+

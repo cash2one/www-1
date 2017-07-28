@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/backStageManage/project/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/temp" />
+      <excludeFolder url="file://$MODULE_DIR$/test/MyApp3/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/test/NfcReader/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/test/hello/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/test/locator/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/vue/my-project/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/vue/vue-notes-app/node_modules" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

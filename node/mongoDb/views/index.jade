@@ -1,0 +1,12 @@
+//
+   Created by zhengchaofan on 2017/6/15.
+extends layout
+block body
+    if (authenticated)
+        p Welcome to here
+        a(href='/logout') logout
+    else
+        p welcome new vistor
+        ul
+            li: a(href='/login') L
+            li: a(href='/singup') S

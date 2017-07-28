@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/angular.js"></script>
+    <script src="../js/angular-ui-router.js"></script>
+    <script src="../js/angular-animate.js"></script>
+</head>
+<body>
+    <div ng-controller="outSide">
+        <div ng-controller="here">
+            <div ng-controller="inside">
+                <input type="text" ng-model="input1">
+                {{show()}}
+                <p>{{show2()}}</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app=angular.module("myApp",[]);
+        app.controller("outSide",function ($scope) {
+            $scope.input1="outSide";
+            $scope.show2=function () {
+                return $scope.input1+"1";
+            };
+        });
+        app.controller("inside",function ($scope) {
+//            $scope.input1="inside";
+//            $scope.show=function () {
+//                return $scope.input1;
+//            };
+        });
+        app.controller("here",function ($scope) {
+//            $scope.input1="here";
+        })
+
+    </script>
+</body>
+</html>

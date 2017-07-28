@@ -1,0 +1,214 @@
+<!--所有的 经理下面的 -->
+<table class="table table-bordered">
+    <thead class="thead bold_th">
+        <tr class="active">
+            <th rowspan="2" class="v_c" >&nbsp;</th>
+            <th rowspan="2" class="v_c fz18">总车数</th>
+            <th rowspan="2" class="v_c fz18">总工时</th>
+            <th colspan="{{thLen}}" class="v_c fz18">合计方量</th>
+            <th rowspan="2" class="v_c fz18">总方量</th>
+            <th rowspan="2" class="v_c fz18">总金额</th>
+            <th rowspan="2" class="v_c fz18">操作</th>
+        </tr>
+        <tr class="active">
+            <th ng-repeat = "item in things track by item.id" data-carId="{{item.id}}">
+                {{item.name}}&nbsp;&nbsp;
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat-start="( $index,item) in mDlist" ng-class="{active: $index%2==1}" class="js_parents">
+            <td>
+                <button class="btn btn-link" data-id="{{item.managerId}}" ng-click="gowjList($event,'wj_c')">
+                    <span>挖机</span>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-link" data-id="{{item.managerId}}" data-number="{{item.digStatis.totalTimes}}"
+                        ng-click="gocar($event,'w','m')">
+                       {{item.digStatis.totalTimes || '0'}}
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-link" data-id="{{item.id}}" data-number="{{item.digStatis.workHours}}"
+                        ng-click="goAllTime($event,'w','m')">{{item.digStatis.workHours || '0'}}</button>
+            </td>
+            <td ng-repeat="(th,$index) in things track by $index" class="js_flb"
+                data-conent="{{th.name}}"
+                data-price="{{item.digStatis.items[$index]['money']}}"
+                data-amount="{{item.digStatis.items[$index]['amount']}}">
+                <span>
+                    {{ item.digStatis.items[$index]["amount"] || '0'}}
+                </span>
+            </td>
+            <td>
+                <span>
+                    {{item.digStatis.totalAmount || '0'}}
+                </span>
+            </td>
+            <td>
+                <span>
+                    {{item.digStatis.totalMoney | currency:"￥ " : 0 }}
+                </span>元</td>
+            <td>
+                <button class="btn btn-link" ng-click="showDetails($event,'wj')">详情</button>
+            </td>
+        </tr>
+
+        <tr ng-repeat-end ng-class="{active: $index%2==1}" class="js_parents">
+            <td>
+                <button class="btn btn-link" data-id="{{item.managerId}}" ng-click="goyscList($event,'ysc_c')">
+                    <span>运输车</span>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-link"  data-id="{{item.managerId}}" data-number="{{item.carryStatis.totalTimes}}"
+                        ng-click="gocar($event,'y','m')">
+                        {{item.carryStatis.totalTimes || '0'}}
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-link" data-id="{{item.id}}" data-number="{{item.carryStatis.workHours}}"
+                        ng-click="goAllTime($event,'y','m')">{{item.carryStatis.workHours || '0'}}</button>
+            </td>
+            <td ng-repeat="(th,$index) in things track by $index" class="js_flb"
+                data-conent="{{th.name}}"
+                data-price="{{item.carryStatis.items[$index]['money']}}"
+                data-amount="{{item.carryStatis.items[$index]['amount']}}">
+                <span>
+                   {{ item.carryStatis.items[$index]["amount"] || '0'}}
+                </span>
+            </td>
+            <td>
+                <span>
+                    {{item.carryStatis.totalAmount || '0'}}
+                </span>
+            </td>
+            <td><span>{{ item.carryStatis.totalMoney | currency:"￥ " : 0}}</span>元</td>
+            <td>
+                <button class="btn btn-link" ng-click="showDetails($event,'ysc')">详情</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 挖机 -->
+<div class="modal fade" id="showMwj" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header  modal_tit1">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title">详情</h4>
+            </div>
+            <div class="modal-body container-fluid modal_details" ng-repeat = "($index,item) in mDlist" >
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">
+                        经理姓名
+                    </span>
+                    <span class="col-sm-6 right">
+                        {{item.trueName}}
+                    </span>
+                </div>
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">
+                        总车数
+                    </span>
+                    <span class="col-sm-6 right">
+                        {{item.digStatis.totalTimes || '0'}}
+                    </span>
+                </div>
+                <div class="col-sm-12" ng-repeat="($index,th) in things track by $index" >
+                    <div class="col-sm-6 mb10" >
+                        <span class="col-sm-6">
+                            {{th.name}}(方量)
+                        </span>
+                        <span class="col-sm-6 right">
+                            {{ item.digStatis.items[$index]["amount"] || '0'}}
+                        </span>
+                    </div>
+                    <div class="col-sm-6 mb10"  >
+                        <span class="col-sm-6">
+                            {{th.name}}(金额)
+                        </span>
+                        <span class="col-sm-6 right" ng-show="!!item.digStatis.items[$index]['money']">
+                            {{ item.digStatis.items[$index]['money'] | currency:"￥ " : 0}}
+                        </span>
+                        <span class="col-sm-6 right" ng-show="!item.digStatis.items[$index]['money']">
+                        ￥ 0
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">
+                       总方量
+                    </span>
+                    <span class="col-sm-6 right">
+                        {{ item.digStatis.totalAmount || '0'}}
+                    </span>
+                </div>
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">
+                       总金额
+                    </span>
+                    <span class="col-sm-6 right">
+                        {{item.digStatis.totalMoney | currency:"￥ " : 0}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 挖机 -->
+
+<!-- 运输车 -->
+<div class="modal fade" id="showMysc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header  modal_tit1">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title">详情</h4>
+            </div>
+            <div class="modal-body container-fluid modal_details" ng-repeat = "($index,item) in mDlist" >
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">经理姓名</span>
+                    <span class="col-sm-6 right">{{item.trueName}}</span>
+                </div>
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">总车数</span>
+                    <span class="col-sm-6 right">{{item.carryStatis.totalTimes  || '0'}}</span>
+                </div>
+                <div class="col-sm-12" ng-repeat="($index,th) in things track by $index" >
+                    <div class="col-sm-6 mb10" >
+                        <span class="col-sm-6">{{th.name}}(方量)</span>
+                        <span class="col-sm-6 right">{{ item.carryStatis.items[$index]["amount"] || '0'}}</span>
+                    </div>
+                    <div class="col-sm-6 mb10">
+                        <span class="col-sm-6">{{th.name}}(金额)</span>
+                        <span class="col-sm-6 right" ng-show="!!item.carryStatis.items[$index]['money']">
+                            {{ item.carryStatis.items[$index]['money'] | currency:"￥ " : 0}}
+                        </span>
+                        <span class="col-sm-6 right" ng-show="!item.carryStatis.items[$index]['money']">
+                        ￥ 0
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">总方量</span>
+                    <span class="col-sm-6 right">{{item.carryStatis.totalAmount || '0'}}</span>
+                </div>
+                <div class="col-sm-6 mb10">
+                    <span class="col-sm-6">总金额</span>
+                    <span class="col-sm-6 right">{{ item.carryStatis.totalMoney | currency:"￥ " : 0}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 运输车 -->
+
+

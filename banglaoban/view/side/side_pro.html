@@ -1,0 +1,32 @@
+<div class="side_2" ng-controller="mList">
+    <h3 class="tit1">
+        <a ng-click="goPro($event)">经理列表</a>
+    </h3>
+    <ul class="list1 os_y js_h js_m_list">
+        <li ng-repeat="($index, item) in mList" ng-class="{ cur: pathParams.mid == item.id || ( !pathParams.mid && $index==0 ) }">
+            <h5 class="tit2 js_tit js_on" ng-click="mToggle3($event,'m')" data-mid="{{item.id}}" data-index="{{$index}}"
+                ng-class="{on: ( pathParams.mid == item.id && pathParams.role == 'm' ) ||  ( !pathParams.mid && $index==0 ) }">
+                <i class="icon_12" onClick="event.cancelBubble = true" ng-class="{ icon_add: ! (pathParams.mid == item.id || ( !pathParams.mid && $index==0 )) }"></i>
+                <span class="js_mName" data-mid="{{item.id}}">{{item.trueName}}</span>
+            </h5>
+
+            <div class="list1_con">
+                <a href="javascript:;" class="js_on"
+                ng-class="{on: pathParams.mid == item.id && pathParams.role == 'WJ'}"
+                data-mid="{{item.id}}" ng-click="togglePro($event,'WJ')">
+                挖机司机
+                </a>
+                <a href="javascript:;" class="js_on" data-mid="{{item.id}}"
+
+                   ng-class="{on: pathParams.mid == item.id && pathParams.role == 'YSC'}"
+                   ng-click="togglePro($event,'YSC')">运输车司机</a>
+
+                <a href="javascript:;" class="js_on" data-mid="{{item.id}}" ng-class="{on: pathParams.mid == item.id && pathParams.role == 'wj_c'}" ng-click="togglePro($event,'wj_c')">挖机</a>
+                <a href="javascript:;" class="js_on" data-mid="{{item.id}}" ng-class="{on: pathParams.mid == item.id && pathParams.role == 'ysc_c'}" ng-click="togglePro($event,'ysc_c')">运输车</a>
+            </div>
+            <label ng-repeat="(key, val) in genders track by $index">
+                <input type="radio" name="gender" value="{{key}}" ng-checked="list.gender==key">{{val}}
+            </label>
+        </li>
+    </ul>
+</div>

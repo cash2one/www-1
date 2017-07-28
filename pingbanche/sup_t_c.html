@@ -1,0 +1,181 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+	<link rel="stylesheet" href="/pingbanche/css/order.css">
+</head>
+<body class="bgf2">
+  <div data-role="page" >
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>货源详情</h1>
+      <a href="javascript:history.back();" class="icon_goPrev_44" data-ajax='false'></a>
+    </div>
+    <div data-role="main" class="ui-content v100p">
+		<div class="bgf2 pb10">
+			<div class="pt10_lr20 bdbd3">
+				<div class="user_xx1 pr mb10">
+					<div class="user_xx1_img pa">
+						<img src="/pingbanche/images/user_162.png" alt="">
+					</div>
+					<p class="user_name">昵称</p>
+					<p class="js_user">15088688868</p>	
+					<p><span class="js_star"><i class="cur"></i><i class="cur"></i><i class="cur"></i><i class="cur"></i><i></i></span><em>3580单</em></p>
+				</div>			
+			</div>			
+		</div>
+		<div class="pt10_lr20 bdtd3 bdbd3">
+			<h3 class="bdbd3 time_line1 pb10">2016-08-12&nbsp;&nbsp;17:09</h3>
+			<div class="ul_list2 text_pt1">
+				<p>
+					<i class="icon_g"></i>
+					起点：
+					<b class="js_start"></b>
+				</p>
+				<p>
+					<i class="icon_r"></i>
+					终点：
+					<b class="js_end"></b>
+				</p>
+				<p>
+					<span>
+						公里数:&nbsp;&nbsp;<b class="js_mileage"></b>公里
+					</span> 
+				</p>
+				<p class="pr js_fee_css">
+					<span>
+						总价(元):&nbsp;&nbsp;<b class="js_fee"></b>
+					</span>
+					<input type="text" value="请输入价格" />
+					<a href="#">修改价格</a>
+				</p>
+			</div>	
+		</div>
+		<div class="pt10_lr20  mb10">
+			<div class="ul_list2 text_pt2">
+				<p>车辆类型&nbsp;:&nbsp;&nbsp;<em class="js_model"></em>
+				</p>
+				<p class="css_Trail">所需车型&nbsp;:&nbsp;&nbsp;<em class="js_Trail"></em></p>
+				<p>收货姓名&nbsp;:&nbsp;&nbsp;<em class="js_rece"></em>
+				</p>
+				<p>收货电话&nbsp;:&nbsp;&nbsp;<em class="js_repho"></em>
+				</p>					
+			</div>	
+		</div>	
+	</div>	
+  </div>
+
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  $(function(){
+  	var dc_id=getQueryString("orderId");
+	ajax_resource(dc_id,"mobile/resource/mine",function(data){
+		var arr=data.list;
+		for(var i=0;i<arr.length;i++){
+			if(dc_id==arr[i].id){
+				var data=format( arr[i].createdDate );
+				$(".time_line1").html( data );
+				if(!arr[i].fromProvince){
+					arr[i].fromProvince="";
+				}
+				if(!arr[i].fromCity){
+					arr[i].fromCity="";
+				}
+				if(!arr[i].fromCounty){
+					arr[i].fromCounty="";
+				}
+				if(!arr[i].fromAddress){
+					arr[i].fromAddress="";
+				}
+				if(!arr[i].toProvince){
+					arr[i].toProvince="";
+				}
+				if(!arr[i].toCity){
+					arr[i].toCity="";
+				}
+				if(!arr[i].toCounty){
+					arr[i].toCounty="";
+				}
+				if(!arr[i].toAddress){
+					arr[i].toAddress="";
+				}
+
+				var str_start=arr[i].fromProvince+arr[i].fromCity+arr[i].fromCounty+arr[i].fromAddress;
+				$(".js_start").html(str_start);
+				var str_end=arr[i].toProvince+arr[i].toCity+arr[i].toCounty+arr[i].toAddress;
+				$(".js_end").html(str_end);
+
+				if(!!arr[i].distance){
+					$(".js_mileage").html(arr[i].distance)
+				}
+				if(!!arr[i].estimateFee){
+					$(".js_fee").html( arr[i].estimateFee);
+				}else{
+					$(".js_fee").html("未知");
+				}
+				if(!!arr[i].carModel){
+					$(".js_model").html( arr[i].carModel );
+				}
+				if(!!arr[i].receiverName){
+					$(".js_rece").html( arr[i].receiverName );
+				}
+				if(!!arr[i].receiverPhone){
+					$(".js_repho").html( arr[i].receiverPhone );
+				}
+				if(arr[i].needSpecialTrailer){
+					$(".css_Trail").css("display","block");
+					if(!!arr[i].specialTrailerModel){
+						$(".js_Trail").html(arr[i].specialTrailerModel);
+					}else{
+						$(".js_Trail").html("请电话确认");
+					}	
+				}
+				if( arr[i].status=="TRADED" ){ //被抢单
+				}else{  //可以修改价格
+					$(".js_fee_css").find("a").css("display","block");
+				}
+			}
+		}	
+	});
+
+	$(".js_fee_css").find("a").bind("click",function(){ //修改价格
+		var text=$.trim( $(this).html() );
+		var value=$(".js_fee").html();
+		if(text=="修改价格"){
+			$(this).html("确定");
+			$(".js_fee").css("display","none");
+			$(".js_fee_css").find(".ui-input-text").css("display","inline-block");
+			$(".js_fee_css").find("input").val( value  );	
+		}else if(text=="确定"){
+			var val=parseFloat( $(".js_fee_css").find("input").val() );
+			adjustPrice(dc_id,val,function(data){
+				$(".js_fee_css").find("a").html("修改价格");
+				$(".js_fee_css").find(".ui-input-text").css("display","none");
+				$(".js_fee").css("display","inline-block");
+				$(".js_fee").html(val);
+			});
+		}
+	});
+    getUserById(window.localStorage.getItem("log_id"),function(data){	
+		$(".user_xx1_img").find("img").attr("src","http://192.168.1.150:9999/haul/imag?uri="+data.photo );
+		$(".user_name").html( data.nickname );
+		$(".user_xx1 p").find("em").html(data.orderNum+"单");	
+			$(".js_user").html(data.username);	
+		var star_num=Math.floor( data.ratePercent/20 );
+
+		$(".js_star").find("i").each(function(index,element){
+			if(index<=star_num){
+				$(this).addClass("cur");
+			}else{
+				$(this).removeClass("cur");
+			}
+		});	
+    });
+  });
+  </script>
+</body>
+</html>

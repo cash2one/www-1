@@ -1,0 +1,145 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+  <link rel="stylesheet" href="/pingbanche/css/order.css">	
+</head>
+<body class="bgf2">
+  <div data-role="page" class="js_pt100 p_pt100">
+    
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>选择司机</h1>
+      <a href="javascript:history.go(-1);" class="icon_goPrev_44" data-ajax="false"></a>
+    </div>
+
+    <div data-role="main" class="ui-content pt10">
+      <div class="css_src">
+         <input type="text" placeholder="请输入姓名电话或者城市进行模糊查询" id="js_match"/>
+      </div>
+      <div id="js_dlist" class="cs_dlist">
+      </div>
+		</div>
+  </div>
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+  <script src="/pingbanche/js/common.js"></script>
+  
+
+  <script src="/pingbanche/js/cities.js"></script>
+
+
+  <script>
+  $(function(){
+    driverList(function(data){
+      forFn(data.list);
+    });
+    var orderId=getQueryString("orderId");
+    $("#js_dlist").on("click",".js_pd",function(){
+      var id=$(this).parents("li").data("id"); 
+      var data={
+        "token":window.localStorage.getItem("token"),
+        "desireId":orderId,
+        "driverId":id        
+      };
+      ajax_pwd(data,"mobile/order",function(data){
+        if(data.response_state==1){
+          alert( data.response_note );
+        }else{
+          alert( data.response_note );
+        }
+      });
+    });
+
+    $('#js_match').bind('input propertychange', function() {  
+      var val=$(this).val();
+      var brr=[];
+      driverList(function(data){
+        if(!!data.list){
+          var arr=data.list;
+          for(var i=0;i<arr.length;i++){
+            var s=arr[i].nickname;
+                s.match(val);
+            if(!arr[i].hasDoingOrder){
+              if(!!arr[i].username.match(val) || !!arr[i].nickname.match(val) || !!arr[i].latestLoc.city.match(val) ){
+                brr.push(arr[i]);
+              }                
+            }else{
+              if(!!arr[i].username.match(val) || !!arr[i].nickname.match(val) || !!arr[i].fromLoc.city.match(val) || !!arr[i].toLoc.city.match(val)){
+                brr.push(arr[i]);
+              }      
+            }
+          };
+          if(!!val){
+            if(brr.length>=1){
+              forFn(brr);     
+            }else{
+              $("#js_dlist").html("<div class='no_start'><img src='images/banche.gif'><p>抱歉!暂时没找到你要的信息耶~</p></div>");
+            }            
+          }else{
+            forFn(arr); 
+          }
+        }
+      });
+    });  
+  });
+
+  function forFn(arr){  
+    $("#js_dlist").html("<ul></ul>");
+    for(var i=0;i<arr.length;i++){
+      var $li=$("<li>"),
+          $div1=$("<div class='dlist_t'>"),
+          $w60p=$("<div class='w60p'>"),
+          $img_w=$("<div class='img_w'>"),
+          $img=$("<img>"),
+          $h4=$("<h4>"),
+          $p=$("<p>"),
+          $span=$("<span>"),
+          $w40p=$("<div class='w40p'>");
+
+      $h4.html(arr[i].nickname);
+      $p.html(arr[i].username);
+      $span.html("<i></i>"+arr[i].latestLoc.city);
+      
+      if(!!arr[i].photo){
+        $img.attr("src",imgSrc+arr[i].photo);
+      }else{
+        $img.attr("src","./images/icon_user_225.png");      
+      }
+
+      $img_w.append($img);
+      $w60p.append($img_w);
+      $w60p.append($h4);
+      $w60p.append($p);
+      $w60p.append($span);  
+      $div1.append($w60p);
+      $div1.append($w40p);
+
+      if(!!arr[i].hasDoingOrder){
+        $w40p.html("<i class='cs_phone'></i>");
+        var $div2=$("<div class='dlist_b'>"),
+            $p2=$("<p>"),
+            $span=$("<span>"),
+            d=arr[i].dueDate,
+            $u=$("<u class='icon_u'></u>");
+        $p2.html("<p><i class='icon icon_g'></i>"+
+          arr[i].fromLoc.city+"<u class='icon_72_arr'></u><i class='icon icon_r'></i>"+arr[i].toLoc.city
+          +"</p>");
+        $span.html( format(d) );
+        $div2.append( $p2 );
+        $div2.append( $span );   
+        $li.append($div2);
+        $li.append($u);
+      }else{
+        $w40p.html("<i class='cs_phone'></i><a href='#' class='js_pd'>派单</a>");
+        $li.attr('data-id',arr[i].id);
+      }
+      $li.prepend($div1);
+      $("#js_dlist ul").append($li);
+    }
+  }
+  </script> 
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!--<script src="./js/vue-route.js"></script>-->
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<script>
+    const rout=new VueRouter({
+        routes:[
+            {
+                name:'boor',
+                path:'/boor',
+                component:{
+                    template:'<div v-on:click="show">boor</div>',
+                    methods:{
+                        show:function () {
+                            console.log(this.$route);
+                        }
+                    }
+                }
+            },
+            {
+                name:'coor',
+                path:'/coot/:name/:id',
+                component:{
+                    data:function () {
+                        return {
+                            name:'wolaile'
+                        }
+                    },
+                    template:'<div v-on:click="show">coor</div>',
+                    methods:{
+                        show:function () {
+                            console.log(this.$route,this.name);
+                        }
+                    }
+                }
+            }
+
+        ]
+    });
+
+</script>
+<div id="app">
+    <router-link :to="{name:'boor'}">boor</router-link>
+    <router-link v-bind:to="c">coot</router-link>
+    <p>显示在这里</p>
+    <router-view></router-view>
+</div>
+
+<script>
+    const app=new Vue({
+        el:"#app",
+        data:{
+            c:{
+                name:'coor',
+                params:{
+                    name:'12',
+                    id:'34',
+                }
+            }
+        },
+        router:rout
+    })
+</script>
+</body>
+</html>

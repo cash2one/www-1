@@ -1,0 +1,82 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+</head>
+
+<body class="bgf2">
+	<div data-role="page">
+	
+	    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+			<h1>
+				发布货源
+				<a href="#" class="js_sure">确定</a>
+				<form name="pay" method='post' action='http://192.168.1.150:9999/haul/alipay/wapPay' id='pay'>
+					<input type="hidden" class="js_totalFee" name="totalFee">
+					<input type="hidden" class="js_outTradeNo" name="outTradeNo">
+					<input type="hidden" class="js_payFor" name="payFor">
+					<input type="hidden" class="returnUrl" name="returnUrl">						
+				</form>	 
+			</h1>
+			<a href="./pub_goods.html" class="icon_goPrev_44" data-ajax="false"></a>
+	    </div>
+
+	    <div data-role="main" class="ui-content pt8">
+	    	<p class="bgef_tc">
+	    		需支付预付款至小板车
+	    		<br />￥<em class="js_fee">0.01</em>
+	    	</p>
+			<p class="cla0_38">收款方：<em>浙江金汉弘软件有限公司</em></p>
+			<div class="pay_wrap bdbn">
+				<img src="/pingbanche/images/icon_pay_96.png" alt="">
+				<p>支付宝客户端支付</p>
+				<i class="pay_zfb"></i>
+			</div>
+<!-- 			<div class="pay_wrap">
+						<img src="images/icon_weixin_96.png" alt="">
+						<p>微信支付</p>
+						<p class="cla0">亿万用户的选择，又快又方便</p>
+						<i class="pay_wx"></i>
+					</div>	 -->					
+		</div>	
+	</div>
+	<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+	<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+	<script src="/pingbanche/js/common.js"></script>
+	<script>
+	$(function(){
+		var desireNo=window.localStorage.getItem("desireNo"),
+			earnest=window.localStorage.getItem("earnest");
+
+		(function(){
+			$(".pay_wrap").find("i").on("tap",function(){
+				$(this).toggleClass("cur");
+				if( $(this).hasClass("cur") ){
+					$(this).parent(".pay_wrap").siblings().find("i").removeClass("cur");
+				}
+			});
+			
+			$("#js_fee").html( earnest );
+			$(".js_totalFee").val( earnest );
+			$(".js_outTradeNo").val( desireNo );
+			$(".js_payFor").val("desire");
+			$(".returnUrl").val("http://192.168.1.100/pingbanche/sup_goods_c.html");
+
+			$(".js_sure").on("click",function(){
+				if( $(".pay_zfb").hasClass("cur") ){
+					$("#pay").submit();
+				}else if( $(".pay_wx").hasClass("cur") ){
+					//微信支付
+				}else{
+					alert("请选择支付方式");
+				}
+			});
+		})();
+
+	});
+	</script>
+</body>
+</html>

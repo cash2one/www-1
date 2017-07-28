@@ -1,0 +1,54 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+</head>
+<body class="bgf2">
+  <div data-role="page">
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>消息内容</h1>
+      <a href="./news.html" class="icon_goPrev_44" data-ajax="false"></a>
+    </div>
+    <div data-role="main" class="ui-content pt10">
+        <div class="news_con_w">
+          <p></p>
+          <div class="news_con">
+            <p></p>
+            <i class="icon_dialog"></i>
+          </div>
+        </div>
+		</div>
+  </div>
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  $(function(){
+    ajax_get({"token":localStorage.getItem("token")},"mobile/message",function(data){
+        if(data.response_state==1){  
+          var id=getQueryString("id");  
+          //标记为已读
+          ajax_pwd(
+            {"token":localStorage.getItem("token")}
+            ,"mobile/message/"+id,
+            function(data){}
+          );
+          var arr=data.list;
+          for(var i=0;i<arr.length;i++){
+            if(arr[i].id==id){
+              $(".news_con_w").find("p").eq(0).html(format1(arr[i].createdDate));
+              $str="【"+arr[i].title+"】"+arr[i].content;
+              $(".news_con").find("p").html($str);
+            }
+          }
+        }else{
+          alert("出错啦");
+        }
+    });
+  });
+  </script>
+</body>
+</html>

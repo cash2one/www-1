@@ -1,0 +1,138 @@
+html{
+    font-family: 'microsoft yahei', sans-serif;
+    color: #414141;
+}
+body,p{
+    margin: 0;
+    padding: 0;
+    font-size: .4687rem;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+/*
+头部内容
+*/
+.clear-float{
+    clear: both;
+}
+.color-gry{
+    color: #757575;
+}
+
+
+/*.contain{*/
+    /*width: 100%;*/
+    /*max-width: 1024px;*/
+    /*margin:  0 auto;*/
+/*}*/
+.contain{
+    margin-top: .4rem;
+    /*margin-bottom: .4rem;*/
+    display: block;
+    border-top: .03125rem solid #e6e6e6;
+    border-bottom: .03125rem solid #e6e6e6;
+}
+.contain-area{
+    position: relative;
+}
+.contain-head-left{
+    float: left;
+}
+.contain-head-right{
+    float: right;
+    font-size: .315rem;
+    color: #fd5c5c;
+    margin-top: 2px;
+}
+.contain-head-left div{
+    display: inline-block;
+}
+.contain-area-mian{
+    font-weight: 700;
+    width: 2.556rem;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.contain-area-mian:before{
+    content: "";
+    display: inline-block;
+    width: .3rem;
+    height: .3125rem;
+    background-color: #649a2f;
+    border-radius: 50%;
+    margin-right: .2rem;
+}
+.contain-area-mian.cam-color:before{
+    background-color: #ff3439;
+}
+.contain-area-minor{
+    font-size: .3125rem;
+    color: #616161;
+    position: absolute;
+    left: .55rem;
+    bottom: -1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 2rem;
+}
+.bg-right-arrow{
+    width: .5625rem;
+    height: .375rem;
+    background: url("/mobileWebFreeList/img/images/bgg_03.png") no-repeat;
+    background-size:contain;
+    margin-right: .375rem;
+}
+.contain-head{
+    height: 1.25rem;
+    margin: .5937rem .5rem .2812rem;
+    border-bottom: .03125rem solid #e6e6e6;
+}
+.contain-body{
+    font-size: .3125rem;
+    margin: .3125rem .5rem .2812rem;
+}
+.contain-body div{
+    margin-left: .55rem;
+}
+.contain-body-first .cbf-color{
+    color: #fd5353;
+}
+.contain-body-second span{
+    display: inline-block;
+}
+.cbs-first{
+    width: 40%;
+    /*vertical-align: middle;*/
+}
+.cbs-first:before{
+    content: '';
+    width: .375rem;
+    height: .3125rem;
+    background: url("/mobileWebFreeList/img/images/bgg_07.png") no-repeat;
+    display: inline-block;
+    background-size: contain;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+.cbs-second:before{
+    content: '';
+    width: .375rem;
+    height: .3125rem;
+    background: url("/mobileWebFreeList/img/images/bgg_10.png") no-repeat;
+    display: inline-block;
+    background-size: contain;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+.no-more,.show-more,.no-list,.on-eorr{
+    font-size: .3125rem;
+    text-align: center;
+    line-height: 1rem;
+    height: 1rem;
+    display: none;
+}

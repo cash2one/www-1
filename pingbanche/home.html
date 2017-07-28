@@ -1,0 +1,361 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+  <link href="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.css" rel="stylesheet" type="text/css" />  
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=jA7kjeSzkl95yRCbLRaucotgfHfCAhzA">
+  	</script>
+  <script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js"></script>   
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>  
+</head>
+<body>
+  <div data-role="page">
+    <div data-role="header" class="header" data-title="fixed" data-position="fixed">
+      <h1>平板车</h1>
+      <a href="#nav-panel2" class="icon_menu js_log"></a>
+    </div>
+    <div data-role="main" class="ui-content h100p pr" >    
+      <div class="map" id="allmap">
+      </div>
+      <div class="map_list">
+      </div> 
+      <div class="tc_tap ">
+        <div>
+          <div class="js_tips pr">
+            <div>
+              <p>恭喜张某某于几时几分抢单成功！</p>
+              <p>恭喜张某某于几时几分抢单成功！</p>
+            </div> 
+          </div>
+          <span class="close">X</span>
+        </div>
+      </div>
+  		<div class="tab_b_1">
+  			<div class="ui-grid-a">
+  			    <div  class="ui-block-a">
+  			    	<i class="icon icon_hy_44"></i>货源
+  			   	</div>
+  			    <div class="ui-block-b">
+  			    	<i class="icon icon_dd_44"></i>订单
+  			   	</div>
+  			</div>
+        <!-- /grid-c -->			
+  		</div>
+    </div>
+    <!-- /panel S-->
+    <div data-role="panel" data-position-fixed="true" 
+    id="nav-panel1" class="nav-panel" data-display="Reveal" >
+        <div class="s_h_top">
+          <div class="s_h_img">
+            <a href="">
+              <img src="/pingbanche/images/icon_user_138.png" alt="" class="icon_u_138">
+              <img src="/pingbanche/images/icon_c_35.png" alt="" class="icon_c_35"> 
+            </a>
+          </div>
+          <p>昵称XXX</p>
+          <div class="ui-grid-a s_h_order">
+            <div class="ui-block-a">
+              <a href="#";
+              data-ajax="false" class="js_order">
+                <em>0</em><br>
+                <span>成单</span>                
+              </a>
+            </div>
+            <div class="ui-block-b">
+              <a href="./evaluation.html" data-ajax="false">
+                <em>0</em><br>
+                <span>好评</span>                
+              </a>
+            </div>
+          </div>      
+        </div> 
+        <ul class="s_h_nav">
+          <li>
+            <a href="./modifyPwd.html" data-ajax="false">
+              更改密码<i>&gt</i>  
+            </a>         
+          </li>
+          <li>
+            <a href="./instructions.html" data-ajax="false">
+              使用说明<i>&gt</i>  
+            </a> 
+          </li>
+        </ul>
+        <ul class="s_h_nav">
+          <li>
+            <a href="./set.html" data-ajax="false">
+              设置<i>&gt</i>  
+            </a>         
+          </li>
+        </ul> 
+        <ul class="s_h_nav s_h_nav_tel">
+          <li>
+            <em class="fl">客服电话</em>
+            <div class="tel_lh">
+              <a href="javascript:;" class="tel"></a>      
+            </div>
+           </li>   
+        </ul>  
+        <a href="./news.html" class="icon_message_54"
+        data-ajax="false"><i class="icon_m_wd"></i></a>
+    </div>
+    <div data-role="panel" data-position-fixed="true" 
+        id="nav-panel2" class="nav-panel" data-display="Reveal" >
+           <div class="s_h_top">
+              <div class="s_h_img">
+                <a href="./login.html"  data-ajax="false">
+                  <img src="/pingbanche/images/icon_user_138.png" alt="" class="icon_u_138">
+                </a>  
+              </div>
+              <p class="fz12 pb10">请登录，同步你的资料和订单</p>
+              <div class="log_in_w mb10">
+                <a href="./login.html" data-ajax="false" class="">登&nbsp;录</a>
+              </div>
+              <div class="ui-grid-a s_h_order">
+                <div class="ui-block-a">
+                  <em>0</em><br>
+                  <span>成单</span>
+                </div>
+                <div class="ui-block-b">
+                  <em>0</em><br>
+                  <span>好评</span>                    
+                </div>
+              </div>      
+            </div> 
+            <ul class="s_h_nav">
+              <li>
+                <a href="./login.html" data-ajax="false">
+                  更改密码<i>&gt</i>  
+                </a>         
+              </li>
+              <li>
+                <a href="./instructions.html" data-ajax="false">
+                  使用说明<i>&gt</i>  
+                </a> 
+              </li>        
+            </ul>
+            <ul class="s_h_nav">
+              <li>
+                <a href="./set.html" data-ajax="false">
+                  &nbsp;&nbsp;设置<i>&gt</i>  
+                </a>         
+              </li>
+            </ul> 
+            <ul class="s_h_nav s_h_nav_tel">
+              <li>
+                <em class="fl">客服电话</em>
+                <div class="tel_lh">
+                  <a href="javascript:;" class="tel">10086</a>
+                </div>         
+              </li>
+            </ul> 
+            <a href="./login.html" class="icon_message_54" 
+            data-ajax="false"></a>
+        </div><!-- /panel -->
+    </div> 
+  </div> 
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  $(function(){
+    (function(){
+      var height = Math.floor($(window).height() -$(".header").height());
+      $(".h100p,.map").height( height );  
+      $(".tc_tap").on("tap",function(){
+        $(this).stop().fadeOut();
+      });
+      $(".nav-panel").height( $(window).height() );
+      $("#tcBtn").on("click",function(){
+        $(this).toggleClass("cur");
+      });
+      $(".js_order").bind("click",function(){
+        window.localStorage.setItem("statusNum",2);
+        window.location.href="./order_d.html";
+      });
+    })();
+
+    (function(){
+      if(!!localStorage.getItem("token") ){
+        // 登录成功
+        $(".js_log").attr("href","#nav-panel1");
+        getUnread(function(data){ //消息
+          if(data.response_state==1){ 
+            if(!!data.unread){
+              $(".icon_message_54").find(".icon_m_wd").css("display","block");
+            }else{
+              $(".icon_message_54").find(".icon_m_wd").css("display","none"); 
+            }  
+          }              
+        });
+        //获取昵称头像 分为司机\客户\调度
+        if(!!localStorage.getItem("log_role")){
+            var role=localStorage.getItem("log_role");
+            if(role=="ROLE_CUSTOMER"){
+              $(".s_h_img").find(".icon_c_35").attr("src","./images/icon_c_35.png");
+              $(".tab_b_1 .ui-grid-a").find(".ui-block-a").on("click",function(){
+                window.location.href="./pub_goods.html";                
+              });
+            }else if(role=="ROLE_DRIVER"){
+              $(".s_h_img").find(".icon_c_35").attr("src","./images/icon_d_35.png");
+              $(".tab_b_1 .ui-grid-a").find(".ui-block-a").on("click",function(){
+                window.location.href="./sup_goods_d.html"; //货源
+              });
+            }else if(role=="ROLE_MANAGER"){
+              $(".s_h_img").find(".icon_c_35").attr("src","./images/icon_t_35.png"); 
+              $(".tab_b_1 .ui-grid-a").find(".ui-block-a").on("click",function(){
+                window.location.href="./sup_goods_t.html"; 
+              });
+            }  
+            $(".s_h_img").find("a").attr({
+              "data-ajax":"false",
+              "href":"./getInfo.html?back=home"
+            });
+            
+            getUserById(localStorage.getItem("log_id"),function(data){
+                $(".s_h_top").find("p").html(data.nickname);
+                $(".s_h_order>div").eq(0).find("em").html(data.orderNum);
+                $(".s_h_order>div").eq(1).find("em").html(data.ratePercent);
+
+                if(!!data.photo){
+                  $(".s_h_img").find(".icon_u_138").attr({"src":imgSrc+data.photo,"alt":"我的头像"});
+                }else{
+                  $(".s_h_img").find(".icon_u_138").attr({"src":"./images/icon_user_225.png","alt":"我的头像"});            
+                }
+                if(!!data.csPhone){
+                  $(".s_h_nav_tel").find(".tel").html(data.csPhone); 
+                  $(".s_h_nav_tel").find(".tel").attr("href","tel:"+data.csPhone);
+                }
+            });
+        }
+        $(".tab_b_1 .ui-grid-a").find(".ui-block-b").on("click",function(){
+          window.location.href="./order_d.html"; //订单
+        });
+      }else{
+        $(".js_log").attr("href","#nav-panel2"); 
+        $(".tab_b_1 .ui-grid-a").find("div").on("click",function(){
+          window.location.href="./login.html";
+        });
+      }
+    })();
+
+    (function(){
+        var mp = new BMap.Map("allmap");
+        //创建地图实例
+        var ctrl = new BMapLib.TrafficControl({
+          showPanel: false,
+          ancho:BMAP_ANCHOR_TOP_RIGHT//,
+        }); 
+        ctrl.setOffset( new BMap.Size(10,70) );   
+       
+        mp.addControl(ctrl);
+        // Traffic E
+        mp.addControl(new BMap.MapTypeControl(
+        {
+            ancho:BMAP_ANCHOR_TOP_RIGHT,
+            offset: new BMap.Size(10,130),
+            mapTypes:[BMAP_SATELLITE_MAP,BMAP_NORMAL_MAP]
+        })); 
+        //卫星 二维 E
+        var geoc = new BMap.Geocoder();  
+        var geolocation = new BMap.Geolocation(); 
+
+        if(navigator.geolocation) {    
+          geolocation.getCurrentPosition(function(r){
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){  
+              mp.centerAndZoom(r.point,12);  
+              var mk = new BMap.Marker(r.point);
+              //定位成功 
+              mp.addOverlay(mk); 
+              //将标注添加到地图中        
+              //循环添加点 
+              ajax_lan(r.point.lat,r.point.lng,function(data){
+
+                //地图选点
+                var arr_pot=data.list;
+                var len=arr_pot.length;
+                if(len>0){
+                  for(var i=0;i<len;i++){
+                    var myCompOverlay = new ComplexCustomOverlay(
+                      new BMap.Point(arr_pot[i].lon,arr_pot[i].lat)
+                    );
+                    mp.addOverlay(myCompOverlay);
+                  }  
+                }    
+                var str_p=data.latestOrderTip;
+                var role=localStorage.getItem("log_role");  
+                if(role=="ROLE_CUSTOMER"){
+                  str_p+="&nbsp;&nbsp;当前注册司机数";
+                  str_p+=data.driverNum;
+                }else if(role=="ROLE_DRIVER"){
+                  str_p+="&nbsp;&nbsp;当前注册客户数"; 
+                  str_p+=data.customerNum; 
+                }else if(role=="ROLE_MANAGER"){
+                  /* 此处图片要换  后面 */
+                  str_p+="&nbsp;&nbsp;当前注册用户数";
+                  str_p+=(data.customerNum+data.driverNum);
+                }
+
+                $(".js_tips").find("p").html( str_p );
+
+                var timer=setInterval(function(){
+                  donghua();
+                },2000);
+
+                function donghua(){
+                  $(".js_tips>div").animate({
+                    "left":-$(".js_tips").find("p").eq(0).outerWidth()
+                    },10000,function(){
+                      $(".js_tips>div").css("left",0);
+                  });
+                }
+              });
+              mp.panTo(r.point); 
+            }else {  
+              alert('failed'+this.getStatus());  
+            }          
+          },{enableHighAccuracy: true}) 
+        }
+        mp.enableScrollWheelZoom(true);
+        mp.disableDragging();     //禁止拖拽
+        
+        setTimeout(function(){
+           mp.enableDragging();   
+        }, 2000);
+
+        // 复杂的自定义覆盖物
+        function ComplexCustomOverlay(point){
+          this._point = point; 
+        }
+        ComplexCustomOverlay.prototype = new BMap.Overlay();
+        ComplexCustomOverlay.prototype.initialize = function(map){
+          this._map = map;
+          var div = this._div = document.createElement("div");
+          div.style.position = "absolute";
+          div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);//聚合功能?
+          div.style.height = "30px";
+          div.style.width="30px";
+
+          var arrow = this._arrow = document.createElement("img");
+          arrow.src = "./images/map_cb.png";
+          arrow.style.width = "30px";
+          arrow.style.height = "30px";
+          arrow.style.top = "0";
+          arrow.style.left = "0";
+          div.appendChild(arrow);
+          mp.getPanes().labelPane.appendChild(div);
+          return div;
+        } 
+        ComplexCustomOverlay.prototype.draw = function(){
+          var map = this._map;
+          var pixel = map.pointToOverlayPixel(this._point);
+          this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+          this._div.style.top  = pixel.y - 30 + "px";
+        }
+    })(); 
+  });  
+  </script>
+</body>
+</html>

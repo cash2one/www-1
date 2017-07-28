@@ -1,0 +1,18 @@
+//
+   Created by zhengchaofan on 2017/6/16.
+
+extends layout
+block body
+    form(action='/login',method="POST")
+        fieldset
+            legend Log in
+        p
+            label Email
+            input(name='user[email]', type='email')
+        p
+            label Password
+            input(name="user[pass]", type='password')
+        p
+            button Submit
+        p
+            a(href='/') Go Back

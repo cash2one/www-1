@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$Title$</title>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+        }
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+        .yellow{
+            background-color:yellow;
+        }
+        .p_button{
+            height: 50px;
+        }
+
+    </style>
+    <script src="./js/vue.js"></script>
+    <script>
+        Vue.component("bc-red",{
+            data:function () {
+                return{
+                    count:'1',
+                }
+            },
+            template:'<div class="red">{{count}}' +
+            '<p class="p_button green" v-on:click="countChange">{{0}}</p>'+
+            '<p class="p_button yellow" v-on:click="showChange">{{0}}</p>'+
+            '</div>',
+            methods:{
+                countChange:function () {
+                    this.count++;
+                    this.$emit('count-change');
+                    this.$nextTick(function () {
+                        console.log(app.count)
+                    });
+                    console.log(app.count,"8");
+                },
+                showChange:function () {
+                    console.log(app.count);
+                }
+            }
+        });
+        Vue.component("bc-green",{
+            data:function () {
+                return{
+                    count:'2',
+                }
+            },
+            template:'<div class="green">{{count}}' +
+            '<p class="p_button red" v-on:click="countChange"></p>' +
+            '</div>',
+            methods:{
+                countChange:function () {
+                    this.count++;
+                    this.$emit('count-change');
+                }
+            }
+
+        });
+        Vue.component("bc-yellow",{
+            data:function () {
+                return{
+                    count:'3',
+                }
+            },
+            template:'<div class="yellow">{{count}}' +
+            '<p class="p_button red" v-on:click="countChange"></p>' +
+            '</div>',
+            methods:{
+                countChange:function () {
+                    this.count++;
+                    this.$emit('count-change');
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="dy">
+        <p>{{count}}</p>
+        <div v-bind:is="component" v-on:count-change="changeCount"></div>
+        <!--<div is="bc-yellow" v-on:countChange="changeCount"></div>-->
+        <!--<bc-green></bc-green>-->
+        <button v-on:click="bt_r('bc-red')" >red</button>
+        <button v-on:click="bt_r('bc-green')">green</button>
+        <button v-on:click="bt_r('bc-yellow')">yellow</button>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#dy",
+            data:{
+                component:"bc-green",
+                count:"10",
+            },
+            methods:{
+                bt_r:function (e) {
+                    this.$data.component=e
+                },
+                changeCount:function () {
+                    this.count++;
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

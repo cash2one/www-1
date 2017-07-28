@@ -1,0 +1,67 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+</head>
+<body class="bgf2">
+  <div data-role="page">
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>登录</h1>
+      <a href="./home.html" class="icon_goPrev_44" data-ajax="false"></a>
+    </div>
+    <div data-role="main" class="ui-content pt10">
+      	<div class="user_img_75">
+            <img src="/pingbanche/images/icon_user_225.png" alt="">
+        </div>
+        <div class="form1">
+          <form action="">
+            <div class="form1_wrap mb10">
+              <label for="">
+                  <span class="icon_ph_57"></span>
+                  <input type="tel" placeholder="请输入手机号码" id="js_user">
+              </label>
+              <label for="">
+                  <span class="icon_mm_57"></span>
+                  <input type="password" placeholder="请输入密码" id="js_password">
+              </label>              
+            </div>
+            <div class="form_a mb10">
+              <a href="./register.html" class="form_a_l" data-ajax='false'>注册</a>
+              <a href="./f_password.html" class="form_a_r" data-ajax='false'>忘记密码</a>
+            </div>
+            <input type="button" value="登 录" class="js_login">
+          </form>
+        </div>	
+		</div>
+    </div>
+    <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+    <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+    <script src="/pingbanche/js/common.js"></script>
+    <script>
+    $(function(){
+      $(".js_login").on("click",function(){
+        var data={
+          "username":$("#js_user").val(),
+          "password":$("#js_password").val()          
+        };
+        ajax_get(data,"mobile/login",function(data){
+            if(data.response_state==1){
+              localStorage.setItem("log_id",data.id);
+              localStorage.setItem("log_name",data.username);
+              localStorage.setItem("log_role",data.roleName);
+              localStorage.setItem("token",data.token); 
+              $("#js_user").val("");
+              $("#js_password").val("");
+              window.location.href="./home.html";              
+            }else{
+              alert(data.response_note);
+            }
+        });
+      });
+    });
+    </script>
+</body>
+</html>

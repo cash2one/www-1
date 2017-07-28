@@ -1,0 +1,8 @@
+<div class="side_2" ng-controller="setC">
+    <h3 class="tit1">设置</h3>
+    <div class="list1 os_y js_h js_set">
+        <h5 class="tit2" ng-class="{on: !pathParams.set}" ng-click="toggle($event,'info')">基本信息</h5>
+        <h5 class="tit2" ng-class="{on: pathParams.set == 'pwd'}" ng-click="toggle($event,'pwd')">密码修改</h5>
+        <h5 class="tit2" ng-class="{on: pathParams.set == 'limit'}" ng-show="roleBoss" ng-click="toggle($event,'limit')">挖机选择权限</h5>
+    </div>
+</div>

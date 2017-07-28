@@ -1,0 +1,470 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+  	<link rel="stylesheet" type="text/css" href="/pingbanche/css/cropper.css">
+</head>
+<body class="bgf2">
+	<div data-role="page" id="pageOne">
+		<div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+		  <h1>个人信息设置</h1>
+		  <a href="./home.html" class="icon_goPrev_44" data-ajax="false"></a>
+		</div>
+		<!-- 判断是从哪边跳转过来的 -->
+		<div data-role="main" class="ui-content">
+			<!-- 客户司机都有的  S -->
+			<div class="s_h_top pt15"> 
+				<div class="s_h_img pr">
+					<img src="/pingbanche/images/user_90.png" alt="用户头像" class="icon_u_138 js_user_img">
+					<img src="" alt="" class="icon_c_35">
+					<input type="hidden" id="js_hidden">
+					<input type="file" />
+				</div> 
+				<p class="js_nickname2"></p>
+			</div> 
+			<ul class="s_h_nav s_h_nav2">  
+				<li>
+				  <a href="javascript:;" class="js_gotoBtn" >
+				    <b>昵称</b> 
+				    <span class="js_nickname"><em>小毛驴司机</em><i>&gt;</i></span>
+				  </a>         
+				</li>
+				<li>
+				    <b>手机</b>
+				    <span>186694923</span>
+				</li>
+				<li>
+				  <a href="javascript:;" class="js_gotoBtn">
+				    <b>微信号</b>
+				    <span class="js_weixin"><em>186694923</em><i>&gt;</i></span>   
+				  </a>         
+				</li> 
+				<li>
+				  <a href="./city_one.html" class="js_go_city" data-ajax="false"> 
+				    <b>城市</b>
+				    <span class="js_city"><em>杭州</em><i>&gt;</i></span>
+				  </a>         
+				</li
+				<!--  城市的还需要做 -->
+			</ul>
+			<div class="js_cy_con">
+				<!-- 司机有  客户没有的 S-->	
+				<ul class="s_h_nav s_h_nav2">
+					<li>
+						<a href="javascript:;" class="js_gotoBtn">
+							<b>开户银行</b> 
+							<span class="js_bankName"><em>徽商银行</em><i>&gt;</i></span>  
+						</a>         
+					</li>
+					<li>
+						<a href="javascript:;" class="js_gotoBtn">
+							<b>银行卡号</b>
+							<span class="js_bankNo"><em>000000ddd00</em><i>&gt;</i></span>  
+						</a>         
+					</li> 
+					<li>
+						<a href="javascript:;" class="js_gotoBtn ">
+							<b>户名</b>
+							<span class="js_bankUser"><em>奔跑的舌头</em><i>&gt;</i></span> 
+						</a>         
+					</li>
+				</ul> 
+				<ul class="s_h_nav s_h_nav2">
+					<li>
+						<a href="javascript:;" class="js_gotoBtn">
+							<b>支付宝账户</b>
+							<span class="js_alipayId"><em>13131313311</em><i>&gt;</i>
+							</span>
+						</a>         
+					</li>
+					<li>
+						<a href="javascript:;" class="js_gotoBtn">
+							<b>支付宝姓名</b>
+							<span class="js_alipayTname"><em>逗逼</em><i>&gt;</i></span>
+						</a>         
+					</li> 
+				</ul> 
+
+				<ul class="s_h_nav s_h_nav2">
+					<li>
+						<a href="javascript:;" class="js_gotoBtn">
+							<b>车辆品牌</b>
+							<span class="js_car_brand">
+								<em>逗逼</em><i>&gt;</i> 
+							</span>  
+						</a>         
+					</li>
+					<li>
+						<a href="javascript:;" class="js_gotoBtn">
+						<b>购买年份</b>
+						<span class="js_car_buyDate"><em>逗逼</em><i>&gt;</i> </span> 
+						</a>         
+					</li> 
+					<li>
+						<a href="javascript:;" class="js_gotoBtn">
+							<b>车牌号码</b>
+							<span class="js_car_number"><em>74110</em><i>&gt;</i> </span> 
+						</a>         
+					</li>
+					<li>
+						<b>车型</b>
+						<div class="fieldset js_car_model">
+							<div class="ui_radio">	
+								<u class="icon icon_radio"></u>
+								<b>平板车</b>			
+							</div>
+							<div class="ui_radio">
+								<u class="icon icon_radio"></u>
+								<b>斜板车</b>							
+							</div>
+						</div>                  
+					</li> 
+					<li>
+						<b>载重</b>
+						<div class="fieldset js_car_loadWeight">
+							<div class="ui_radio">
+								<u class="icon icon_radio"></u>
+								<b>3T</b> 						
+							</div>
+							<div class="ui_radio">
+								<u class="icon icon_radio"></u>
+								<b>5T</b>                
+							</div>		   
+						</div>
+					</li> 
+					<li>
+						<b>车宽</b>
+						<div class="fieldset js_car_width">
+							<div class="ui_radio">
+								<u class="icon icon_radio"></u>
+								<b>2.3米</b>
+							</div>
+							<div class="ui_radio"> 
+								<u class="icon icon_radio"></u>
+								<b>2.4米</b>
+							</div>	
+						</div>
+					</li> 
+					<li>
+						<b>车长</b>
+						<div class="fieldset js_car_length">
+							<div class="ui_radio">
+								<u class="icon icon_radio"></u><b>5米</b>
+							</div>
+							<div class="ui_radio">
+								<u class="icon icon_radio"></u><b>6米</b>                  
+							</div>
+							<div class="ui_radio">
+								<u class="icon icon_radio"></u><b>7米</b>                
+							</div>                     
+						</div>
+					</li> 
+				</ul> 
+				<ul class="s_h_nav s_h_nav2 s_h_li_auto">
+					<li class="h52">
+						<b>身份证</b>
+						<div class="img_w_w">
+							<div class="img_w w130">
+							  <a href="javascript:;" class="js_img_org">
+							    <img src="/pingbanche/images/id_1.jpg" alt="身份证正面" class="js_idCardFront">
+							  </a>
+							  <a href="javascript:;" class="js_img_org">
+							    <img src="/pingbanche/images/id_2.jpg" alt="身份证反面" class="js_idCardBack">
+							  </a>
+							</div>                    
+						</div>
+						<a href="./papers_id.html" class="icon_link_pic" 
+						 data-ajax="false"></a> 
+					</li>
+					<li class="h62">
+						<b>驾驶证</b>
+						<div class="img_w w_auto">
+							<a href="javascript:;" class="js_img_org">
+							  <img src="/pingbanche/images/zj_pic.jpg" alt="驾驶证" class="js_driver">
+							</a>
+						</div>
+						<a href="./papers.html?a=driverLicense" class="icon_link_pic" data-ajax="false"></a>
+					</li> 
+					<li class="h62">
+						<b>行驶证</b>
+						<div class="img_w w_auto">
+							<a href="javascript:;" class="js_img_org">
+							  <img src="/pingbanche/images/zj_pic.jpg" alt="行驶证" class="js_driving">
+							</a>
+						</div>
+						<a href="./papers.html?a=drivingLicense" class="icon_link_pic js_drivingOk js_tz_ok"  data-ajax="false">	
+						</a>	
+					</li>
+					<li class="h62">
+						<b>保险单</b>
+						<div class="img_w w_auto">
+							<a href="javascript:;" class="js_img_org">
+							  <img src="/pingbanche/images/zj_pic.jpg" alt="保险单" class="js_carInsurance">
+							</a>
+						</div>
+						<a href="./papers.html?a=carInsurance" class="icon_link_pic js_carInsOk" data-ajax="false"></a>
+					</li> 
+					<li class="h62"> 
+						<b>货物险</b>
+						<div class="img_w w_auto">
+						<a href="javascript:;" class="js_img_org">
+						  <img src="/pingbanche/images/hwx_pic.jpg" alt="货物险" class="js_cargo">
+						</a>
+						</div>
+						<a href="./papers.html?a=cargoInsurance" class="icon_link_pic js_cargoOk" data-ajax="false"></a>
+					</li> 
+					<li class="h62"> 
+						<b>车辆照片</b>
+						<div class="img_w w_auto">
+							<a href="javascript:;" class="js_img_org">
+							  <img src="/pingbanche/images/hwx_pic.jpg" alt="货物险" class="js_car_pho">
+							</a>
+						</div>
+						<a href="./papers.html?a=car.photo" class="icon_link_pic" data-ajax="false"></a>
+					</li>                                         
+				</ul>	
+			</div>
+			<!-- 司机有  客户没有的 E --> 
+			<div class="plr27  ptb17 cla9">
+				<p>以上证件如需改动，请联系客服审核修改
+				  <br />客服电话400-100-5116
+				</p>
+			</div>          
+		</div><!-- /panel -->
+	</div>
+	<div class="img-container">  
+		<img src="" alt="">
+		<div class="img_tf">
+		  <button id="img_f">取消</button>
+		  <button id="img_t">确定</button> 
+		</div> 
+	</div>
+	<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+	<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+	<script src="/pingbanche/js/common.js"></script>
+	<script src="/pingbanche/js/cropper.js"></script>
+	<script src="/pingbanche/js/img_copper3.js"></script>
+	<script>
+	$(function(){	
+        var logRole=window.localStorage.getItem('log_role');
+        if(!logRole){ window.location.href="./login.html"; }  
+		
+		if(logRole=="ROLE_CUSTOMER"){
+			$(".s_h_top .icon_c_35").attr("src","images/icon_c_35.png");
+		}else if( logRole=="ROLE_MANAGER" ){
+			$(".s_h_top .icon_c_35").attr("src","images/icon_t_35.png");
+		}else if( logRole=="ROLE_DRIVER"){
+			$(".s_h_top .icon_c_35").attr("src","images/icon_d_35.png");
+		}
+
+		switch( getQueryString("back") ){
+			case "home":
+				$(".icon_goPrev_44").attr("href","./home.html");
+				break;
+			case "set":
+				$(".icon_goPrev_44").attr("href","./set.html");
+				break;					
+		}
+        (function(){
+        	var dataN={"token":window.localStorage.getItem("token")};
+	        ajax_get(dataN,"mobile/user/getInfo",function(data){	
+	        	
+	        	var str=$(".js_cy_con").html();
+				var attr=function(id,src){
+					if(!!src){
+						$(id).attr({
+							"src":imgSrc+src,
+							"alt":"图像"
+						});
+					}else{
+						$(id).attr({
+							"src":"./images/icon_user_225.png",
+							"alt":"图像"
+						});	
+					}	
+				}  
+		        $(".js_nickname").find("em").html(data.nickname);
+		        $(".js_nickname2").html(data.nickname);
+		        $(".js_weixin").find("em").html(data.weixin);	        
+		        $(".js_city").find("em").html(data.city);
+				attr(".js_user_img",data.photo);
+
+				if(logRole=="ROLE_CUSTOMER"){
+					$(".js_cy_con").html("");
+					var $ul=$("<ul class='s_h_nav s_h_nav2 s_h_li_auto'>"),
+						$li=$("<li class='h62'>"),
+						$b=$("<b>");
+						$b.html("工作证明");
+						$div=$("<div class='img_w w_auto'></div>"),
+						$a=$("<a>"),
+						$img=$("<img alt='工作证明' class='js_driver' />"),
+						$a1=$("<a class='icon_link_pic'></a>" );
+
+					$a.addClass("js_img_org");
+					$a.attr("href","javascript:;");
+					$img.attr("src","./images/user_90.png");	
+					$a1.attr({
+						"href":"./papers.html?a=jobCard",
+						"data-ajax":"false"
+					});
+					if(!!data.jobCard){
+						$img.attr("src",imgSrc+data.jobCard);
+					}else{
+						$img.attr("src","./images/user_img.png");						
+					}
+					$a.append($img);
+					$div.append($a);
+					$li.append($b);
+					$li.append($div);
+					$li.append($a1);		
+					$ul.append($li);	
+					$(".js_cy_con").append($ul);
+					$(".js_img_org").on("click",function(){
+						var img_src=$(this).find("img").attr("src");
+						window.localStorage.setItem("img_org",img_src);
+						window.location.href="./img_org.html";
+					});	
+				}else if( logRole=="ROLE_MANAGER"|| logRole=="ROLE_DRIVER" ){
+
+					var ajaxFn=function(element,models){
+					  if( $(element).hasClass("js_radio_on") ){
+						var data={
+					       "token":localStorage.getItem("token")
+					    }
+						var model_m=$(element).find("b").html();
+						switch(models){
+							case "car.model":
+								model_m=model_m=="平板车"?"PING_BAN":"XIE_BAN";
+								break;
+							case "car.loadWeight":
+					    		model_m=model_m=="5T"?5:3;
+					    		break;
+					    	case "car.width":
+					    		model_m=model_m=="2.3米"?2.3:2.4;
+					    		break;	
+					    	case "car.length":
+					    		if(model_m=="5米"){
+					    			model_m=5;
+					    		}else if(model_m=="6米"){
+					    			model_m=6;
+					    		}else if(model_m=="7米"){
+					    			model_m=7;
+					    		}
+					    		break;		
+						}
+						data[models] = model_m;
+						ajax_pwd(data,"mobile/user/update",function(data){
+					      	if(data.response_state==-1){
+					      		alert(data.response_note);
+					      	}else if(data.response_state==1){
+								alert(data.response_note);
+					      	}  
+						});
+					  };		
+					}
+					var fn=function(elements,arg){
+						$(elements).find(".ui_radio").each(function(index,element){
+							$(element).removeClass("js_radio_on");						
+							if( $(element).find("b").html()==arg ){
+								$(element).addClass("js_radio_on");
+							}
+						});	
+					}
+
+					var wid=data.car.width+"米",
+						weg=data.car.loadWeight+"T",
+						len=data.car.length+"米",
+						md=data.car.model=="PING_BAN"?"平板车":"斜板车";					
+					$(".js_cy_con").html(str);
+
+					//作为司机和调度的部分
+			        $(".js_car_brand").find("em").html(data.car.brand);
+			        $(".js_car_buyDate").find("em").html(data.car.buyDate);
+			        $(".js_car_number").find("em").html(data.car.number);
+			        $(".js_alipayId").find("em").html(data.alipayId);
+			        $(".js_alipayTname").find("em").html(data.alipayTruename);			
+			        $(".js_bankName").find("em").html(data.bankName);
+			        $(".js_bankNo").find("em").html(data.bankNo);
+			        $(".js_bankUser").find("em").html(data.bankUser);	
+
+					attr(".js_cargo",data.cargoInsurance);
+					attr(".js_car_pho",data.car.photo);
+					attr(".js_idCardBack",data.idCardBack);
+					attr(".js_idCardFront",data.idCardFront);
+					attr(".js_driving",data.drivingLicense);
+					attr(".js_carInsurance",data.carInsurance);
+					attr(".js_driver",data.driverLicense);
+					fn(".js_car_width",wid);
+					fn(".js_car_length",len);
+					fn(".js_car_loadWeight",weg);
+					fn(".js_car_model",md);
+
+					$(".js_car_model .ui_radio").bind("click",function(){
+						var btn=true;
+						if( $(this).hasClass("js_radio_on") ){
+							btn=false;
+						}
+						$(this).addClass("js_radio_on").siblings().removeClass("js_radio_on")	;
+						if(btn){
+							ajaxFn($(this),"car.model");
+						}
+					}); 
+
+					$(".js_car_loadWeight .ui_radio").bind("click",function(){	
+						var btn=true;
+						if( $(this).hasClass("js_radio_on") ){
+							btn=false;
+						}
+						$(this).addClass("js_radio_on").siblings().removeClass("js_radio_on")	;
+						if(btn){		
+							ajaxFn($(this),"car.loadWeight");
+						}
+					}); 
+
+					$(".js_car_width .ui_radio").bind("click",function(){	
+						var btn=true;
+						if( $(this).hasClass("js_radio_on") ){
+							btn=false;
+						}
+						$(this).addClass("js_radio_on").siblings().removeClass("js_radio_on");
+						if(btn){			
+							ajaxFn($(this),"car.width");
+						}
+					}); 
+
+					$(".js_car_length .ui_radio").bind("click",function(){	
+						var btn=true;
+						if( $(this).hasClass("js_radio_on") ){
+							btn=false;
+						}
+						$(this).addClass("js_radio_on").siblings().removeClass("js_radio_on");
+
+						$(this).addClass("js_radio_on").siblings().removeClass("js_radio_on");
+						if(btn){							
+							ajaxFn($(this),"car.length");
+						}
+					}); 
+
+					$(".js_img_org").on("click",function(){
+						var img_src=$(this).find("img").attr("src");
+						window.localStorage.setItem("img_org",img_src);
+						window.location.href="./img_org.html";
+					});							
+				}
+	        });
+			// 跳转到NICKNAME的页面的
+			$(".js_gotoBtn").each(function(index,element){
+				$(element).bind("click",function(){
+					var nickCon=$(element).find("span").find("em").html();
+					window.location.href="./nickName.html?id="+index;
+					window.localStorage.setItem("nickCon",nickCon);
+				});
+			});	
+        })();
+	});	
+	</script>
+</body>
+</html>

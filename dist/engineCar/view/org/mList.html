@@ -1,0 +1,174 @@
+<div ng-controller="mTable">
+
+    <div class="sec_8" ng-show="roleBoss">
+        <div class="sec_1_l">
+            <a href="javascript:;" data-toggle="modal" data-target="#addManager"><i class="icon_27 icon_add_27"></i>新增经理</a>
+            <!--<a href="#"><i class="icon_27 icon_minus_27"></i>删&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除</a>-->
+        </div>
+    </div>
+
+    <div class="sec_2 table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="bold_th">
+            <tr>
+                <th>经理姓名</th>
+                <th>手机</th>
+                <th>角色</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in mList">
+                    <td><span class="truename">{{item.trueName}}</span></td>
+                    <td class="username">{{ item.username || '&nbsp;&nbsp;'}}</td>
+                    <td class="role" data-role="{{item.role2}}" ng-if="item.role2=='WJ'">挖机司机</td>
+                    <td class="role" data-role="{{item.role2}}" ng-if="item.role2=='YSC'">运输车司机</td>
+                    <td class="role" data-role="{{item.role2}}" ng-if="!item.role2">&nbsp;</td>
+                    <td>
+                        <button class="btn btn-link" data-id="{{item.id}}" ng-click="saveM($event)">编辑</button>
+                        <button class="btn btn-link" data-id="{{item.id}}" ng-click="delete($event)">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 新增经理 S-->
+    <div class="modal fade" id="addManager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header  modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">新增经理</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tit3 mb15">
+                        <p class="cl_red">（新增员工默认密码:123456,请新员工登陆后更换新密码！备注:如果是老用户，密码不变!）</p>
+                    </div>
+
+                    <form class="form-horizontal" role="form" name="addM">
+                        <div class="form-group" ng-class="{'has-error': addM.username.$invalid}">
+                            <label class="col-sm-3 control-label" for="username">登录名:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="username" ng-model="desM.username" required ng-pattern ="/^1[34578]\d{9}$/">
+                                <span class="cl_red lh36" ng-show="addM.username.$invalid">登录名为手机号</span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': addM.trueName.$invalid}">
+                            <label class="col-sm-3 control-label" for="trueName">真实姓名:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="trueName" ng-model="desM.trueName" required>
+                                <span class="cl_red lh36" ng-show="addM.trueName.$invalid">请输入真实姓名</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">司机类型:</label>
+                            <div class="col-sm-9">
+                                <!-- 是经理-->
+                                <select ng-model="selectedD" class="form-control">
+                                    <option ng-repeat="x in moption" value="{{x.value}}">{{x.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button" class="btn btn-block btn-primary btn-h50" ng-disabled="addM.$invalid"  ng-click="saveFn('#addManager')">保&nbsp;&nbsp;存</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 新增经理 E-->
+
+    <!-- 编辑经理 S-->
+    <div class="modal fade" id="editManager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header  modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">编辑经理</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tit3 mb15">
+                        <p class="cl_red">（新增员工默认密码:123456,请新员工登陆后更换新密码！备注:如果是老用户，密码不变!）</p>
+                    </div>
+
+                    <form class="form-horizontal" role="form" name="editM">
+                        <div class="form-group" ng-class="{'has-error': editM.username.$invalid}">
+                            <label class="col-sm-3 control-label" for="username">登录名:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="username" disabled ng-model="desM.username" required ng-pattern ="/^1[34578]\d{9}$/">
+                                <span class="cl_red lh36" ng-show="editM.username.$invalid">请输入登录名</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': editM.trueName.$invalid}">
+                            <label class="col-sm-3 control-label" for="trueName">真实姓名:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="trueName" class="form-control" ng-model="desM.trueName" required>
+                                <span class="cl_red lh36" ng-show="editM.trueName.$invalid">请输入真实姓名</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">司机类型:</label>
+                            <div class="col-sm-9">
+                                <!-- 是经理-->
+                                <select ng-model="selectedD" class="form-control">
+                                    <option ng-repeat="x in moption" value="{{x.value}}">{{x.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-primary btn-h50" ng-disabled="editM.$invalid" ng-click="saveFn('#editManager')">保&nbsp;&nbsp;存</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-default btn-h50" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑经理 E-->
+
+    <!-- 删除 S-->
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header  modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">删除经理</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tit3 mb15">
+                        <p class="cl_red">您确定删除吗？删除后数据不可恢复</p>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-default btn-h50" data-dismiss="modal">取消</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-block btn-primary btn-h50" ng-click="deleteFn('#delete')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 删除 E-->
+</div>
+
+

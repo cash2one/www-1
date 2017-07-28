@@ -1,0 +1,105 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+</head>
+<body class="bgf2">
+  <div data-role="page">
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>设置</h1>
+      <a href="./home.html" class="icon_goPrev_44" data-ajax="false"></a>
+    </div>
+    <div data-role="main" class="ui-content pt10">
+      <ul class="sec_list_1">
+        <li>
+          <a href="#" data-ajax="false" id="js_userInfo">
+            个人信息设置
+            <i></i>
+          </a>
+        </li>                       
+      </ul>       
+      <ul class="sec_list_1">
+        <li>
+          <a href="./feedback.php" data-ajax="false">
+            意见反馈
+            <i></i>
+          </a>
+        </li>
+        <li>
+          <a href="./aboutbc.html" data-ajax="false">
+            关于小板车 
+            <i></i>
+          </a>
+        </li>                        
+      </ul> 
+      <ul class="sec_list_1">  
+        <li>
+          <a href="javascript:;" data-ajax="false" id="logOut">
+            退出 
+            <i></i>
+          </a>
+        </li>                      
+      </ul> 
+      <div id="pop_conf">
+        <h3>提示!</h3>
+        <p>确定退出当前账号</p>
+        <span>
+          <a href="#" class="js_delete">取消</a>
+          <a href="#" class="js_btn">确定</a>
+        </span>
+      </div>  
+      <div class="pop_bg"></div>      
+		</div>
+  </div>   
+<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+<script src="/pingbanche/js/common.js"></script>
+<script>
+$(function(){
+  
+  if( !window.localStorage.getItem("token") ){
+    $("#js_userInfo").attr("href","./login.html");
+  }else{
+    $("#js_userInfo").attr("href","./getInfo.html?back=set");
+  }
+
+  $("#logOut").on("click",function(){
+    if( !window.localStorage.getItem("token") ){
+      alert("你当前没有登录");
+    }else{
+      $("#pop_conf").fadeIn();
+      $(".pop_bg").fadeIn();
+    }
+  });
+  $(".js_delete").bind("click",function(){
+    $("#pop_conf").fadeOut();
+    $(".pop_bg").fadeOut();
+  });
+  $(".pop_bg").bind("click",function(e){
+    var target = $(e.target); 
+    if(target.closest(".pop_conf").length == 0){
+      $(".pop_bg").hide();
+      $("#pop_conf").hide();
+    }
+  }); 
+  $(".js_btn").bind("click",function(){ //退出登录
+    window.localStorage.removeItem("log_id");
+    window.localStorage.removeItem("log_name");
+    window.localStorage.removeItem("log_role");
+    window.localStorage.removeItem("token"); 
+    var data={};
+    ajax_pwd(data,"mobile/logout",function(data){ //退出登录
+        if(data.response_state==1){
+          window.location.href="./login.html"; 
+        }else if(data.response_state==-1){
+          alert(data.response_note+"请重新退出");
+        }
+    }); 
+  }); 
+});
+</script>
+</body>
+</html>

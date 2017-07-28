@@ -1,0 +1,77 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+</head>
+<body>
+  <div data-role="page">
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>投诉</h1>
+      <a href="javascript:history.go(-1)" class="icon_goPrev_44"></a>
+    </div>
+    <div data-role="main" class="ui-content">
+      <form class="form_radio">
+        <fieldset data-role="controlgroup" data-iconpos="right">
+        <legend>请把您的不满告诉我们</legend>
+        <input name="radio-choice-w-6" id="radio-choice-w-6a" value="on" checked="checked" type="radio">
+        <label for="radio-choice-w-6a">
+        <i></i><b>客户（司机）更改目的地</b> 
+        <span></span>
+        </label>
+        <input name="radio-choice-w-6" id="radio-choice-w-6b" value="off" type="radio">
+        <label for="radio-choice-w-6b">
+        <i></i>
+        <b>客户（司机）态度恶劣</b> 
+        <span></span>
+        </label>
+        <input name="radio-choice-w-6" id="radio-choice-w-6c" value="other" type="radio">
+        <label for="radio-choice-w-6c">
+        <i></i>
+        <b>客户超过24小时未付车费（司机超过24小时未到接车地点）</b>
+        <span></span>
+        </label>
+        <input name="radio-choice-w-6" id="radio-choice-w-6d" value="other" type="radio">
+        <label for="radio-choice-w-6d">
+        <i></i>
+        <b>其它</b>
+        <span></span>
+        </label>              
+        </fieldset>
+        <div class="bgfb_block_44">
+          <input type="button" class="js_comp" value="确认投诉">
+        </div>  
+      </form>
+	</div>
+  </div>
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  $(function(){
+    var orderId=getQueryString("orderId");
+    var status=getQueryString("status");
+
+    $(".js_comp").on("click",function(){
+      var content=$(".form_radio").find(".ui-radio-on").find("b").html();
+      var data={
+          "token":localStorage.getItem("token"),
+          "orderId":orderId,
+          "content":content
+      }
+      ajax_pwd(data,"mobile/order/complaint",function(data){
+          if(data.response_state==-1){
+            alert(data.response_note);
+          }else{ 
+            //投诉失败或者已经投诉过
+            alert(data.response_note);
+            window.location.href="./order_eval.html?orderId="+orderId+"&status="+status;
+          }        
+      });     
+    });
+  });  
+</script>
+</body>
+</html>

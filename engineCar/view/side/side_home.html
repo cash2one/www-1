@@ -1,0 +1,17 @@
+<!--<div class="side_1">-->
+    <!--<p>装车内容</p>-->
+    <!--<form class="bs-example bs-example-form pb15" role="form" >-->
+    <!--<div class="input-group">-->
+    <!--<input type="text" class="form-control">-->
+    <!--<span class="input-group-addon glyphicon glyphicon-search"></span>-->
+    <!--</div>-->
+    <!--</form>-->
+<!--</div>-->
+
+<div class="side_2" ng-controller="homeSide">
+    <h3 class="tit1">基础装车内容</h3>
+    <div class="list1 os_y js_h">
+        <a href="javascript:;" ng-repeat="item in thList" data-id="{{item.id}}" data-name="{{item.name}}" ng-class="{'on': initId == item.id}"
+           ng-click="goHome($event)">{{item.name}}</a>
+    </div>
+</div>

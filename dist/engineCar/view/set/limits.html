@@ -1,0 +1,13 @@
+<div class="sec_8"></div>
+
+<div class="pd" ng-controller="setPower">
+    <form class="form-horizontal col-sm-offset-3 col-sm-6" role="form" id="mySetForm">
+        <div class="radio mb10" ng-repeat="item in radioObj">
+            <label>
+                <input type="radio" name="radios" value="{{item.value}}" ng-model="radios"
+                       ng-checked="item.value== radios" ng-change="subFn(item.value)">
+                {{item.name}}
+            </label>
+        </div>
+    </form>
+</div>

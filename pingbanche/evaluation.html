@@ -1,0 +1,131 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+	<link rel="stylesheet" href="/pingbanche/css/iscroll.css"> 
+</head>
+<body class="bgf2">
+  <div data-role="page" class="js_pt100">
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed" data-tap="false">
+      <h1>评价</h1>
+      <a href="./home.html" class="icon_goPrev_44" data-ajax="false"></a>
+    </div>
+    <div data-role="main" class="ui-content">
+        <div id="eval_list"  class="d_tab">
+          <div class="scroller eval_list">
+      			<ul>		
+      			</ul>            
+            <div class="pullUp">
+              <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+            </div>
+          </div>
+        </div> 		
+	</div> 
+  </div>
+  <div class="spinner js_spinner"></div>
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+  <script src="/pingbanche/js/iscroll.js"></script> 
+  <script src="/pingbanche/js/common.js"></script> 
+  <script>
+  var myScroll,num=1,pageSize=10;
+  var dataFn=function(data,up){
+  	if(data.response_state==1){	
+      var len=data.list.length,
+        arr=data.list;
+      if(len<1){
+        $(".d_tab").html("");
+        var $str_div=$("<div class='no_start'><div>"),
+            str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+        $str_div.html(str_con);
+        $(".d_tab").append($str_div);     
+      }else{
+        if(len<pageSize){
+          $(".pullUp").css("display","none");
+        }
+        for(var i=0;i<len;i++){
+          var $li=$("<li>"),
+            $div=$("<div class='user_xx1_img'></div>"),
+            $img=$("<img>"),
+            $p=$("<p>"),
+            $u=$("<u>"),
+            $str,$num;
+
+          if(!!arr[i].user.photo){
+            $img.attr({"src":imgSrc+arr[i].user.photo,"alt":"用户头像"}); 
+          }else{
+            $img.attr({"src":"./images/icon_user_225.png","alt":"用户头像"});        
+          }  
+          $div.append($img);
+          $str="<em>"+arr[i].user.nickname+"</em><br>"+arr[i].user.username;
+          $p.html($str);
+          if(!!arr[i].star){
+            $num=arr[i].star;
+          }else{
+            $num=0;
+          }
+          $u.html("+"+$num+"颗星"); 
+          $li.append($div);
+          $li.append($p); 
+          $li.append($u);   
+          $("#eval_list").find("ul").append($li);
+        }        
+      }  
+  	}else{
+      $(".d_tab").html("");
+      var $str_div=$("<div class='no_start'><div>"),
+          str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+      $str_div.html(str_con);
+      $(".d_tab").append($str_div);    	
+  	} 
+  }	
+
+  var ajax=function(num){
+    var data={
+      "token":localStorage.getItem("token"),
+      "pageSize":pageSize,
+      "pageNum":num
+    }	
+    ajax_get(data,"mobile/rate",function(data){
+       window.localStorage.setItem("total",data.totalPage);
+       dataFn(data); 
+    });
+  }
+
+  //滚动翻页 （自定义实现此方法）
+  var pullUpAction=function (that,num) {
+    if(!!window.localStorage.getItem("ord_page") ){
+      var totalNum=window.localStorage.getItem("ord_page");
+      if(num>totalNum){
+        num=totalNum;
+        $("#eval_list").find(".pullUpLabel").html("已经是最后一页了");
+      }else{
+        $(".js_spinner").css("display","block");
+        setTimeout(function(){
+          $(".js_spinner").css("display","none"); 
+          ajax(num);                    
+        },1000);
+      }
+    }
+    that.refresh();     
+  }
+
+  $(function(){
+  	$(".d_tab").css("display","block");	
+    $(".js_pt100").css({
+      "paddingTop":70,
+      "paddingBottom":0,
+      "height":$(window).height()-70,
+      "min-height":0
+    });
+    $(".con_scroll").height(  $(window).height()-70);  
+    ajax(num);
+  	document.addEventListener('touchmove', function (e) { e.preventDefault(); },false); 
+  	loaded(myScroll,"eval_list",num,pullUpAction);
+  });
+  </script>
+</body>
+</html>

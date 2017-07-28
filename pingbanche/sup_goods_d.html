@@ -1,0 +1,430 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/mobiscroll.custom-2.5.0.min.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+	<link rel="stylesheet" href="/pingbanche/css/iscroll.css">
+</head>
+<body class="bgf2 js_body_100">
+	<div data-role="page" class="js_pt100 p_pt100">
+	    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+			<h1>
+				货源
+				<a href="./pub_resou.html" data-ajax="false" class="icon_write_48"></a>
+			</h1>
+			<a href="#" data-ajax="false" class="icon_goPrev_44"></a>
+	    </div>
+		<div class="navbar1 js_tab_d" data-title="fixed" data-position="fixed">
+			<span>客户货源</span>
+			<span>我的资源</span>	
+		</div>	
+	    <div data-role="main" class="ui-content con_scroll">
+			<div id="one" class="d_tab">
+				<div class="scroller">
+					<ul class="ul_list2">   
+					</ul>
+					<div class="pullUp">
+						<span class="pullUpIcon"></span>
+						<span class="pullUpLabel">上拉加载更多...</span>
+					</div>
+				</div>				
+			</div> 	
+			<div id="two" class="d_tab">
+				<div class="scroller">
+					<ul class="ul_list2" >   
+					</ul>
+					<div class="pullUp" >
+						<span class="pullUpIcon"></span>
+						<span class="pullUpLabel">上拉加载更多...</span>
+					</div>
+				</div>				
+			</div>	
+			<div id="pop_conf">
+				<h3>提示!</h3>
+				<p>确定抢单？</p>
+				<span>
+					<a href="#" class="js_delete">取消</a>
+					<a href="#" class="js_btn" >确定</a>
+				</span>
+			</div>	
+			<div class="pop_bg"></div>
+			<!-- 抢单失败 去掉这个属性  -->
+			<div class="pop_conf pop_conf_success">
+				<div class="success">
+					<p><i class="icon icon_dmz"></i>恭喜你抢单成功</p>
+					<a href="./order_d.html?status=1" data-ajax="false">查看此订单详情</a>
+				</div>
+				<div class="fail">
+					<p><i class="icon icon_face"></i>来晚了,抢单失败！</p>
+					<a href="./sup_goods_d.html" data-ajax="false">继续抢单</a>	
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="spinner js_spinner"></div>
+<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+<script src="/pingbanche/js/mobiscroll.custom-2.5.0.min.js"></script>
+<script src="/pingbanche/js/iscroll.js"></script> 
+<script src="/pingbanche/js/common.js"></script>
+<script>
+$(function(){
+	var myScroll,myScroll1
+		num=1,
+		num1=1,
+		pageSize1=30,
+		pageSize2=30;
+
+	var ajax_init1=function(num){
+		var data={
+			"token":window.localStorage.getItem("token"),
+			"pageSize":pageSize1,
+			"pageNum":num
+		}
+		ajax_get(data,"mobile/desire/driver",function(data){
+			post_s(data);
+		});
+	}
+	var pullUpAction=function(that,num){
+		if(!!window.localStorage.getItem("d_hy_page") ){
+			var totalNum=window.localStorage.getItem("d_hy_page");
+			if(num>totalNum){
+				num=totalNum;
+				$("#one").find(".pullUpLabel").html("已经是最后一页了");
+			}else{
+				$(".js_spinner").css("display","block");
+				setTimeout(function(){
+					$(".js_spinner").css("display","none");	
+					ajax_init1(num);										
+				},1000);
+			}
+			that.refresh();					
+		}
+	}
+
+	var ajax_init2=function(num){	
+		var data={
+			"token":window.localStorage.getItem("token"),
+			"pageSize":pageSize2,
+			"pageNum":num
+		}
+		ajax_get(data,"mobile/resource",function(data){
+			post_my(data);
+		});
+	}
+
+	//滚动翻页 （自定义实现此方法）
+	var pullUpAction2=function(that,num){
+		if(!!window.localStorage.getItem("d_hy_page") ){
+			var totalNum=window.localStorage.getItem("d_hy_page");
+			if(num>totalNum){
+				num=totalNum;
+				$("#two").find(".pullUpLabel").html("已经是最后一页了");				
+			}else{
+				$(".js_spinner").css("display","block");
+				setTimeout(function(){
+					$(".js_spinner").css("display","none");	
+					ajax_init2(num);										
+				},1000);
+			}
+			that.refresh();					
+		}	
+	}
+
+	var prame=window.localStorage.getItem('tab_num');
+	$(".js_pt100").css({
+		"paddingTop":110,
+		"paddingBottom":0,
+		"height":$(window).height()-110,
+		"min-height":0
+	});
+	
+	$(".js_body_100").css("height",$(window).height());
+	$(".con_scroll").height(  $(window).height()-110);
+
+	$(".icon_goPrev_44").on("click",function(){
+		window.localStorage.removeItem("tab_num");
+		window.location.href="./home.html";
+	});
+	$(".icon_write_48").on("click",function(){
+		window.localStorage.setItem("source","resou");
+		window.location.href="./sup_goods_d.html";
+	});		
+	if(!prame){
+		prame=0;
+	}
+	$(".js_tab_d").find("span").eq(prame).addClass("cur");
+	$(".d_tab").eq(prame).css("display","block");
+	if(prame==0){
+		ajax_init1(num);
+	}else if(prame==1){
+		ajax_init2(num1);
+	}
+	document.addEventListener('touchmove', function (e) {
+		e.preventDefault(); 
+	},false);
+
+  	loaded(myScroll,"one",num,pullUpAction);
+  	loaded(myScroll1,"two",num1,pullUpAction2);
+	$(".js_tab_d").find("span").on("click",function(){
+		window.localStorage.setItem('tab_num',$(this).index() );
+		$(this).addClass("cur").siblings().removeClass("cur");
+		var index=$(this).index();
+		$(".d_tab").eq(index).css("display","block").siblings().css("display","none");
+		if(index==0){
+			ajax_init1(num);
+		}else if(index==1){
+			ajax_init2(num1);
+		}
+	});
+});
+
+function post_s(data){
+	if(data.response_state==1){
+		var str="",
+			len=data.list.length,
+			listArr=data.list,
+			btn=true;
+		window.localStorage.setItem("d_hy_page",data.totalPage);
+		if(len<pageSize1){
+			$(".pullUp").css("display","none");			
+		}
+		if(len<1){
+			$(".d_tab").html("");
+            var $str_div=$("<div class='no_start'><div>"),
+                str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+            $str_div.html(str_con);
+            $(".d_tab").append($str_div);      
+        }else{
+			for(var i=0;i<len;i++){		
+				var $li=$("<li>"),
+					d = new Date( listArr[i].createdDate ),
+					$p=$("<p>"),
+					$img=$("<img>"),
+					$user=$("<div class='user_90'></div>"),
+					$div1=$("<div class='ul_list2_t mb10 pr'></div>"),
+					$div2=$("<div class='mb10'></div>"),
+					$startEnd="<p><i class='icon icon_g'></i>起点："+listArr[i].fromProvince+""+listArr[i].fromCity+"</p><p><i class='icon icon_r'></i>终点："+listArr[i].toProvince+""+listArr[i].toCity+"</p>",			
+					$stra="",
+					$u_icon="",
+					date =d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+"  "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+					/*"""+listArr[i].fromCounty+"*/
+					/*"+listArr[i].toCounty+"*/
+				if(!!listArr[i].customer.photo){
+					$img.attr("src",imgSrc+listArr[i].customer.photo);
+				}else{
+					$img.attr({"src":"./images/icon_user_225.png","alt":"头像"});
+				}	
+				if(listArr[i].routeType=="RETURN"){
+					$p.html("<em>"+listArr[i].customer.nickname+"</em><br><span>"+date+"</span><b class='return'>返程</b>");	
+				}else if(listArr[i].routeType=="SINGLE"){
+					$p.html("<em>"+listArr[i].customer.nickname+"</em><br><span>"+date+"</span><b>单程</b>");
+				}else{
+					$p.html("<em>"+listArr[i].customer.nickname+"</em><br><span>"+date+"</span>");
+				}
+				$user.append($img);
+				$div1.append($user);
+				$div1.append($p);
+				$div2.html($startEnd);
+
+				if(listArr[i].status=="TRADED"){
+					if(!!listArr[i].mineOrder){
+						$u_icon=$("<u class='icon pa icon_ds_208_r'></u>");	
+					}else{
+						$u_icon=$("<u class='icon pa icon_ds_208'></u>");
+						//别人抢的单子						
+					}
+				}else{
+					//可以抢的单子
+					var $div3=$("<div class='pa icon_arr_w'></div>"),
+						$u=$("<u class='icon_arr'></u>"),
+						$div4=$("<div class='span_list'></div> ");
+
+					if(!listArr[i].distance){
+						listArr[i].distance="未知";
+					}	
+					if(!listArr[i].estimateFee){
+						listArr[i].estimateFee="未知";
+					}
+					if(!listArr[i].carModel){
+						listArr[i].carModel="未知";
+					}					
+					var $str4="<span><u class='icon icon_gl'></u>"+listArr[i].distance+"</span><span><u class='icon icon_q'></u>"+listArr[i].estimateFee+"</span><span><u class='icon icon_cx'></u>车型:"+listArr[i].carModel+"</span>";
+					$div3.append($u);
+					$div2.append($div3);
+					$div2.removeClass("mb10").addClass("text pr");	
+					$div4.html($str4);
+					var $stra="<a href='#' class='db_fb_32 mb10'><u class='icon icon_car_f'></u>接单</a>";		
+				}
+				$li.append($div1);
+				$li.append($div2);
+				$li.attr("data-id",listArr[i].id);
+				if(listArr[i].status=="PAID"){
+					$li.append($div4);
+					$li.append($stra);	
+				}else{
+					$li.append($u_icon);
+					if(!!listArr[i].mineOrder){ //自己抢的单子
+						$li.attr("data-mineOrder",listArr[i].mineOrder);
+					}else{
+						$li.attr("data-mineOrder",false);
+					}
+				}
+				$("#one").find(".ul_list2").append($li); 
+			}	
+			$("#one").find("li").each(function(index,element){
+				if( $(element).attr("data-mineorder")=="true"){	
+					$(element).on("click",function(){
+						window.location.href="./sup_d_dd.html?dc_num="+$(element).data("id");
+					});
+				}else if( $(element).attr("data-mineorder")=="false" ){
+					$(element).on("click",function(){
+						alert("先要抢单成功，方可查看货源详情");
+					});
+				}
+			});
+			(function(){
+				$(".icon_arr").bind("click",function(){
+					var $txt=$(this).parents(".text");
+					if($txt.hasClass("icon_arr_t")){
+						$txt.removeClass("icon_arr_t");
+						$txt.next(".span_list").css("display","none");
+					}else{
+						$txt.addClass("icon_arr_t");
+						$txt.next(".span_list").css("display","block");
+					}
+				});							
+
+				var top=0;
+				var num_id="";
+
+				$(".db_fb_32").bind("click",function(){
+					$("#pop_conf").fadeIn();
+					$(".pop_bg").fadeIn();
+					num_id=$(this).parents("li").data("id");
+				});	
+
+				$(".js_btn").bind("click",function(){ //抢单
+					window.localStorage.setItem("dr_num_id",num_id);
+					var data={						
+						"token":localStorage.getItem("token"),
+						"desireId":num_id
+						};
+					ajax_pwd(data,"mobile/order",function(data){
+						if(data.response_state==1007){
+							alert(data.response_note);
+							$(".pop_conf").removeClass("pop_conf_success");
+							$(".pop_bg").fadeOut();
+							$(".pop_conf").fadeOut();
+							$("#pop_conf").fadeOut();
+						}else if(data.response_state==1){
+							$(".pop_conf").addClass("pop_conf_success");
+							$(".pop_bg").fadeIn();
+							$(".pop_conf").fadeIn();					
+						}else if(data.response_state==-1 ){
+							$(".pop_conf").removeClass("pop_conf_success");
+							$(".pop_bg").fadeIn();
+							$(".pop_conf").fadeIn();
+						}
+					});
+				});
+
+				$(".js_delete").bind("click",function(){
+					$("#pop_conf").fadeOut();
+					$(".pop_bg").fadeOut();
+				});
+				$(".pop_bg").bind("click",function(e){
+					var target = $(e.target);
+					if(target.closest(".pop_conf1").length == 0){
+						$(".pop_conf").hide();
+						$(".pop_bg").hide();
+						$("#pop_conf").hide();
+					}
+				});	
+			})();
+		}	 
+	}else{
+        $(".d_tab").html("");
+        var $str_div=$("<div class='no_start'><div>"),
+            str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+        $str_div.html(str_con);
+        $(".d_tab").append($str_div);      
+	}
+}
+
+function post_my(data){
+	if(data.response_state==1){
+		var str="",
+			len=data.list.length,
+			listArr=data.list,
+			$img=$("<img>"),
+			$p=$("<p>"),
+			data1={};
+		data1["token"]=window.localStorage.getItem("token");
+		
+		ajax_get(data1,"mobile/user/getInfo",function(data){
+			if(data.response_state==1){
+				window.localStorage.setItem("my_d_ph",data.photo);
+				window.localStorage.setItem("my_d_nick",data.nickname);
+			}else{
+				$img.attr("alt","头像");
+			}
+			forFn(len,listArr,$img);
+		});
+
+	}else{
+        $(".d_tab").html("");
+        var $str_div=$("<div class='no_start'><div>"),
+            str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+        $str_div.html(str_con);
+        $(".d_tab").append($str_div);      		
+	}	
+}
+
+function forFn(len,listArr,$img){
+	if(len<1){
+        $(".d_tab").html("");
+        var $str_div=$("<div class='no_start'><div>"),
+            str_con="<img src='images/banche.gif' alt=''><p>抱歉!暂时没找到你要的信息耶~</p>";
+        $str_div.html(str_con);
+        $(".d_tab").append($str_div);     		
+	}else{
+		for(var i=0;i<len;i++){
+			var $li=$("<li>"),
+				$div1=$("<div class='ul_list2_t mb10 pr'>"),
+				$div2=$("<div class='mb10'>"),
+				$user=$("<div class='user_90'>"),	
+				d = new Date( listArr[i].createdDate ),
+				$startEnd="<p><i class='icon icon_g'></i>起点："+listArr[i].fromProvince+""+listArr[i].fromCity+""+listArr[i].fromCounty+"</p><p><i class='icon icon_r'></i>"+listArr[i].toProvince+""+listArr[i].toCity+""+listArr[i].toCounty+"</p>",
+				$p=$('<p>'),
+				$img=$("<img>");
+
+			var date =d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+"  "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+
+			if(!!window.localStorage.getItem("my_d_ph")){
+				$img.attr("src",imgSrc+window.localStorage.getItem("my_d_ph") );
+			}else{
+				$img.attr("src","./images/icon_user_225.png");
+			}
+			$p.html("<em>"+window.localStorage.getItem("my_d_nick") +"</em><br><span>"+date+"</span>");		
+			$user.append($img);
+			$div1.append( $user);
+			$div1.append( $p );
+			$div2.append($startEnd);
+			$li.append($div1);
+			$li.append($div2);
+			$li.attr( "data-id",listArr[i].id );
+			$("#two").find(".ul_list2").append($li); 
+		}	
+		$("#two").find("li").bind("click",function(){
+			window.localStorage.setItem("dr_my_num",$(this).data("id"));
+			window.location.href="./sup_d_d.html";
+		});			
+	}
+}
+</script>
+</body>
+</html>

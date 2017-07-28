@@ -1,0 +1,229 @@
+.text_pt2{padding-left:37px;padding-right: 15px; padding-bottom: 10px;}
+
+.link_list a{
+	display:block;    
+	line-height:4.2rem;
+	height:4.3rem;
+	border-bottom:1px solid #cdcdcd;
+	padding:0px 0px 0px 15px;
+	font-size:1.2rem;
+	width: 100%;
+	box-sizing:border-box;
+	position:relative;
+}
+
+.link_list a:last-child{
+	border-bottom: 0px!important;
+}
+.link_list a i{position:absolute; right:-10px; top:20px;
+	background:url("/pingbanche/images/arr_r.png") no-repeat;
+	background-size: 1.2rem 1.4rem;
+	width:1.2rem; height: 1.4rem;
+	display:block;
+}
+
+.eval_con{padding:10px 15px;
+	line-height: 2.4rem;
+	font-size:1.2rem;
+}
+.eval_con span{padding-left: 10px;}
+.eval_con span i{
+	display:inline-block; 
+	width:2.4rem;height:2.4rem;
+	background:url("/pingbanche/images/icon_72_start_d.png") no-repeat;
+	background-size: 2.4rem 2.4rem;
+	vertical-align: middle;
+	margin-top: -3px;
+}
+.eval_con span .cur{
+	display:inline-block; 
+	width:2.4rem;height:2.4rem;
+	background:url("/pingbanche/images/icon_72_start.png") no-repeat;
+	background-size: 2.4rem 2.4rem;
+	vertical-align: middle;
+	margin-top: -3px;	
+}
+
+.mb50{margin-bottom:50px!important;}
+
+.form_start .form_pad{
+    padding: 0px 1.6rem;
+}
+
+.ul_list1 li .link_wrap{
+    display: block;
+    padding: 0.7rem 1.9rem;
+    color: #3b3a3e;
+    overflow: hidden;
+    border-top:1px solid #cfcfcf;
+}
+.ul_list1 .link_wrap .link_right{
+	display:inline-block; background: #fd5353;
+	height: 2.8rem; width:68px; border-radius: 5px;
+	padding:0px;float:right; 
+	text-align: center; color:#fff; line-height: 2.8rem;
+}
+
+.footer{background: #ededed; padding:10px 0px 10px 10px; overflow: hidden; 
+	box-sizing:border-box;
+}
+
+.footer .w50{ width: 50%;float:left;  box-sizing:border-box; text-align: center; 
+	padding-right:1rem;
+}
+.footer .js_d,.footer .js_c{display:block; width: 100%; height: 4rem;line-height: 4rem;
+	border-radius:5px; border: 1px solid #d1d1d1; font-size:1.2rem;
+}
+.footer .js_d{background: #fff; color:#545454;}
+.footer .js_c{background: #fd5353;color:#fff;}
+.js_fee_css{overflow: hidden;}
+.js_fee_css span{float:left;}
+.js_fee_css .ui-input-text{
+	float:left; border:0px; display:inline-block;width:90px;
+	display:none;
+}
+.js_fee_css input{
+	padding:0px 0.5rem;min-height: 1.8rem;
+	height: 2.2rem; line-height: 2.2rem;
+	border: 1px solid #d3d1d0;	color:#fc3439;
+}
+.js_fee_css a{
+	display:inline-block;float:right;
+	padding:0px; width: 70px; background: #fc3439;
+	line-height: 2.2rem;height: 2.2rem;
+	text-align: center; color:#fff;
+	border-radius: 3px;
+	display:none;
+}
+.css_Trail{display:none;}
+
+/*指派司机*/
+.css_src{padding:0px 1rem;}
+
+.css_src div{
+	border: 1px solid #dfdfe0; border-radius:5px;
+	margin-bottom:10px;
+}
+.css_src input{background: #fff;}
+
+.cs_dlist{font-size:1.2rem; line-height:5.4rem;}
+.cs_dlist li{
+	margin-bottom: 10px; background: #fff;
+	border-top: 1px solid #cfcfcf; border-bottom: 1px solid #cfcfcf;
+}
+.cs_dlist .w60p,.cs_dlist .w40p{float:left; position:relative;}
+.cs_dlist .w60p{width: 56%; line-height: 1.8rem;}
+.cs_dlist .w40p{width: 44%;}
+
+.cs_dlist .img_w{
+	width:5.4rem;height: 5.4rem;
+}
+.cs_dlist .img_w img{width:5.4rem;height: 5.4rem;display:block;}
+.cs_dlist li{overflow: hidden;}
+.cs_phone{
+	display:block; width: 3.8rem; height: 3.8rem;
+	background:url("/pingbanche/images/cs_phone.png") no-repeat;
+	background-size:contain;
+}
+.cs_dlist .w60p .img_w{position:absolute; left:0px;top:0px;}
+.cs_dlist .w60p{
+	box-sizing:border-box;
+	padding-left:6rem;
+	padding-right:0.5rem;
+}
+.cs_dlist .w60p h4,.cs_dlist .w60p p,.cs_dlist .w60p span{
+	width: 100%;height: 1.8rem; overflow: hidden;
+}
+.cs_dlist h4{font-size:1.6rem;}
+.cs_dlist span{color:#a09f9f;}
+
+.cs_dlist .img_w img{display:block; border-radius: 50%;}
+.cs_dlist a{
+	display:inline-block; border:1px solid #ff3439;
+	background: #fff; color:#ff3439;
+	height: 3.8rem; line-height:3.6rem;
+	box-sizing:border-box; 
+	width: 100%; text-align: center;
+	border-radius: 0.3rem; 
+	font-size:1.6rem;
+}
+.cs_dlist .w40p{
+	box-sizing:border-box; 
+	position:relative;
+	padding-left:4.6rem;
+}
+.dlist_t i{position:absolute; left:0px;top:8px;}
+
+.dlist_t{ padding:1.2rem; overflow: hidden;}
+
+.dlist_b{border-top:1px solid #cfcfcf; padding:1rem 0px;
+	text-align: center; line-height: 2.4rem; 
+}
+.dlist_b p{font-size:1.6rem;}
+.icon_72_arr{
+	display:inline-block; width:2.4rem;height: 2.4rem;
+	vertical-align: middle; margin-top: -3px;
+	background:url("/pingbanche/images/icon_72_arr.png");
+	background-size: contain;
+}
+.dlist_b .icon{
+	display:inline-block;vertical-align: middle; margin-top: -3px;
+}
+.dlist_b span{font-size:1.2rem; line-height: 2rem;}
+.dlist_b .icon_g{background: #649a2f; width:1rem;height:1rem;
+	border-radius:100%; margin-right:0.5rem;}
+.dlist_b .icon_r{background: #ff3439;width:1rem;height:1rem;
+	border-radius:100%; margin-right:0.5rem;}
+
+.cs_dlist li{position:relative;}
+.cs_dlist .icon_u{
+	display:block;width: 6.8rem;height: 6.8rem;
+	background:url("/pingbanche/images/icon_68_tz.png") no-repeat;	
+	background-size: contain;
+	position:absolute;right:0px;top:0px;
+}	
+
+
+
+.ul_list1 p{
+	height:2.4rem;line-height:2.4rem;width: 100%; 
+	overflow: hidden;white-space:nowrap; 
+	text-overflow:ellipsis; -o-text-overflow:ellipsis;
+}
+
+
+.cs_info{
+	background: #f2f2f4; padding:4px 1.2rem;
+	min-width: 100px;
+	position: fixed;
+    right:2rem;
+    top:40px;
+    z-index: 1001;
+	-webkit-box-shadow:0 0 8px #ccc;  
+	-moz-box-shadow:0 0 8px #ccc;  
+	box-shadow:0 0 8px #ccc; 
+	display:none; 
+}
+
+.cs_info a{
+	border-bottom:1px solid #cfcfcf;
+	line-height:38px; height: 38px;
+	padding:0px 10px;
+	display:block;
+	box-sizing:border-box;
+}
+.cs_info a:last-child{border-bottom: 0px;}
+
+.cs_info em{
+	display:inline-block; width: 1.8rem;height: 1.8rem;
+	vertical-align: middle; margin-top: -3px; margin-right:8px;
+}
+
+.icon_54_c{
+	background:url("/pingbanche/images/icon_54_c.png"); 
+	background-size: contain;
+}
+.icon_54_d{
+	background:url("/pingbanche/images/icon_54_d.png");
+	background-size: contain;
+}

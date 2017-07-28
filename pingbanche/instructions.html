@@ -1,0 +1,37 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+  <link rel="stylesheet" href="/pingbanche/css/style.css">
+</head>
+<body class="bgf2" style="margin:0px;">
+  <div data-role="page">
+    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+      <h1>使用说明</h1>
+      <a href="#" class="icon_goPrev_44" data-ajax="false"></a>
+    </div>
+    <div data-role="main" class="ui-content css_v100p">
+      <ul class="sec_list">
+      </ul>
+    </div>
+  </div>
+  <script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+  <script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+  <script src="/pingbanche/js/common.js"></script>
+  <script>
+  $(function(){
+    ajax_get({},"wap/guide?v=2",function(data){
+      $(".sec_list").html(data);
+      $(".sec_list").find("li").on("click",function(){
+        window.location.href="./instructions_d.html?d_href="+$(this).find("a").data("href");
+      });      
+    });
+    $(".icon_goPrev_44").on("click",function(){
+      window.location.href="./home.html";
+    });
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html manifest="test.manifest">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+		<link rel="stylesheet" href="/pingbanche/css/style.css">
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=jA7kjeSzkl95yRCbLRaucotgfHfCAhzA">
+		</script>	
+	</head>
+	<body>
+  		<div data-role="page" class="con_100p">
+		    <div data-role="header" class="header2" data-title="fixed" data-position="fixed">
+		      <h1 class="js_h1">我的足迹</h1>
+		      <a href="./order_d.html?status=1" class="icon_goPrev_44" data-ajax="false"></a>
+		    </div>	
+			<div data-role="main" class="ui-content pr">
+				<div id="allmap"></div>	
+				<div class="no_start">
+					<img src="/pingbanche/images/banche.gif" alt=""> 
+					<p>抱歉!暂时没找到你要的信息耶~</p>
+				</div>
+			</div>	
+		</div>	
+		<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+		<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+		<script src="/pingbanche/js/common.js"></script>
+		<script type="text/javascript">
+		// 百度地图API功能
+		var	orderId=getQueryString("orderId"),
+			log_role=window.localStorage.getItem("log_role");
+
+		var ajax_d_path=function(id,fn){
+			var data={
+					"orderId":id,
+					"token":window.localStorage.getItem("token")
+				}
+			ajax_get(data,"mobile/location/order/"+orderId,function(data){
+				if(data.response_state==1){
+					fn&&fn(data);
+				}else{
+					alert(data.response_note);
+					window.location.href='./order_d.html?status=1';
+				}
+			});
+		}
+
+		$(function(){
+			(function(){
+				$(".ui-content").height( $(window).height()-56 );
+				if(log_role=="ROLE_CUSTOMER"){
+					$(".js_h1").html("我的足迹");
+				}else{
+					$(".js_h1").html("我的导航");					
+				}
+			})();
+			ajax_d_path(orderId,function(data){
+				var lat,lon;
+				if(!!data&&data.list.length!=0){
+					lat=data.list[0].lat;
+					lon=data.list[0].lon;	
+					$(".no_start").css("display","none");
+					var map = new BMap.Map("allmap"),
+						marker=new BMap.Marker(new BMap.Point(lon,lat) );					
+					map.centerAndZoom( new BMap.Point(lon,lat),12);
+					map.addOverlay(marker);
+					map.panTo(marker);
+				}else{
+					$("#allmap").css("display","none");
+					$(".no_start").css("display","block");
+					setTimeout(function(){
+						window.location.href="./order_d.html?status=1";
+					},2000);	
+				}
+			});
+		});
+	</script>
+	</body>
+</html>

@@ -1,0 +1,355 @@
+<!doctype html>
+<html manifest="test.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="/pingbanche/css/jquery.mobile.custom.structure.css">
+	<link rel="stylesheet" href="/pingbanche/css/mobiscroll.custom-2.5.0.min.css">
+	<link rel="stylesheet" href="/pingbanche/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/pingbanche/css/cropper.css">
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TMDrGeosWbaA1QKTc42GsW077QUoo9NF"></script>
+</head>
+<body class="bgf2">
+	<div data-role="page">
+	    <div data-role="header" class="header2" data-title="fixed" data-position="fixed" data-tap-toggle="false">
+			<h1>发布货源</h1>
+			<a href="#" class="icon_goPrev_44" data-ajax="false"></a>
+	    </div>
+	    <div data-role="main" class="ui-content pt10">
+			<div class="form3">
+		        <form action="">
+		            <div class="form3_wrap">
+			            <label for="">
+				        	<i class="icon icon_g"></i>
+							<a href="./map_point.html?c=start" data-ajax="false" id="js_start"></a>
+				        	<i class="icon_arrr">&gt;</i>
+			          	</label>   
+			           	<label for="">
+				        	<i class="icon icon_r"></i>
+				        	<a href="./map_point.html?c=end" data-ajax="false" id="js_end"></a>
+				        	<i class="icon_arrr">&gt;</i>
+			          	</label>
+
+						<label for="">
+						  <span>公里数:</span>
+						  <input placeholder="请输入起点终点，公里数即自动算出" type="text" id="js_mile" />
+						</label>
+						<label for="txtBirthday">
+							<span>日期：</span>
+							<i class="icon2 icon_date_48"></i>
+							<input type="text" data-role="datebox" id="txtBirthday" name="birthday" />
+						</label>
+						<label for="txtTime">
+							<span>时间：</span>
+							<i class="icon2 icon_clock_48"></i>
+							<input type="text" data-role="timebox" id="txtTime" name="timename"  />
+						</label>
+						<label for="" class="text_label">
+							<span>备注:</span>
+							<textarea placeholder="请输入备注信息（400字以内）" id="js_note"></textarea>
+						</label>
+						<label for="" >
+							<span>车型:</span>
+							<input placeholder="请输入车型号" id="js_carModel"/>	
+						</label>
+		            </div>
+		            <div data-role="collapsible" data-collapsed="true" class="collapsible1 mb10">
+						<h1>添加保险信息<em></em></h1>
+						<div class="form3_wrap ">
+							<label for="" class="upload_img_w">
+							  <span>车架号:</span>
+							  <div class="img_w"></div>
+							  <input type="file" />
+							</label>						
+							<label for="">
+							  <span>保险金额:</span>
+							  <input placeholder="请输入保险金额（以万元为单位）" type="text" id="js_carIns"/>
+							</label>
+							<label for="">
+							  <span>实际货主:</span>
+							  <input placeholder="请输入实际货主" type="text" id="js_carOwner"/>
+							</label>
+						</div>
+					</div>
+
+					<div class="form3_wrap mb10 pt10"> 	
+						<label for="">
+						  <span>总价:</span>
+						  <input placeholder="请输入运车总价" type="text" id="js_fee"/>
+						</label>
+						<label for="">
+						  <span>特殊车型:</span>
+						  <input placeholder="加长,5吨,全包围,全封闭,带气囊" type="text" id="js_spModel"/>
+						</label>
+					</div>
+					<div class="form3_wrap mb10 inp_pl58">
+						<label for="">
+						  <span>收货人姓名:</span>
+						  <input placeholder="请输入收货人姓名" type="text" id="js_rname"/>
+						</label>
+						<label for="">
+						  <span>收货人电话:</span>
+						  <input placeholder="请输入收货人电话" type="text" id="js_rph"/>
+						</label>							
+					</div>	
+
+					<p>有效时间选择</p>
+					<div class="form3_wrap mb10 pt10">
+						<p>你也可以选择快捷有效时间(小时数)</p>
+						<div class="valid_time">
+							<span class="time_l">
+								<b>24</b>
+								<i></i>				
+							</span>
+							<span class="time_c"> 
+								<b>48</b>
+								<i></i>					
+							</span>	
+							<span class="time_r"> 
+								<b>72</b>
+								<i></i>					
+							</span>						
+						</div>	
+						<label for="">
+						  <span>有效时间:</span>
+						  <input placeholder="请输入有效时间(小时数)" type="text" class="js_v_time"/>
+						  <a href="" class="icon_link"></a>
+						</label>
+					</div>	
+		            <input value="完 成" type="button" id="js_submit">
+		        </form>      
+		    </div>
+			<div id="pop_conf">
+				<h3>提示</h3>
+				<p>确定取消发布货源吗？</p>
+				<span>
+					<a href="#" class="js_delete ui-link">取消</a>
+					<a href="#" class="js_btn ui-link">确定</a>
+				</span>
+			</div>
+			<div class="pop_bg"></div>
+		</div>	
+	</div>
+	<div class="img-container">  
+	  <img src="" alt="">
+	  <div class="img_tf">
+	  	<button id="img_f">取消</button>
+	  	<button id="img_t">确定</button> 
+	  </div> 
+	</div>
+	<script src="/pingbanche/js/jquery-1.11.0.min.js"></script>
+	<script src="/pingbanche/js/jquery.mobile.custom.js"></script>
+	<script src="/pingbanche/js/mobiscroll.custom-2.5.0.min.js"></script>	
+	<script src="/pingbanche/js/cropper.js"></script>
+	<script src="/pingbanche/js/style.js"></script>
+	<script src="/pingbanche/js/common.js"></script>
+	<script>
+	$(function(){
+		$("#txtBirthday").val(  format_date( new Date() ) );
+		$("#txtTime").val( format_time( new Date() ) );
+		
+		$(".icon_write_48").on("click",function(){
+			window.localStorage.setItem("source","goods");
+		});
+		$(".icon_goPrev_44").on("click",function(){		
+			$("#pop_conf").css("display","block");
+			$(".pop_bg").css("display","block");
+		});
+		$(".js_delete").bind("click",function(){
+			$("#pop_conf").fadeOut();
+			$(".pop_bg").fadeOut();
+		});
+
+		$(".js_btn").bind("click",function(){ //取消发布资源
+			$("#pop_conf").fadeOut();
+			$(".pop_bg").fadeOut();
+			window.localStorage.removeItem("province_s");
+			window.localStorage.removeItem("city_s");
+			window.localStorage.removeItem("county_s");
+			window.localStorage.removeItem("address_s");
+			window.localStorage.removeItem("lon_s");					
+			window.localStorage.removeItem("lat_s");	
+			window.localStorage.removeItem("province_e");
+			window.localStorage.removeItem("city_e");
+			window.localStorage.removeItem("county_e");
+			window.localStorage.removeItem("address_e");
+			window.localStorage.removeItem("lon_e");					
+			window.localStorage.removeItem("lat_e");
+			window.localStorage.removeItem("mileage");
+			window.localStorage.removeItem("startAddr");
+			window.localStorage.removeItem("endAddr");
+			window.localStorage.removeItem("t");	
+			window.location.href="./sup_goods_t.html";
+		});	
+
+		var routeS,routeR,desireP,
+			role=window.localStorage.getItem("log_role");
+
+		var payCheck=function(fn){
+			var data={};
+			data["token"]=window.localStorage.getItem("token");
+			var url="mobile/desire/payCheck";
+			ajax_get(data,url,fn);
+		}
+
+		if(role=="ROLE_MANAGER"){
+			$(".form_radio_2").css("display","none");
+		}else{
+			$("#js_fee").attr("disabled",true);
+		}
+		$("#js_mile").attr("disabled",true);
+		if( !!window.localStorage.getItem("startAddr") ){
+			var startAddr=window.localStorage.getItem("startAddr");
+			$("#js_start").html( startAddr );	
+		}
+		if( !!window.localStorage.getItem("endAddr") ){	
+			var endAddr=window.localStorage.getItem("endAddr");
+			$("#js_end").html( endAddr );
+		}
+		if( !!window.localStorage.getItem("mileage") ){	
+			var mile=window.localStorage.getItem("mileage");
+			$("#js_mile").val(mile);
+		}
+
+
+		$("#js_submit").on("click",function(){
+			$(this).attr("disabled","disabled");
+			var that=this;
+			if(!$("#js_start").html() || !$("#js_end").html() ){
+				alert("地址不能为空");
+				mySubBtn(that);	
+				return false;
+			}
+			if( $("#js_start").html()==$("#js_end").html() ){
+				alert("起始地址不能相同");
+				mySubBtn(that);				
+				return false;
+			}
+			if(mile<1){
+				alert("距离太近，请重新选择起始位置");
+				mySubBtn(that);				
+				return false;
+			}
+			if( parseFloat($("#js_fee").val()<10 )){
+				alert("距离太近，请重新选择起始位置");
+				mySubBtn(that);				
+				return false;				
+			}
+			if(!$("#txtBirthday").val()||!$("#txtTime").val()){
+				alert("请选择发单时间");
+				mySubBtn(that);				
+				return false;
+			}
+			if(!$("#js_carModel").val() ){
+				alert("车型号不能为空");
+				mySubBtn(that);				
+				return false;
+			}
+			if(  isNaN(parseFloat( $("#js_fee").val()))  ){
+				alert("请输入正确的总价");
+				mySubBtn(that);	
+				return false;
+			}
+			if( !$("#js_fee").val() || !!( parseFloat( $("#js_fee").val() )<10) ){
+				alert("总价必须大于10");
+				mySubBtn(that);					
+				return false;
+			}
+			if(!$("#js_rname").val() || !$("#js_rph").val() ){
+				alert("请检查收货人姓名或电话");
+				mySubBtn(that);					
+				return false;
+			}	
+			var reg= /^[1][3-8]+\d{9}$/;
+			var str=$.trim($("#js_rph").val());
+			if(!str.match( reg )){
+				alert("手机号码不正确");
+				mySubBtn(that);					
+				return false;
+			}
+			if( isNaN( $(".js_v_time").val()) ){
+				alert("有效时间必须为数字");
+				mySubBtn(that);					
+				return false;
+			}
+			if( !$(".js_v_time").val() ){
+				alert("请选择有效时间");
+				mySubBtn(that);					
+				return false;
+			}
+			
+			var data={},
+				routeType="FIXED",
+				routeCon=$(".form_radio_2").find(".on").html();
+			data["token"]=window.localStorage.getItem("token");
+			data["from.province"]=window.localStorage.getItem("province_s");
+			data["from.city"]=window.localStorage.getItem("city_s");
+			data["from.county"]=window.localStorage.getItem("county_s");
+			data["from.address"]=window.localStorage.getItem("address_s");
+			data["from.lon"]=window.localStorage.getItem("lon_s");							
+			data["from.lat"]=window.localStorage.getItem("lat_s");	
+			data["to.province"]=window.localStorage.getItem("province_e");
+			data["to.city"]=window.localStorage.getItem("city_e");
+			data["to.county"]=window.localStorage.getItem("county_e");
+			data["to.address"]=window.localStorage.getItem("address_e");
+			data["to.lon"]=window.localStorage.getItem("lon_e");							
+			data["to.lat"]=window.localStorage.getItem("lat_e");
+			data["dueDate"]=$("#txtBirthday").val();
+			data["dueTime"]=$("#txtTime").val();	
+			data["validHour"]=$(".js_v_time").val();
+			data["note"]=$("#js_note").val();	
+			data["needSpecialTrailer"]= !!$(".js_spModel").val();
+			data["specialTrailerModel"]=$(".js_spModel").val();
+			data["carModel"]=$("#js_carModel").val();		
+			data["carFrameFile"]=$(".upload_img_w .img_w").find("img").attr("src");	
+			data["carInsurance"]=$("#js_carIns").val();
+			data["carOwner"]=$("#js_carOwner").val();			
+			data["routeType"]=routeType;
+			data["receiverName"]=$("#js_rname").val();
+			data["receiverPhone"]=$("#js_rph").val();	
+			data["distance"]=parseFloat( $("#js_mile").val() );
+			data["estimateFee"]=parseFloat( $("#js_fee").val() );
+			preset(function(data){
+				data["earnest"]=data.desirePrePrice;
+			});
+
+			ajax_pwd(data,"mobile/desire/issue_v2",function(data){
+				if(data.response_state==1){
+					window.localStorage.setItem("desireNo",data.desireNo); 
+					payCheck(function(data){				
+						if(data.response_state==1){
+							//发布货源成功
+							window.localStorage.removeItem("province_s");
+							window.localStorage.removeItem("city_s");
+							window.localStorage.removeItem("county_s");
+							window.localStorage.removeItem("address_s");
+							window.localStorage.removeItem("lon_s");					
+							window.localStorage.removeItem("lat_s");	
+							window.localStorage.removeItem("province_e");
+							window.localStorage.removeItem("city_e");
+							window.localStorage.removeItem("county_e");
+							window.localStorage.removeItem("address_e");
+							window.localStorage.removeItem("lon_e");					
+							window.localStorage.removeItem("lat_e");
+							window.localStorage.removeItem("mileage");
+							window.localStorage.removeItem("startAddr");
+							window.localStorage.removeItem("endAddr");
+							window.location.href="./sup_goods_t.html";
+						}else{
+							alert(data.response_note);
+						}
+					});
+				}else{
+					alert(data.response_note);	
+					mySubBtn(that);							
+				}
+			});						
+			mySubBtn(that);	
+		});
+
+
+
+	});
+	</script>
+</body>
+</html>

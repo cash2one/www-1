@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <script src="../js/vue.js"></script>
+        <script src="../js/vue-router.js"></script>
+        <script src="../js/vuex.js"></script>
+        <style>
+            .nav{
+                width: 30%;
+                height: 300px;
+                background-color: #00aba9;
+                float: left;
+            }
+            .main{
+                width: 30%;
+                height: 300px;
+                background-color: #ab5275;
+                float: left;
+            }
+            .right{
+                width: 30%;
+                height: 300px;
+                background-color: #78ab51;
+                float: left;
+            }
+            .active_x{
+                color: orangered;
+            }
+            .x{
+                color: #0ea8cc;
+            }
+            .slide-fade1-enter-active{
+                position: relative;
+                transition: all linear .8s;
+                left: 0px;
+                width: 300px;
+                background-color: #2b542c;
+                /*opacity: 0;*/
+            }
+            .slide-fade1-enter{
+                position: relative;
+                left: 30px;
+                opacity: 0;
+                width: 200px;
+                background-color: yellow;
+                /*width: 200px;*/
+                /*padding-right: 0;*/
+                /*height: 0;*/
+                /*padding: 0 10px;*/
+            }
+            .slide-fade1-leave{
+                /*transition: all .8s ease;*/
+                opacity: 0;
+                /*width: 80px;*/
+                left: 30px;
+            }
+            .slide-fade-enter-active {
+                transition: all .3s ease;
+                height: 100px;
+            }
+            .slide-fade-leave-active {
+                transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+            }
+            .slide-fade-enter, .slide-fade-leave-active {
+                transform: translateX(10px);
+                opacity: 0;
+                background-color: #2c2c38;
+                height: 100px;
+            }
+            .position{
+                position: relative;
+            }
+            .base{
+                /*position: relative;*/
+                /*transition: all linear .3s;*/
+                /*width: 100px;*/
+                /*height: 100px;*/
+                /*background-color: #2c2c38;*/
+                /*left: 0px;*/
+                /*padding: 0;*/
+            }
+            /*.base:hover{*/
+                /*left: 30px;*/
+                /*width: 120px;*/
+                /*height: 300px;*/
+                /*!*padding: 30px;*!*/
+            /*}*/
+        </style>
+	</head>
+	<body>
+        <div id="app">
+            <nav-bar></nav-bar>
+            <router-view class="nav"></router-view>
+            <router-view class="main" name="main"></router-view>
+            <router-view class="right" name="right"></router-view>
+        </div>
+        <script>
+            const Foo = { template: '<div>foo</div>' };
+            const Bar = { template: '<div>bar</div>' };
+            let vuex = new Vuex.Store({
+                state:{
+                    count:0,
+                    count1:1,
+                    count2:2,
+                    count3:3
+                },
+                mutations:{
+                    increment (state){
+                        state.count++;
+                        if(state.count<12){
+                            state.count=12;
+                        }
+                        console.log(state);
+                    },
+                    incrementTwo (state) {
+                        state.count1++;
+                    }
+                }
+            });
+//            vuex.commit('increment');
+            console.log(vuex);
+            let router = new VueRouter({
+                routes:[
+                    {
+                        name:'main',
+                        path:'/',
+                        components:{
+                            default:{
+                                template:'<div>{{$route.params.name}}' +
+                                '<router-link to="/main/f/children">inner</router-link>' +
+                                '<router-view></router-view>'+
+                                '<router-view name="next"></router-view>'+
+                                '</div>'
+                            },
+                            main:{
+                                template:'<div>mian</div>'
+                            },
+                            right:{
+                                template:'<div>right</div>'
+                            }
+                        },
+                        alias:'/main2',
+                        children:[
+                            {
+                                path:':f/:children',
+                                components:{
+                                    default:{
+                                        template:'<div style="width: 200px;height: 200px;background-color: darkred" @click="clickHandle">' +
+                                        '{{$route.params}}</div>',
+                                        methods:{
+                                            clickHandle(){
+                                                console.log(1);
+                                                router.push({
+                                                    name:'ko',
+                                                    params:{
+                                                        io:'10'
+                                                    },
+                                                    query:{
+                                                        id:'32323'
+                                                    }
+                                                })
+                                            }
+                                        }
+                                    },
+                                    next:{
+                                        template:'<div style="background-color: #3a210a;width: 50px;height: 100px">next</div>'
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        path:'/foo/:name/inner',
+                        component:{
+                            template:'<div>inner</div>'
+                        }
+                    },
+                    {
+                        name:'list1',
+                        path:'/list1',
+                        components:{
+                            default:{
+                                template:'<div>goo</div>'
+                            },
+                            main:{
+                                template:'<div>list1</div>'
+                            },
+                            right:{
+                                template:'<div>list1right</div>'
+                            }
+                        }
+                    },
+                    {
+                        name:'list2',
+                        path:'/list2',
+//                        redirect:'/list1',
+                        component:{
+                            template:'<div @click="clickHandle">' +
+                                '<p>{{count}}</p>' +
+                            '<p>{{two}}</p>'+
+                            '</div>',
+                            methods:{
+                                clickHandle (){
+                                    console.log('clickHandle','app',app,'root',this.$root==app);//this.$root等于app
+//                                    this.$root.$destroy();
+                                    this.$store.commit('increment');
+                                    this.$store.commit('incrementTwo');
+                                }
+                            },
+                            computed:Vuex.mapState({//mapState
+                                count:'count',
+                                two: state => state.count1
+                            }),
+                            beforeUpdate (){
+                                console.log('beforeUpdate');
+                            }
+                        }
+                    },
+                    {
+                        name:'list3',
+                        path:'/list3',
+                        component:{
+                            data:() => {
+                                return{
+                                    list3:34,
+                                    show:false
+                                }
+                            },
+                            template:'<div class="position">' +
+                            '<p>foo/12</p>' +
+                            '<p @click="clickHandle">{{list3}}</p>' +
+                            '<transition name="slide-fade1">' +
+                            '<div v-if="show" class="base">我出来了</div>' +
+                            '</transition>' +
+                            '</div>',
+                            methods:{
+                                clickHandle () {
+                                    this.list3++;
+                                    this.show=!this.show;
+                                }
+                            },
+                            beforeRouteEnter:(to,form,next)=>{
+//                                此时不能获取组件内的this对象
+//                                console.log(to,form);
+                                next(vm=>{
+//                                    console.log('vm',vm)
+                                })
+                            }
+                        },
+                        beforeEnter:(to,form,next)=>{//单路由级别导航钩子
+//                            console.log(to,form);
+                            next();
+                        }
+                    },
+                    {
+                        name:'ko',
+                        path:'/ko',
+                        component:{
+                            template:'<div>ko{{$route.params}}</div>'
+                        }
+                    },
+                ],
+                linkActiveClass:'active_x',
+            });
+            router.beforeEach((to,form,next)=>{//全局级别导航钩子
+               console.log(to,form);//route.matched就是匹配了几个路径，元信息要靠这个匹配
+//               next('/list2');//会触发钩子本身
+                next();
+            });
+            router.afterEach((route)=>{
+//                console.log(route,this);//这里的this是全局对象
+            });
+            let app = new Vue({
+                el:"#app",
+                router:router,
+                store:vuex,
+                components:{
+                    'nav-bar':{
+                        template:'<p>\
+                        <router-link to="/" active-class="x" exact>main</router-link>\
+                        <router-link to="/list1">list1</router-link>\
+                        <router-link to="/list2">list2</router-link>\
+                        <router-link to="/list3">list3</router-link>\
+                        <router-link to="/main2">main2</router-link>\
+                        </p>',
+                        beforeCreate (){
+                            console.log(this.$store.state);
+                        },
+                        beforeDestroy (){
+                            console.log('destroy');
+                            console.log('app',app);
+                        },
+                        destroyed (){
+                            console.log('app',app,'this',this);
+                        }
+                    }
+                }
+            });
+            let obj = {
+                'ge'(a,b){
+                    console.log(a+b)
+                }
+            };
+            obj.ge(1,4);
+        </script>
+	</body>
+</html>

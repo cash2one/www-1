@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-cloak>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>邦巡店</title>
+
+    <link rel="stylesheet" href="css/reset.css?=t1494230092672"/>
+    <link href="css/bootstrap.min.css?=t1494230092672" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?=t1494230092672"/>
+    <script src="js/angular.min.1.4.1.js?=t1494570243130"></script>
+    <script src="js/angular-ui-router.js?=t1494230092672"></script>
+    <script src="js/jquery-1.10.2.min.js?=t1494230092672"></script>
+    <script src="js/bootstrap.min.js?=t1494230092672"></script>
+    <script src="js/angular-ui-bootstrap-tpl.js?=t1494230092672"></script>
+    <script src="js/WdatePicker.js?=t1494230092672"></script>
+</head>
+<body>
+    <div ui-view="header" class="header js_header" ng-controller="hasLog"></div>
+    <div class="js_contain">
+        <div class="js_main bgf1">
+            <div class="nav_w js_nav_w" >
+                <ul>
+                    <li ui-sref-active="cur"><a ui-sref="index">首页</a></li>
+                    <li ui-sref-active="cur"><a ui-sref="org">组织架构</a></li>
+                    <li ui-sref-active="cur"><a ui-sref="pro">工程管理</a></li>
+                    <li ui-sref-active="cur"><a ui-sref="data">配置管理</a></li>
+                    <li ui-sref-active="cur"><a ui-sref="set">设置</a></li>
+                </ul>
+            </div>
+            <div class="contain js_contain pr">
+                <div class="bread_line" style="padding-left:50px;" ui-view="breadline"></div>
+                <div class="main" style="height:100%;padding-top:37px;box-sizing: border-box;position: relative;">
+                    <side class="fl side_on">
+                        <div class="unfold" id="js_unfold">
+                            <image src="image/unfold.png"></image>
+                        </div>
+                        <div class="js_side">
+                            <div class="side_1 pr">
+                                <i class="icon icon_1032 js_fold"></i>
+                            </div>
+                            <div ui-view="side"></div>
+                        </div>
+                    </side>
+                    <div ui-view="main" class="content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 登录 S-->
+    <div class="modal fade" id="log" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="log">
+        <div class="modal-dialog w700">
+            <div class="modal-content">
+                <div class="modal-header  modal_tit1">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">登录</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" name="logForm">
+                        <div class="form-group" ng-class="{'has-error': logForm.username.$invalid}">
+                            <label class="col-sm-3 control-label" for="username">登录名:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="username" class="form-control" ng-model="logInfo.j_username"
+                                       required ng-pattern ="/^1[34578]\d{9}$/">
+                                <span class="cl_red lh36 tl db" ng-show="logForm.username.$invalid">登录名为您注册的手机号</span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': logForm.pwd.$invalid}">
+                            <label class="col-sm-3 control-label" for="pwd">密码:</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" string-to-number name="pwd" ng-model="logInfo.j_password"
+                                       required ng-pattern="/^\S{6,10}$/">
+                                <span class="cl_red lh36 tl db" ng-show="logForm.pwd.$invalid">请输入密码</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary btn-block btn-h50" ng-disabled="logForm.$invalid"
+                                    ng-click="logFn('#log')" ng-keyup="doSomeThing()">登&nbsp;&nbsp;录</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 登录 E-->
+    <div ui-view="tip"></div>
+    <script src="js/app.js?=t1494230092672"></script>
+    <script src="js/controller.js?=t1494570243130"></script>
+    <script src="js/home.js?=t1494230092672"></script>
+    <script src="js/set.js?=t1494230092672"></script>
+    <script src="js/org.js?=t1494230092672"></script>
+    <script src="js/data.js?=t1494230092672"></script>
+    <script src="js/pro.js?=t1494230092672"></script>
+</body>
+</html>

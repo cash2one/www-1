@@ -1,0 +1,31 @@
+{
+  "response_state" : 1,
+  "response_note" : "成功",
+  "orderNo" : "CGD001KPX",
+
+  "fromProvince" : "浙江",
+  "fromCity" : "杭州",
+  "fromCounty" : "滨江区",
+  "fromAddress" : "南环路",
+
+  "toProvince" : "浙江2",
+  "toCity" : "杭州2",
+  "toCounty" : "滨江区2",
+  "toAddress" : "南环路2",
+
+  "distance" : 1345,
+
+  "total" : 10000.00,
+
+  "earnest" : 0.00,
+
+  "premium" : 120.0,
+
+  "premiumPaid" : true,
+
+  "balancePay" : 10120.0,
+
+  "status" : "START"
+
+}
+

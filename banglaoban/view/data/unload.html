@@ -1,0 +1,130 @@
+<div class="sec_8 row" ng-show="roleBoss">
+    <div class="sec_1_l col-sm-8">
+        <a href="javascript:;" data-toggle="modal" data-target="#add">
+            <i class="icon_27 icon_add_27"></i>新&nbsp;&nbsp;&nbsp;&nbsp;增
+        </a>
+    </div>
+</div>
+
+<div class="sec_2 table-responsive" ng-show="roleBoss">
+    <table class="table table-bordered table-striped">
+        <thead class="bold_th">
+        <tr>
+            <th>卸车地点</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat = "item in unload">
+            <td class="area">{{item.name}}</td>
+            <td>
+                <button class="btn btn-link" data-id="{{item.id}}" ng-click="saveM($event,'#edit')">编辑</button>
+                <button class="btn btn-link" data-id="{{item.id}}" ng-click="delete($event,'#delete')">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="sec_2 table-responsive" ng-show="!roleBoss">
+    <table class="table table-bordered table-striped">
+        <thead class="bold_th">
+        <tr>
+            <th>卸车地点</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat = "item in unload">
+                <td class="area">{{item.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 新增卸车地点 S-->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header  modal_tit1">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title">新增卸车地点</h4>
+            </div>
+            <div class="modal-body row">
+                <form class="form-horizontal col-sm-9" role="form" name="addUnload">
+                    <div class="form-group" ng-class="{'has-error': addUnload.area.$invalid}">
+                        <label class="col-sm-3 control-label" for="area">地点名称:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="area" class="form-control" ng-model="desM.name" required>
+                            <span class="cl_red lh36" ng-show="addUnload.area.$invalid">请输入地点名称</span>
+                        </div>
+                    </div>
+                </form>
+                <div class="col-sm-3 form-group form_btn tl">
+                    <button type="button" class="btn btn-primary" ng-disabled="addUnload.$invalid" ng-click="saveFn('#add')">保&nbsp;&nbsp;存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 新增卸车地点 E-->
+
+<!-- 编辑卸车地点 S-->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header  modal_tit1">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title">编辑卸车地点</h4>
+            </div>
+            <div class="modal-body row">
+                <form class="form-horizontal col-sm-9" role="form" name="editUnload">
+                    <div class="form-group" ng-class="{'has-error': editUnload.area.$invalid}">
+                        <label class="col-sm-3 control-label" for="area">地点名称:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="area" class="form-control" ng-model="desM.name" required>
+                            <span class="cl_red lh36" ng-show="editUnload.area.$invalid">请输入地点名称</span>
+                        </div>
+                    </div>
+                </form>
+                <div class="col-sm-3 form-group form_btn tl">
+                    <button type="button" class="btn btn-primary" ng-disabled="editUnload.$invalid" ng-click="saveFn('#add')">保&nbsp;&nbsp;存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 编辑卸车地点 E-->
+
+<!-- 删除卸车地点 S-->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header  modal_tit1">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title">卸车地点</h4>
+            </div>
+            <div class="modal-body">
+                <div class="tit3 mb15">
+                    <p class="cl_red">您确定删除吗？删除后数据不可恢复</p>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-block btn-default btn-h50" data-dismiss="modal">取消</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-block btn-primary btn-h50" ng-click="deleteFn('#delete')">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 删除卸车地点 E-->
