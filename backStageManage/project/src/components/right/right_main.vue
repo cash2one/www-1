@@ -22,9 +22,9 @@
         <td>无</td>
         <td>无</td>
         <td>
-          <button>修改</button>
-          <button>删除</button>
-          <button>详情</button>
+          <button class="g_cursor">修改</button>
+          <button v-on:click="changeShowAlert" class="g_cursor">删除</button>
+          <button v-on:click="changeShowDetail" class="g_cursor">详情</button>
         </td>
       </tr>
       <tr>
@@ -67,14 +67,38 @@
           </td>
         </tr>
       </tfoot>
+
+      <s-detail v-if="showDetail"></s-detail>
+      <s-alert v-if="showAlert"></s-alert>
     </table>
 
   </div>
 </template>
 <script>
-//  import directives from '../../directives';
+import detail from '../other/detail.vue';
+import alert from '../other/alert.vue';
+
   export default {
-//    directives:directives
+    computed:{
+        showDetail(){
+            return this.$store.state.showDetail;
+        },
+        showAlert(){
+            return this.$store.state.showAlert;
+        }
+    },
+    methods:{
+        changeShowDetail(){
+            this.$store.commit('changeShowDetail');
+        },
+      changeShowAlert(){
+            this.$store.commit('changeShowAlert');
+      }
+    },
+    components:{
+        's-detail':detail,
+        's-alert':alert
+    }
   }
 </script>
 <style scoped>

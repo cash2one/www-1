@@ -15,7 +15,17 @@
 
   export default {
     name: 'app',
-
+    created(){
+        let _this=this;
+        this.$axios({
+          method: 'get',
+          url: _this.$store.state.apiHref+'user/getInfo',
+          data: {
+            firstName: 'Fred',
+            lastName: 'Flintstone'
+          }
+        })
+    }
   }
 </script>
 
@@ -100,5 +110,19 @@
   }
   input{
     outline: none;
+  }
+  .g_hidden{
+    display: none;
+  }
+  .g_floatR{
+    float: right;
+  }
+  .g_cursor{
+    cursor: pointer;
+  }
+  .g_clear:after{
+    content: '';
+    clear: both;
+    display: block;
   }
 </style>
