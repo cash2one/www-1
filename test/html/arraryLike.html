@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <script>
+        let ul=document.getElementById('ul');
+        let children=ul.children;
+        console.log(children);
+//        Array.prototype.splice.call(children,2,1);
+        console.log(Array.prototype.slice.call(children))
+    </script>
+</body>
+</html>

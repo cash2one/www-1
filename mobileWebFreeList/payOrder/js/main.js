@@ -67,10 +67,10 @@ var pay_list = {
     },
     computed:{
         formAdress:function () {
-            return this.ajaxData.fromProvince+this.ajaxData.fromCity+this.ajaxData.fromCounty+this.ajaxData.fromAddress
+            return this.ajaxData.fromProvince+this.ajaxData.fromCity+(this.ajaxData.fromCounty?this.ajaxData.fromCounty:'')+(this.ajaxData.fromAddress?this.ajaxData.fromAddress:'');
         },
         toAdress:function () {
-            return this.ajaxData.toProvince+this.ajaxData.toCity+this.ajaxData.toCounty+this.ajaxData.toAddress
+            return this.ajaxData.toProvince+this.ajaxData.toCity+(this.ajaxData.toCounty?this.ajaxData.toCounty:'')+(this.ajaxData.toAddress?this.ajaxData.toAddress:'');
         },
         distance:function () {
             var distance=this.ajaxData.distance?this.ajaxData.distance:0;

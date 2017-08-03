@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="../js/vue.min.js"></script>
     <script src="../js/axios.js"></script>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script>
         var GLOBAL = {
             url: './mimicry.json',
             appid: 'wxe6a0251e0e2900c5',
-            basePath: 'http://test.51pingbanche.com/haul/',
-            basePathWeb: 'http://test.51pingbanche.com/haul/html/payOrder/',
+            basePath: 'https://www.51pingbanche.com/',
+            basePathWeb: 'https://www.51pingbanche.com/html/payOrder/',
             status:'normal',
         };
         //        地址选择query
@@ -28,7 +28,7 @@
                 obj = {},
                 name = '',
                 value = '';
-            if (arr1.length != 2) {
+            if (arr1.length < 2) {
                 console.log('不是正常query对象');
                 return false;
             }
@@ -80,7 +80,7 @@
                 var basePathWeb = GLOBAL.basePathWeb;
                 console.log(openid, appid, 'appid', basePath, 'basePath');
                 if (!openid) {
-                    var redirectUri = encodeURI(basePath + 'h5/wxOauth/get?target=' + basePathWeb);
+                    var redirectUri = encodeURI(basePath + 'h5/wxOauth/get?target=' + window.location.href);
                     window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
                         appid + '&redirect_uri=' + redirectUri
                         + '&response_type=code&scope=snsapi_base&state=1234#wechat_redirect';
@@ -178,7 +178,7 @@
         </span>
         </div>
 
-        <div v-if="payStatus=='START'" class="pay-submit" @click="pay">
+        <div v-if="payStatus=='START'||payStatus=='RECEIVED'" class="pay-submit" @click="pay">
             <span>付款</span>
         </div>
         <div v-else-if="payStatus=='PAYING'" class="pay-submit pd-grey">
