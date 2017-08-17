@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="file">
+<img src="" alt="" id="img">
+<script>
+    var file=document.getElementById('file');
+    file.onchange=function (e) {
+        console.log(this.files[0]);
+        var createObjectURL = function(blob){
+                     return window[window.webkitURL ? 'webkitURL' : 'URL']['createObjectURL'](blob);
+                     };
+        var newimgdata = createObjectURL(this.files[0]);
+        var img = document.getElementById('img');
+        img.src=newimgdata;
+
+    }
+</script>
+</body>
+</html>

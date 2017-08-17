@@ -3,13 +3,13 @@
     <li class="logo" data-except=true>
       <img src="../assets/img/logo.png" alt="">
     </li>
-    <li class="li-bc" id="sourceList">
-      <router-link class="shell-a s_source" to="/sourceList" >货源列表</router-link>
-    </li>
-    <li id="driverList">
+    <!--<li id="sourceList">-->
+      <!--<router-link class="shell-a s_source" to="/sourceList" >货源列表</router-link>-->
+    <!--</li>-->
+    <li id="driverList" class="li-bc">
       <router-link class="shell-a s_driver" to="/driverList" >司机列表</router-link>
     </li>
-    <li id="order">
+    <li id="order" v-show="roleName=='ROLE_AGENT'">
       <router-link class="shell-a s_order" to="/order" >订单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</router-link>
     </li>
   </ul>
@@ -21,7 +21,8 @@
           return {
               color:{
 
-              }
+              },
+
           }
       },
       mounted(){
@@ -31,13 +32,13 @@
           let el=this.$el;
           console.log(el,arr[1]);
 
-          if('order'.indexOf(arr[1])>-1){
+          if(arr[1].indexOf('order')>-1){
             document.getElementById('order').click();
           }
-          if('driverList'.indexOf(arr[1])>-1){
+          if(arr[1].indexOf('driverList')>-1){
             document.getElementById('driverList').click();
           }
-          if('sourceList'.indexOf(arr[1])>-1){
+          if(arr[1].indexOf('sourceList')>-1){
             document.getElementById('sourceList').click();
           }
           if(!arr[1]){
@@ -49,6 +50,11 @@
 
           }
 
+      },
+      computed:{
+        roleName(){
+            return this.$store.state.roleName;
+        },
       }
   }
 

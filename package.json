@@ -1,12 +1,13 @@
 {
-  "name":"express-tweet",
-  "version":"0.0.1",
+  "name": "express-tweet",
+  "version": "0.0.1",
   "dependencies": {
-    "express": "2.5.9",
     "ejs": "0.4.2",
-    "superagent": "0.3.0",
+    "express": "2.5.9",
+    "jade": "0.20.3",
     "mongodb": "2.2.14",
-    "jade":"0.20.3",
-    "pug": "2.0.0-rc.2"
+    "pug": "2.0.0-rc.2",
+    "superagent": "0.3.0",
+    "vuejs-datepicker": "^0.9.7"
   }
 }

@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    <router-view class="left" name="left"></router-view>
-    <div class="right">
-      <router-view class="right_head" name="right_head"></router-view>
-      <router-view class="right_nav" name="right_nav"></router-view>
-      <keep-alive>
-      <router-view class="right_main" name="right_main"></router-view>
-      </keep-alive>
+
+      <router-view class="left" name="left" v-if="pageStatus=='normal'"></router-view>
+      <div class="right" v-if="pageStatus=='normal'">
+        <router-view class="right_head" name="right_head" v-bind:userInfo="userInfo"></router-view>
+        <router-view class="right_nav" name="right_nav"></router-view>
+        <!--<keep-alive>-->
+          <router-view class="right_main" name="right_main"></router-view>
+        <!--</keep-alive>-->
+      </div>
+    <div v-else-if="pageStatus=='error'">
+      出错了!!
     </div>
   </div>
 </template>
@@ -15,16 +19,34 @@
 
   export default {
     name: 'app',
+    data(){
+        return {
+            userInfo:'test',
+        }
+    },
     created(){
         let _this=this;
+        console.log('_this.$store.state.apiHref13',_this.$store.state.apiHref);
         this.$axios({
           method: 'get',
-          url: _this.$store.state.apiHref+'user/getInfo',
-          data: {
-            firstName: 'Fred',
-            lastName: 'Flintstone'
+          url: _this.$store.state.apiHref+'/user/info',
+          headers: {'accept': 'application/json'},
+        }).then(function (res) {
+
+//          console.log(res.data);
+          if(res.data.response_state==1){
+              _this.userInfo=res.data;
+              _this.$store.commit('changeRoleName',res.data.roleName);
+              _this.$store.commit('changeUserBaseInfo',res.data)
+          }else {
+              _this.$store.commit('changePageStatus','error');
           }
         })
+    },
+    computed:{
+      pageStatus:function () {
+        return this.$store.state.pageStatus
+      }
     }
   }
 </script>
@@ -125,4 +147,47 @@
     clear: both;
     display: block;
   }
+  .g_btnM{
+    background-color: #7f7f7f;
+    border: 1px solid #7f7f7f;
+  }
+  .g_m{
+    float: right;
+  }
+  .g_ms{
+    color: #0df925;
+  }
+  .g_mf{
+    color: #ff2c2e;
+  }
+  .g_imgS{
+    width: 70px;
+    height: 60px;
+  }
+  input.g_input {
+    border: 1px solid #dbdddd;
+    width: 100px;
+    color: #5c5c5c;
+    height: 26px;
+    box-sizing: content-box;
+  }
+
+  input.g_inputW {
+    width: 160px;
+  }
+  .g_selectUlOrder li{
+    color: #5c5c5c;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+  }
+  .s_outDiv ul.g_selectUlOrder{
+    height: 80px;
+    bottom: -80px;
+  }
+  .s_outDiv ul.g_selectUlOrderHigh{
+    height: 180px;
+    bottom: -180px;
+  }
+
 </style>

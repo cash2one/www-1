@@ -5,8 +5,12 @@ import App from './App.vue'
 import router from './router'
 import store from './vuex'
 import axios from 'axios'
+import unit from './unit'
+
+// axios.defaults.baseURL = '/api';
 
 Vue.prototype.$axios=axios;
+Vue.prototype.$unit=unit;
 
 Vue.config.productionTip = false;
 
@@ -16,7 +20,7 @@ Vue.directive('sclick', {
 
     let time=0;
     el.onclick=function (e) {
-      console.log(this);
+      // console.log(this);
       el.style.backgroundColor='rgba(71, 70, 72, 0.81)';
       clearInterval(time);
       time=setInterval(function () {
@@ -24,7 +28,9 @@ Vue.directive('sclick', {
       },100)
     };
   }
-});
+})
+
+//
 //指令配合data-except
 Vue.directive('sChangeColor', {
   // 当绑定元素插入到 DOM 中。
