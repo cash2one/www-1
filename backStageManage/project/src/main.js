@@ -9,6 +9,22 @@ import unit from './unit'
 
 // axios.defaults.baseURL = '/api';
 
+//添加一个响应拦截器
+axios.interceptors.response.use(function(res){
+  //在这里对返回的数据进行处理
+  // console.log('res_inter',res);
+  if(res.data.response_state==401){
+    window.location.href=store.state.apiHref+'/login';
+  }
+  return res;
+},function(err){
+  console.log('err_inter',err.response);
+  if(err.response.data.response_state==401){
+    window.location.href=store.state.apiHref+'/login';
+  }
+  return Promise.reject(err);
+});
+
 Vue.prototype.$axios=axios;
 Vue.prototype.$unit=unit;
 

@@ -79,9 +79,10 @@
           let value=e.target.attributes['data-value'].value;
           console.log('e',e.target.attributes['data-value'].value);
           this.value=value;
+          console.log('value1212',this.value);
           this.text=e.target.innerHTML;
           this.$emit('changeValue',{
-              value:this.text==='全部'?'':this.text,
+              value:this.text==='全部'?'':(this.obj.isValue===true?this.value:this.text),
               type:this.obj.type
           });
           if(this.obj.busTypeEmit){

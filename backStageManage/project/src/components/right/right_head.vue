@@ -65,12 +65,13 @@
         this.showAlert = !this.showAlert;
       },
       exit(obj){
+          let _this=this;
           obj.$axios({
             method: 'get',
             url: obj.$store.state.apiHref+'/logout',
           }).then(function (res) {
               if(res){
-                  window.location.href='/haul/logout'
+                  window.location.href=_this.$store.state.apiHref+'/login'
               }
           })
       }

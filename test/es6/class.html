@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        class A{
+            constructor(obj){
+
+                this.obj=obj;
+                this.pp=this.pp.bind(this)
+            }
+
+            pp(num){
+                console.log(num);
+            }
+        }
+        class B extends A{
+            constructor(props){
+                super(props);
+                this.d=112;
+                this.c=this.obj.a+this.obj.b;
+            }
+
+        }
+        let a=new A({a:12,b:123});
+        let b=new B({a:1,b:2});
+        console.log(a,b);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

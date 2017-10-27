@@ -120,58 +120,58 @@
                 <button class="s_btn" @click="choseImg('add_driverLicense')" v-sclick>选择</button>
               </li>
             </ul>
-            <ul class="s_ad_imgG">
-              <li class="s_title">
-                <span>行驶证：</span>
-              </li>
-              <li class="s_bg">
-                <!--<div class="s_bg_replace"></div>-->
-                <img :src="drivingLicense?localdrivingLicense:(imgUrl+returnAjax.drivingLicense)" :alt="altWord">
-              </li>
-              <li class="s_btG">
-                <input type="file" id="add_drivingLicense" @change="inputChange('drivingLicense',$event)">
-                <button class="s_btn" @click="choseImg('add_drivingLicense')" v-sclick>选择</button>
-              </li>
-            </ul>
-            <ul class="s_ad_imgG">
-              <li class="s_title">
-                <span>保险单：</span>
-              </li>
-              <li class="s_bg">
-                <!--<div class="s_bg_replace"></div>-->
-                <img :src="carInsurance?localcarInsurance:(imgUrl+returnAjax.carInsurance)" :alt="altWord">
-              </li>
-              <li class="s_btG">
-                <input type="file" id="add_carInsurance" @change="inputChange('carInsurance',$event)">
-                <button class="s_btn" @click="choseImg('add_carInsurance')" v-sclick>选择</button>
-              </li>
-            </ul>
-            <ul class="s_ad_imgG">
-              <li class="s_title">
-                <span>货物险：</span>
-              </li>
-              <li class="s_bg">
-                <!--<div class="s_bg_replace"></div>-->
-                <img :src="cargoInsurance?localcargoInsurance:(imgUrl+returnAjax.cargoInsurance)" :alt="altWord">
-              </li>
-              <li class="s_btG">
-                <input type="file" id="add_cargoInsurance" @change="inputChange('cargoInsurance',$event)">
-                <button class="s_btn" @click="choseImg('add_cargoInsurance')" v-sclick>选择</button>
-              </li>
-            </ul>
-            <ul class="s_ad_imgG">
-              <li class="s_title">
-                <span>车辆照片：</span>
-              </li>
-              <li class="s_bg">
-                <!--<div class="s_bg_replace"></div>-->
-                <img :src="carPhoto?localcarPhoto:(imgUrl+returnAjax.car.photo)" :alt="altWord">
-              </li>
-              <li class="s_btG">
-                <input type="file" id="add_carPhoto" @change="inputChange('carPhoto',$event)">
-                <button class="s_btn" @click="choseImg('add_carPhoto')" v-sclick>选择</button>
-              </li>
-            </ul>
+            <!--<ul class="s_ad_imgG">-->
+              <!--<li class="s_title">-->
+                <!--<span>行驶证：</span>-->
+              <!--</li>-->
+              <!--<li class="s_bg">-->
+                <!--&lt;!&ndash;<div class="s_bg_replace"></div>&ndash;&gt;-->
+                <!--<img :src="drivingLicense?localdrivingLicense:(imgUrl+returnAjax.drivingLicense)" :alt="altWord">-->
+              <!--</li>-->
+              <!--<li class="s_btG">-->
+                <!--<input type="file" id="add_drivingLicense" @change="inputChange('drivingLicense',$event)">-->
+                <!--<button class="s_btn" @click="choseImg('add_drivingLicense')" v-sclick>选择</button>-->
+              <!--</li>-->
+            <!--</ul>-->
+            <!--<ul class="s_ad_imgG">-->
+              <!--<li class="s_title">-->
+                <!--<span>保险单：</span>-->
+              <!--</li>-->
+              <!--<li class="s_bg">-->
+                <!--&lt;!&ndash;<div class="s_bg_replace"></div>&ndash;&gt;-->
+                <!--<img :src="carInsurance?localcarInsurance:(imgUrl+returnAjax.carInsurance)" :alt="altWord">-->
+              <!--</li>-->
+              <!--<li class="s_btG">-->
+                <!--<input type="file" id="add_carInsurance" @change="inputChange('carInsurance',$event)">-->
+                <!--<button class="s_btn" @click="choseImg('add_carInsurance')" v-sclick>选择</button>-->
+              <!--</li>-->
+            <!--</ul>-->
+            <!--<ul class="s_ad_imgG">-->
+              <!--<li class="s_title">-->
+                <!--<span>货物险：</span>-->
+              <!--</li>-->
+              <!--<li class="s_bg">-->
+                <!--&lt;!&ndash;<div class="s_bg_replace"></div>&ndash;&gt;-->
+                <!--<img :src="cargoInsurance?localcargoInsurance:(imgUrl+returnAjax.cargoInsurance)" :alt="altWord">-->
+              <!--</li>-->
+              <!--<li class="s_btG">-->
+                <!--<input type="file" id="add_cargoInsurance" @change="inputChange('cargoInsurance',$event)">-->
+                <!--<button class="s_btn" @click="choseImg('add_cargoInsurance')" v-sclick>选择</button>-->
+              <!--</li>-->
+            <!--</ul>-->
+            <!--<ul class="s_ad_imgG">-->
+              <!--<li class="s_title">-->
+                <!--<span>车辆照片：</span>-->
+              <!--</li>-->
+              <!--<li class="s_bg">-->
+                <!--&lt;!&ndash;<div class="s_bg_replace"></div>&ndash;&gt;-->
+                <!--<img :src="carPhoto?localcarPhoto:(imgUrl+returnAjax.car.photo)" :alt="altWord">-->
+              <!--</li>-->
+              <!--<li class="s_btG">-->
+                <!--<input type="file" id="add_carPhoto" @change="inputChange('carPhoto',$event)">-->
+                <!--<button class="s_btn" @click="choseImg('add_carPhoto')" v-sclick>选择</button>-->
+              <!--</li>-->
+            <!--</ul>-->
             <ul class="s_ad_imgG">
               <li class="s_title">
                 <span>身份证正面：</span>

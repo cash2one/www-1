@@ -27,19 +27,41 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        this.receivedEvent('deviceready');
+        this.receivedEvent('');
+        this.displayMessage('sssssss','messageShow1');
     },
 
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+        var _this=this;
+        nfc.addTagDiscoveredListener(this.onNfc,
+          function (s) {
+            _this.displayMessage('sucucess');
+        },function (err) {
+            _this.displayMessage(JSON.stringify(err));
+        })
+        // var parentElement = document.getElementById(id);
+        // var listeningElement = parentElement.querySelector('.listening');
+        // var receivedElement = parentElement.querySelector('.received');
+        //
+        // listeningElement.setAttribute('style', 'display:none;');
+        // receivedElement.setAttribute('style', 'display:block;');
+        //
+        // console.log('Received Event: ' + id);
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+    },
+    displayMessage:function (str,dom) {
+        var id=dom||'messageShow';
+        var mDiv=document.getElementById(id);
+        mDiv.innerHTML=mDiv.innerHTML+str;
+    },
+    clearMessage:function () {
+        var mDiv=document.getElementById('messageShow');
+        mDiv.innerHTML='';
+    },
+    onNfc:function (eventNfc) {
+        var tag=eventNfc.tag;
+        this.displayMessage('read tag'+nfc.bytesToHexString(tag.id));
     }
 };
 

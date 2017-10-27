@@ -1,0 +1,313 @@
+/*通用设置*/
+/*去除默认外边框样式*/
+html{
+    background-color: #ffffff;
+    font-family: 'microsoft yahei', sans-serif;
+}
+html,body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
+form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button,
+article, aside, details, figcaption, figure, footer, header, menu, nav,
+section {
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,ol{
+    list-style: none;
+
+}
+ul li{
+    float: left;
+}
+.clean-float{
+    clear: both;
+}
+
+/*页面样式*/
+.shell{
+    width: 100%;
+    min-width: 1024px;
+}
+.shell:after{
+    content:"";
+    height:0;
+    display:block;
+    clear:both;
+}
+.center-show{
+    width: 1024px;
+    margin: 0 auto;
+}
+.head-nav{
+    height: 105px;
+    position: relative;
+    font-size: 14px;
+    color: #272727;
+}
+.font-color-r{
+    color: #e20101;
+}
+.head-nav-phone{
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 8px;
+}
+.position-head{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.89);
+}
+
+.head-nav-contact{
+    /*float: right;*/
+    /*margin-top: 30px;*/
+    /*margin-right: 30px;*/
+    position: absolute;
+    top:20px;
+    right: 30px;
+}
+.head-nav-link{
+    float: left;
+    margin-left: 190px;
+    margin-top: 68px;
+}
+.head-nav-link li{
+    float: left;
+    margin: 0 30px;
+}
+.head-nav-logo{
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    width: 162px;
+    height: 56px;
+    background: url("../img/images/logo.png") no-repeat;
+}
+.head-nav-contact a{
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background: url("../img/images/contact.png");
+    vertical-align: middle;
+    margin: 0 6px;
+}
+a.head-nav-wb{
+    background-position: -40px 0;
+}
+a.head-nav-qq{
+    background-position: -80px 0;
+}
+
+/*banner开始*/
+.head-scroll-banner{
+    height: 664px;
+    width: 100%;
+    min-width: 1024px;
+}
+.hs-b1{
+    background: url("../img/images/baner_01.png") no-repeat center;
+}
+.content-column-li{
+    width: 33.33%;
+    height: 296px;
+}
+.ccl1{
+    background: url("../img/images/col_04.png") no-repeat center;
+}
+.ccl2{
+    background: url("../img/images/col_06.png") no-repeat center;
+}
+.ccl3{
+    background: url("../img/images/col_08.png") no-repeat center;
+}
+
+.content-main{
+    text-align: center;
+    height: 490px;
+    position: relative;
+}
+.content-main h3{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 96px;
+}
+.content-main h4{
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 20px;
+}
+.content-main h4:after{
+    content: "";
+    display: block;
+    height: 1px;
+    width: 146px;
+    background-color: red;
+    margin: 6px auto;
+}
+.content-main h5{
+    font-size: 16px;
+    font-weight: 300;
+    text-transform:capitalize;
+}
+.cm-ul{
+    margin-top: 120px;
+}
+.cm-ul li{
+    width: 86px;
+    height: 154px;
+    font-size: 14px;
+    font-weight: 300;
+}
+.cm-li{
+    margin: 0 48px;
+}
+.cm-div{
+    width: 100%;
+    height: 84px;
+    margin-bottom: 20px;
+}
+.cm-div1{
+    background: url("../img/images/peisong.png") no-repeat center;
+}
+.cm-div2{
+    background: url("../img/images/qiche.png") no-repeat center;
+}
+.cm-div3{
+    background: url("../img/images/daolu.png") no-repeat center;
+}
+.cm-div4{
+    background: url("../img/images/xinche.png") no-repeat center;
+}
+.cm-div5{
+    background: url("../img/images/kuaisu.png") no-repeat center;
+}
+.cm-div6{
+    background: url("../img/images/4s.png") no-repeat center;
+}
+.cm-li-first{
+    margin-left: 10px;
+}
+.cm-li-tail{
+    margin-right: 10px;
+}
+.content-login{
+    height: 510px;
+    background: url("../img/images/loginBc_35.png") no-repeat center;
+    width: 100%;
+    position: relative;
+}
+.content-login-content{
+    height: 510px;
+    text-align: center;
+}
+.content-login-content h3{
+    color: white;
+    font-size: 36px;
+    margin-top: 180px;
+    display: inline-block;
+}
+.content-login-button{
+    width: 180px;
+    height: 54px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    font-size: 20px;
+    background: transparent;
+    display: block;
+    margin: 50px auto;
+    outline: none;
+    cursor: pointer;
+}
+.content-download{
+    height: 448px;
+    text-align: center;
+}
+.content-download h3{
+    margin-top: 60px;
+    font-size: 24px;
+}
+.content-download h4{
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 20px;
+}
+.content-download-g{
+    width: 400px;
+    margin: 30px auto 10px;
+}
+.content-download-g li{
+    width: 134px;
+    height: 168px;
+    text-align: center;
+    background-color: #dcdcdc;
+}
+.cdg-img1{
+    margin-top: 4px;
+}
+.cdg-img2{
+    margin-top: 5px;
+}
+.cdg-tail{
+    float: right;
+}
+.cdg-p1{
+    margin: 20px 0 10px 0;
+    font-weight: 300;
+}
+.cdg-p2 a{
+    font-weight: 300;
+    color: #0000ff;
+    text-decoration: underline;
+}
+
+.tail-partner{
+    height: 248px;
+    background-color: #f7f7f7;
+    text-align: center;
+}
+.tail-partner h3{
+    margin-top: 50px;
+    font-size: 20px;
+    display: inline-block;
+}
+.tail-partner p{
+    margin-top: 30px;
+    font-weight: 300;
+    font-size: 16px;
+    text-align: left;
+    line-height: 40px;
+}
+.tail-partner p span{
+    display: inline-block;
+    margin-right: 20px;
+}
+.tail-message{
+    background-color: #30333a;
+    height: 200px;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+
+}
+.cs-ul{
+    margin-top: 56px;
+    display: inline-block;
+}
+.cs-ul li{
+    padding: 0 8px;
+    /*border-right: 1px solid white;*/
+}
+.cs-p1{
+    text-align: right;
+}
+.cs-p{
+    margin-left: 8px;
+    text-transform: capitalize;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var global = this;
+
+        var sillyFunction = function (recursed) {
+            if (!recursed) { return arguments.callee.bind(this)(true); }
+            if (this !== global) {
+                console.log("This is: ",this);
+            } else {
+                console.log("This is the global");
+            }
+        };
+
+        sillyFunction();
+
+        function abc(fn) {
+            console.log(fn());
+        };
+
+        abc(function aaa(a) {
+            console.log(arguments.callee.name)
+        });
+
+//        aaa('b');
+    </script>
+</head>
+<body>
+
+</body>
+</html>

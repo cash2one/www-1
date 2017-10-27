@@ -23,7 +23,7 @@
               <v-select class="s_outDiv" :obj="obj" :shape="status" @changeValue="changeValue"></v-select>
             </span>
           </label>
-          <label v-if="!mySendOrder" for="none">
+          <label v-if="!cityOrder" for="none">
             <span>起点：</span>
             <span>
               <v-select class="s_outDiv" :obj="objStartProvince"  @changeValue="changeValue"></v-select>
@@ -156,6 +156,7 @@
           classUl:'g_selectUlOrder',//设置ul的类
           type: 'status',//对应状态值多个组件必须传
           defaultValue:'选择',
+          isValue:true,//选择list中的要传出的值
           list: [
             {
               text: '全部',

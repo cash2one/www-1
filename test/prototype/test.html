@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+<div id="ter"> </div>
+<script>
+
+    var A=function (str2) {
+        return new A.fn.int(str2);
+    };
+    A.fn=A.prototype={
+        constructor:A,
+        int:function (str1) {
+//                console.log(this);
+            this[0]=str1;
+            this.length=11;
+            return this;
+        },
+        push:[].push,
+        sort:[].sort,
+        splice:[].splice,
+        length:12,
+        map:[].map,
+    };
+    A.fn.int.prototype=A.fn;
+    console.log(A(123));
+    console.log(A(1234));
+
+    console.log($('#ter'));
+    var B=function (tg) {
+        var b=tg;
+    };
+    B.prototype.de='de';
+    console.log(new B());
+</script>
+</body>
+</html>

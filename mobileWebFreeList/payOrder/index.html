@@ -102,6 +102,9 @@
                 <li class="phead-main phead-end" :title="toAdress">{{toAdress?toAdress:'未知'}}</li>
                 <li class="phead-fix">{{distance}}</li>
             </ul>
+            <div class="phead-add">
+                <span class="phead-add-span">{{ajaxData.carModel?ajaxData.carModel:'车型'}}</span>
+            </div>
         </div>
         <div class="pay-body">
             <ul>
@@ -113,10 +116,10 @@
                     <span class="pbody-left">已缴定金</span>
                     <span class="pbody-right">{{ajaxData.earnest?("+￥"+ajaxData.earnest):0}}</span>
                 </li>
-                <li class="pbody-list">
-                    <span class="pbody-left">保险费用</span>
-                    <span class="pbody-right">{{ajaxData.premiumPaid?0:ajaxData.premium?('-￥'+ajaxData.premium):0}}</span>
-                </li>
+                <!--<li class="pbody-list">-->
+                    <!--<span class="pbody-left">保险费用</span>-->
+                    <!--<span class="pbody-right">{{ajaxData.premiumPaid?0:ajaxData.premium?('-￥'+ajaxData.premium):0}}</span>-->
+                <!--</li>-->
                 <li class="pbody-list">
                     <span class="pbody-left">应付金额</span>
                     <span class="pbody-right pb-red">{{ajaxData.balancePay?('￥'+ajaxData.balancePay):0}}</span>

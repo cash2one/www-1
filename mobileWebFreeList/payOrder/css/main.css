@@ -20,7 +20,7 @@ a{
     float: right;
 }
 .pay-head{
-    height: 2.5rem;
+    /*height: 2.5rem;*/
     background-color: #f2f2f4;
     overflow: hidden;
 }
@@ -28,6 +28,21 @@ a{
     margin-top:.59rem;
     margin-right:.6875rem;
     margin-left: 1rem;
+    position: relative;
+    margin-bottom: .2rem;
+}
+.phead-add{
+    height: 1.09rem;
+    line-height: 1.09rem;
+    border-top: .03125rem solid #e7e7e7;
+    color: #969696;
+    text-align: right;
+    position: relative;
+}
+.phead-add-span{
+    margin-right: .6875rem;
+    top: -0.07rem;
+    /*display: inline-block;*/
     position: relative;
 }
 .phead-fix{
@@ -66,7 +81,7 @@ a{
     background-color: #ffffff;
 }
 .pay-body ul{
-    height: 4.7375rem;
+    /*height: 4.7375rem;*/
     border-bottom: .03125rem solid #e7e7e7;
 }
 .pay-body ul li,.pfooter-tail{

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function Replace(str) {
+
+            if(typeof str!== 'string'){
+                console.log('parameter type is wrong');
+                return
+            }
+            return str.replace(/\{#(\w+)#\}/g,function (match,p1) {
+                console.log(match,'match',p1,'p1');
+                return 'hello world!'
+            })
+        }
+
+        console.log(Replace('<div>{#dedded#}</div>'));
+
+        console.log('test',~-1)
+
+        //这就是伟大的模板模式
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
