@@ -1,0 +1,71 @@
+.login-content{
+    height: 820px;
+    width: 1024px;
+    margin: 0 auto;
+}
+.lc-content{
+    display: inline-block;
+    margin-top: 106px;
+
+}
+.lc-content h3{
+    margin-top: 116px;
+    margin-left: 170px;
+    font-size: 24px;
+    color: #5b5b5b;
+    letter-spacing: 6px;
+}
+.lc-group{
+    margin-top: 54px;
+    margin-left: 170px;
+}
+.lc-form{
+    width: 330px;
+    float: left;
+}
+.lc-input{
+    width: 320px;
+    height: 46px;
+    border-radius: 4px;
+    border: 1px solid #d4d4d4;
+    margin-bottom: 30px;
+    outline: none;
+    font-size: 16px;
+    padding-left: 3em;
+    box-sizing: border-box;
+    color: #8b8b8b;
+}
+.lc-input.lci1{
+    background: url("../img/images/loginS_l.png") no-repeat 14px 10px ;
+}
+.lc-input.lci2{
+    background: url("../img/images/loginS_code.png") no-repeat 14px 10px ;
+}
+.lc-input.lci3{
+    background: url("../img/images/loginS_vCode.png") no-repeat 14px 10px ;
+}
+.lc-bc{
+    width: 282px;
+    height: 282px;
+    float: right;
+    background: url("../img/images/loginS_bc.png") no-repeat ;
+    margin-top: -10px;
+    margin-right: 20px;
+}
+.lc-button{
+    width: 320px;
+    height: 42px;
+    color: white;
+    text-align: center;
+    background: #1baeeb;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    letter-spacing: 1em;
+}
+.lc-p{
+    margin-top: 50px;
+    margin-left: 170px;
+    font-size: 14px;
+    color: #8b8b8b;
+}
