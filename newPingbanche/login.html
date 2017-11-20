@@ -33,10 +33,11 @@
             <h3>平板车平台业务管理业务</h3>
             <div class="lc-group">
                 <div class="lc-form">
-                    <form action="login" method="POST">
-                        <input type="text" class="lc-input lci1" placeholder="请输入用户名">
-                        <input type="password" class="lc-input lci2" placeholder="请输入密码">
-                        <input type="text" class="lc-input lci3" placeholder="请输入验证码">
+                    <form action="/haul/login" method="POST">
+                        <input type="text" class="lc-input lci1" placeholder="请输入用户名" name="username">
+                        <input type="password" class="lc-input lci2" placeholder="请输入密码" name="password">
+                        <input type="text" class="lc-input lci3 lc-input-short" placeholder="请输入验证码" name="verifyCode">
+                        <img src="/haul/captcha" class="lc-img" id="captchaImg">
                         <button type="submit" class="lc-button">登 录</button>
                     </form>
                 </div>

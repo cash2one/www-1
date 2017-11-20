@@ -18,16 +18,9 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/newPingbanche/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-              <folding>
-                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#7;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
+            <state relative-caret-position="278">
+              <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -45,8 +38,8 @@
       <file leaf-file-name="login.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newPingbanche/css/login.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+            <state relative-caret-position="199">
+              <caret line="43" column="17" lean-forward="false" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -55,8 +48,8 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newPingbanche/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="36" column="63" lean-forward="false" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="63" />
+            <state relative-caret-position="375">
+              <caret line="42" column="22" lean-forward="true" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -172,10 +165,10 @@
         <option value="$PROJECT_DIR$/test/designPattern/visterPattern.html" />
         <option value="$PROJECT_DIR$/newPingbanche/ligin.html" />
         <option value="$PROJECT_DIR$/mobileWebFreeList/css/headFoot.css" />
-        <option value="$PROJECT_DIR$/newPingbanche/login.html" />
-        <option value="$PROJECT_DIR$/newPingbanche/css/login.css" />
         <option value="$PROJECT_DIR$/newPingbanche/css/main.css" />
         <option value="$PROJECT_DIR$/newPingbanche/index.html" />
+        <option value="$PROJECT_DIR$/newPingbanche/css/login.css" />
+        <option value="$PROJECT_DIR$/newPingbanche/login.html" />
       </list>
     </option>
   </component>
@@ -272,64 +265,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="newPingbanche" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newPingbanche" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newPingbanche" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newPingbanche" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -507,12 +442,12 @@
       <workItem from="1505806510667" duration="2507000" />
       <workItem from="1506737521329" duration="899000" />
       <workItem from="1508987250286" duration="24906000" />
-      <workItem from="1510823339004" duration="11612000" />
+      <workItem from="1510823339004" duration="15288000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="891338000" />
+    <option name="totallyTimeSpent" value="895014000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -524,7 +459,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16997617" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -868,28 +803,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newPingbanche/css/login.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/bg1px_02.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newPingbanche/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="36" column="63" lean-forward="false" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="63" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newPingbanche/css/main.css">
@@ -900,18 +816,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newPingbanche/index.html">
+    <entry file="file://$PROJECT_DIR$/newPingbanche/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+        <state relative-caret-position="375">
+          <caret line="42" column="22" lean-forward="true" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#7;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newPingbanche/css/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="43" column="17" lean-forward="false" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newPingbanche/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
