@@ -1,0 +1,61 @@
+.head-scroll-placeholder{
+    height: 104px;
+}
+.head-scroll-banner{
+    height: 560px;
+    width: 100%;
+    min-width: 1024px;
+}
+.hs-b1{
+    background: url("../img/images/introduce_07.png") no-repeat center;
+}
+.hs-b2{
+    background: url("../img/images/team_spirit_31.png") no-repeat center;
+}
+.hs-b3{
+    height: 457px;
+    background: url("../img/images/about_us_bg_34.png") no-repeat center;
+}
+.select-btns{
+    height: 70px;
+    line-height: 70px;
+}
+.select-btns a{
+    display: inline-block;
+    width: 124px;
+    height: 38px;
+    color: #494949;
+    text-align: center;
+    line-height: 38px;
+    font-size: 14px;
+    margin: 0 20px;
+}
+.select-btns a:hover{
+    color: white;
+    background-color: #1baeeb;
+}
+.introduce-title{
+    text-align: center;
+    display: inline-block;
+    margin-top: 75px;
+    width: 100%;
+}
+.introduce-title h3{
+    font-size: 28px;
+    color: #2686c0;
+    font-weight: 400;
+}
+.introduce-title h3:after{
+    content: '';
+    display: block;
+    height: 2px;
+    width: 60px;
+    background-color: #757577;
+    margin: 8px auto 6px;
+}
+.introduce-title p{
+    color: #757577;
+    text-transform: uppercase;
+    font-size: 14px;
+
+}
