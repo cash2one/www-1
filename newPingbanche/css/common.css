@@ -1,0 +1,44 @@
+/*通用设置*/
+/*去除默认外边框样式*/
+html{
+    background-color: #ffffff;
+    font-family: 'microsoft yahei', sans-serif;
+}
+html,body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
+form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button,
+article, aside, details, figcaption, figure, footer, header, menu, nav,
+section {
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,ol{
+    list-style: none;
+
+}
+ul li{
+    float: left;
+}
+.clean-float{
+    clear: both;
+}
+/*样式*/
+.shell{
+    width: 100%;
+    min-width: 1024px;
+}
+.shell:after{
+    content:"";
+    height:0;
+    display:block;
+    clear:both;
+}
+.center-show{
+    width: 1024px;
+    margin: 0 auto;
+}

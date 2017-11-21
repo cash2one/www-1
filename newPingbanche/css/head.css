@@ -1,0 +1,132 @@
+
+/*页面样式*/
+.head-nav{
+    height: 112px;
+    position: relative;
+    font-size: 14px;
+    color: #272727;
+}
+.font-color-r{
+    color: #e20101;
+}
+.head-nav-phone{
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 8px;
+}
+.position-head{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*background-color: rgba(255, 255, 255, 0.89);*/
+    /*box-shadow: 0 1px 4px #bfbfbf;*/
+    background: url("../img/images/bg1px_02.png");
+}
+
+.head-nav-contact{
+    /*float: right;*/
+    /*margin-top: 30px;*/
+    /*margin-right: 30px;*/
+    position: absolute;
+    top:20px;
+    right: 30px;
+}
+.head-nav-link{
+    float: left;
+    margin-left: 190px;
+    margin-top: 68px;
+}
+.head-nav-link li{
+    float: left;
+    margin: 0 30px;
+}
+/*.head-nav-link a{*/
+    /*transform: scale(2,2);*/
+/*}*/
+.head-nav-link a:hover{
+    color: red;
+    transform: scale(1.2,1.2);
+    /*transition: all ease 1s;*/
+    /*font-size: 16px;*/
+    display: block;
+    /*animation: big 1s ease;*/
+}
+.bigger{
+    transform: scale(1.2,1.2);
+    color: red;
+    display: block;
+}
+@keyframes big {
+    from{
+        /*transform: scale(1,1);*/
+        /*font-size: 14px;*/
+    }
+    to{
+        transform: scale(2,2);
+        /*font-size: 20px;*/
+    }
+}
+.head-nav-logo{
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    width: 162px;
+    height: 56px;
+    background: url("../img/images/logo_12.png") no-repeat;
+}
+.head-nav-contact a{
+    display: inline-block;
+    width: 28px;
+    height: 27px;
+    background: url("../img/images/contact_03.png");
+    vertical-align: middle;
+    margin: 0 6px;
+}
+a.head-nav-wb{
+    background-position: -38px 0;
+}
+a.head-nav-qq{
+    background-position: -78px 0;
+}
+
+.tail-message{
+    background-color: #30333a;
+    height: 200px;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+}
+.cs-ul{
+    margin-top: 56px;
+    display: inline-block;
+}
+.cs-ul li{
+    padding: 0 8px;
+    /*border-right: 1px solid white;*/
+}
+.cs-p1{
+    text-align: right;
+    position: relative;
+}
+.cs-p{
+    margin-left: 8px;
+    text-transform: capitalize;
+}
+.cs-p1-a{
+    display: inline-block;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+}
+.cs-p1-a1{
+    background: url("../img/images/tail_contact_32.png") no-repeat;
+}
+.cs-p1-a2{
+    background: url("../img/images/tail_contact_34.png") no-repeat;
+    margin: 0 26px 0 10px;
+}
+.cs-p1-span1{
+    position: absolute;
+    right: 250px;
+    top:-8px;
+}

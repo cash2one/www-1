@@ -160,7 +160,7 @@ a.head-nav-qq{
 .content-main h5{
     font-size: 16px;
     font-weight: 300;
-    text-transform:capitalize;
+    text-transform:uppercase;
 }
 .cm-ul{
     margin-top: 60px;

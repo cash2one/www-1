@@ -42,6 +42,8 @@
     margin-left: 10px;
     width: 60px;
     height: 30px;
+    position: relative;
+    top:9px;
 }
 .lc-input.lci1{
     background: url("../img/images/loginS_l.png") no-repeat 14px 10px ;
