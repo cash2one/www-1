@@ -11,24 +11,39 @@
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-    <div class="shell position-head">
-        <div class="head-nav center-show">
-            <a href="/index.html" class="head-nav-logo" ></a>
-            <div class="head-nav-contact">
-                <span class="font-color-r head-nav-phone">服务热线：400-100-5115</span>
-                <a href="" class="head-nav-wx"></a>
-                <a href="" class="head-nav-wb"></a>
-                <a href="" class="head-nav-qq"></a>
-            </div>
-            <ul class="head-nav-link">
-                <li><a href="">首页</a></li>
-                <li><a href="">平板车</a></li>
-                <li><a href="">用户案例</a></li>
-                <li><a href="">合作加盟</a></li>
-                <li><a href="">关于我们</a></li>
-            </ul>
+<div class="shell position-head">
+    <div class="head-nav center-show">
+        <a href="/index.html" class="head-nav-logo"></a>
+        <div class="head-nav-contact">
+            <span class="font-color-r head-nav-phone">服务热线：400-100-5115</span>
+            <a href="javascript:void(0)" id="js_head_wx" class="head-nav-wx">
+                <div id="js_head_wx_block" class="head-nav-wx-block">
+                    <img src="./img/images/wx_code_08.png" alt="">
+                    <p>关注平板车官方微信</p>
+                </div>
+            </a>
+            <a href="javascript:void(0)" class="head-nav-wb"></a>
+            <!--<a href="" class="head-nav-qq"></a>-->
         </div>
+        <ul class="head-nav-link">
+            <li id="js_introduce_login">
+                <a href="index.html">首页</a>
+                <div class="hnl-block" id="js_hnl_block">
+                    <div>
+                        <a href="./index.html#js_login_block">登录</a>
+                    </div>
+                    <div>
+                        <a>下载</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="introduce.html" class="bigger">平板车</a></li>
+            <!--<li><a href="userShow.html">用户案例</a></li>-->
+            <li><a href="addUs.html">合作加盟</a></li>
+            <li><a href="aboutUs.html">关于我们</a></li>
+        </ul>
     </div>
+</div>
     <div class="shell login-content">
         <div class="lc-content">
             <h3>平板车平台业务管理业务</h3>
@@ -72,5 +87,8 @@
             </p>
         </div>
     </div>
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/common.js"></script>
 </body>
 </html>
