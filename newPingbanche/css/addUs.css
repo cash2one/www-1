@@ -34,6 +34,10 @@
     color: white;
     background-color: #1baeeb;
 }
+.select-btns-click{
+    color: white;
+    background-color: #1baeeb;
+}
 .introduce-title{
     text-align: center;
     display: inline-block;
@@ -58,4 +62,90 @@
     text-transform: uppercase;
     font-size: 14px;
 
+}
+.cooperative-advantage{
+    width: 1024px;
+    margin-top: 50px;
+}
+.cooperative-advantage li{
+    width: 328px;
+    height: 238px;
+    margin: 0 5px;
+}
+.cooperative-advantage-li1{
+    background: url("../img/images/addUs_10.png") no-repeat;
+}
+.cooperative-advantage-li2{
+    background: url("../img/images/addUs_12.png") no-repeat;
+}
+.cooperative-advantage-li3{
+    background: url("../img/images/addUs_14.png") no-repeat;
+}
+.cooperative-advantage p{
+    font-size: 14px;
+    text-indent: 2em;
+    line-height: 30px;
+    color: #646466;
+    margin-top: 40px;
+}
+.cooperative-advantage-p a{
+    color: red;
+}
+/*cooperative-partner*/
+.cooperative-partner{
+    margin-top: 70px;
+}
+.cooperative-partner li{
+    width: 476px;
+    height: 570px;
+    margin-left: 36px;
+}
+.cooperative-partner p{
+    text-align: left;
+    font-size: 16px;
+    color: #282828;
+    margin-bottom: 70px;
+}
+.cooperative-partner-left a{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px 3px;
+}
+.cooperative-partner-right>a{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px 3px;
+}
+.cooperative-partner-right-div>a{
+    width: 230px;
+    display: inline-block;
+    color: #646466;
+    font-size: 14px;
+    line-height: 36px;
+}
+.cooperative-partner-right-div{
+    margin-top: 46px;
+}
+/*cooperative-recruitment*/
+.cooperative-recruitment{
+    margin-top: 70px;
+    margin-bottom: 65px;
+}
+.cooperative-recruitment-left{
+    width: 404px;
+    height: 297px;
+    background: url("../img/images/addUs_43.png") no-repeat;
+}
+.cooperative-recruitment-right{
+    margin-left: 58px;
+    width: 474px;
+}
+.cooperative-recruitment-right p{
+    text-indent: 2em;
+    font-size: 14px;
+    line-height: 30px;
+    color: #646466;
+}
+.cooperative-recruitment-right .select-btns-click{
+    margin-top: 40px;
 }
