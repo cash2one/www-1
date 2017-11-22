@@ -7,7 +7,7 @@
     min-width: 1024px;
 }
 .hs-b1{
-    background: url("../img/images/introduce_07.png") no-repeat center;
+    background: url("../img/images/addUsBg_01.png") no-repeat center;
 }
 .hs-b2{
     background: url("../img/images/team_spirit_31.png") no-repeat center;
@@ -31,10 +31,6 @@
     margin: 0 20px;
 }
 .select-btns a:hover{
-    color: white;
-    background-color: #1baeeb;
-}
-.select-btns-click{
     color: white;
     background-color: #1baeeb;
 }
@@ -66,6 +62,7 @@
 .cooperative-advantage{
     width: 1024px;
     margin-top: 50px;
+    margin-bottom: 55px;
 }
 .cooperative-advantage li{
     width: 328px;

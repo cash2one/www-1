@@ -56,3 +56,21 @@ ul li{
 .float-l{
     float: left;
 }
+.select-btns-click{
+    color: white;
+    background-color: #1baeeb;
+}
+
+.select-btns .select-btns-click1{
+    color: white;
+    background-color: #1baeeb;
+}
+.hidden{
+    display: none;
+}
+.show{
+    display: block;
+}
+.block{
+    background-color: #f7f7f7;
+}

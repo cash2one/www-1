@@ -155,8 +155,11 @@ a.head-nav-qq{
     display: inline-block;
 }
 .cs-ul li{
-    padding: 0 8px;
+    padding: 0 16px;
     /*border-right: 1px solid white;*/
+}
+.cs-ul .cs-ul-li1{
+    padding-left: 8px;
 }
 .cs-p1{
     text-align: right;

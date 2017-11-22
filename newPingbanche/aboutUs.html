@@ -45,26 +45,23 @@
     </div>
 </div>
 <div class="head-scroll shell">
-    <div class="head-scroll-placeholder">
-
-    </div>
     <ul class="head-scroll-bc">
         <li class="head-scroll-banner hs-b1"></li>
     </ul>
 </div>
-<div class="shell">
-    <div class="center-show select-btns">
-        <a href="javascript:;">公司简介</a>
-        <a href="javascript:;">发展简历</a>
-        <a href="javascript:;">企业文化</a>
-        <a href="javascript:;">加入我们</a>
+<div class="shell block">
+    <div class="center-show select-btns js_select_title">
+        <a href="javascript:;" data-match="a" class="select-btns-click1">公司简介</a>
+        <a href="javascript:;" data-match="b">发展简历</a>
+        <a href="javascript:;" data-match="c">企业文化</a>
+        <a href="javascript:;" data-match="d">加入我们</a>
     </div>
 </div>
 <div class="shell">
-    <div>
+    <div data-match="d" class="js_select_contain hidden show">
         <div class="center-show">
             <div class="introduce-title">
-                <h3 id="1f">加入我们</h3>
+                <h3>加入我们</h3>
                 <p class="">join  us</p>
             </div>
         </div>
@@ -83,10 +80,10 @@
             </p>
         </div>
     </div>
-    <div>
+    <div data-match="a" class="js_select_contain hidden">
         <div class="center-show">
             <div class="introduce-title">
-                <h3 id="">公司简介</h3>
+                <h3>公司简介</h3>
                 <p class="">Company profile</p>
             </div>
             <ul class="introduce-layout">
@@ -108,10 +105,10 @@
             </ul>
         </div>
     </div>
-    <div>
+    <div data-match="b" class="js_select_contain hidden">
         <div class="center-show">
             <div class="introduce-title">
-                <h3 id="">发展历程</h3>
+                <h3>发展历程</h3>
                 <p class="">development history</p>
             </div>
             <div class="introduce-development">
@@ -132,7 +129,7 @@
 
         </div>
     </div>
-    <div>
+    <div data-match="c" class="js_select_contain hidden">
         <div class="center-show">
             <div class="introduce-title">
                 <h3 id="">企业文化</h3>
@@ -176,18 +173,18 @@
 
     </div>
     <ul class="head-scroll-bc">
-        <li class="head-scroll-banner hs-b2"></li>
-        <li class="head-scroll-banner hs-b3"></li>
+        <li class="head-scroll-banner js_select_bg hs-b2 hidden" data-match="c"></li>
+        <li class="head-scroll-banner js_select_bg hs-b3 hidden show" data-match="a"></li>
     </ul>
 </div>
 <div class="shell tail-message">
     <div class="center-show">
         <ul class="cs-ul">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="">平板车</a></li>
-            <li><a href="">用户案例</a></li>
-            <li><a href="">合作加盟</a></li>
-            <li><a href="">关于我们</a></li>
+            <li class="cs-ul-li1"><a href="index.html">首页</a></li>
+            <li><a href="introduce.html">平板车</a></li>
+            <!--<li><a href="">用户案例</a></li>-->
+            <li><a href="addUs.html">合作加盟</a></li>
+            <li><a href="aboutUs.html">关于我们</a></li>
         </ul>
         <div class="clean-float"></div>
         <p class="cs-p1">
