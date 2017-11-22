@@ -1,4 +1,26 @@
 /*banner开始*/
+/*轮播相关*/
+.head-scroll-bc{
+    position: relative;
+}
+.head-scroll-select{
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    margin-left: -101px;
+}
+.head-scroll-select div{
+    float: left;
+    width: 46px;
+    height: 4px;
+    /*padding: 10px 0;*/
+    background-color: rgba(105, 221, 236, 0.17);
+    margin-right: 6px;
+    cursor: pointer;
+}
+.head-scroll-select .colorS1{
+    background-color: #69ddec;
+}
 .head-scroll-banner{
     height: 664px;
     width: 100%;
@@ -6,6 +28,15 @@
 }
 .hs-b1{
     background: url("../img/images/baner_01.png") no-repeat center;
+}
+.hs-b2{
+    background: url("../img/images/幻灯片1(1).jpg") no-repeat center;
+}
+.hs-b3{
+    background: url("../img/images/幻灯片2(1).jpg") no-repeat center;
+}
+.hs-b4{
+    background: url("../img/images/aboutUs.jpg") no-repeat center;
 }
 .content-column-li{
     width: 33.3%;

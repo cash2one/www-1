@@ -44,9 +44,41 @@ function readyHandle() {
     $("#js_head_wx").mouseenter(clickHandle);
     $("#js_head_wx").mouseleave(leaveHideen);
     showObject.clickTitle();
+    // $(".js_select_scroll div")[2].click();
+    showObject.time= setInterval((showObject.run()),showObject.times)
+
 }
 //板块点击显示消失
 var showObject={
+    times:3000,
+    time:"",
+    clickOrder:["a","b","c","d"],
+    run:function () {
+        var obj=$(".js_select_scroll div");
+        console.log("obj",obj);
+        function ooo() {
+            showObject.interval(obj);
+        }
+        return ooo;
+    },
+    interval:function (obj) {
+      var now = $(".colorS1")[0];
+      var z;
+      for(var i=0;i<showObject.clickOrder.length;i++){
+          if($(now).attr("data-match")==showObject.clickOrder[i]){
+              z=i+1;
+              if(z==showObject.clickOrder.length){
+                  z=0;
+              }
+              for(var j=0;j<obj.length;j++){
+                  if($(obj[j]).attr("data-match")==showObject.clickOrder[z]){
+                      console.log("sssss");
+                      obj[j].click();
+                  }
+              }
+          }
+      }
+    },
     slecttTitle:function (title) {
         return $(title);
     },
@@ -55,18 +87,38 @@ var showObject={
     },
     clickTitle:function () {
         var select=showObject.slecttTitle(".js_select_title a");
+        var select2=showObject.slecttTitle(".js_select_scroll div");
         console.log(select);
-        select.each(function (i) {
-            var _this=this;
-            var contain=showObject.selectCotain(".js_select_contain");
-            var bg=showObject.selectCotain(".js_select_bg");
-            $(this).click(function () {
-                console.log(_this);
-                showObject.changClass(select,_this,"select-btns-click1");
-                showObject.changClass(contain,_this,"show");
-                showObject.changClass(bg,_this,"show");
+        if(select && select.length>0){
+            select.each(function (i) {
+                var _this=this;
+                var contain=showObject.selectCotain(".js_select_contain");
+                var bg=showObject.selectCotain(".js_select_bg");
+                $(this).click(function () {
+                    console.log(_this);
+                    showObject.changClass(select,_this,"select-btns-click1");
+                    showObject.changClass(contain,_this,"show");
+                    showObject.changClass(bg,_this,"show");
+                })
             })
-        })
+        }
+        if(select2 && select2.length>0){
+            select2.each(function (i) {
+                var _this=this;
+                var contain=showObject.selectCotain(".js_select_contain2 li");
+                $(this).click(function () {
+                    clearInterval(showObject.time);
+                    showObject.time=setInterval((showObject.run()),showObject.times);
+                    console.log(_this);
+                    showObject.changClass(select2,_this,"colorS1");
+                    showObject.changClass(contain,_this,"show");
+                    showObject.addAnimation(contain,_this,{
+                        opacity:1,
+                    },1000);
+                })
+            })
+        }
+
     },
     changClass:function (obj,_this,_class) {
         for(var i=0;i<obj.length;i++){
@@ -78,6 +130,16 @@ var showObject={
             }
         }
     },
-
+    addAnimation:function (obj,_this,aObj,time) {
+        for(var i=0;i<obj.length;i++){
+            $(obj[i]).stop();
+            $(obj[i]).css({
+                opacity:0.7,
+            });
+            if($(_this).attr("data-match")==$(obj[i]).attr("data-match")){
+                $(obj[i]).animate(aObj,time);
+            }
+        }
+    },
 };
 

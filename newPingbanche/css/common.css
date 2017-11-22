@@ -71,6 +71,9 @@ ul li{
 .show{
     display: block;
 }
+.opacity0{
+    opacity:0;
+}
 .block{
     background-color: #f7f7f7;
 }
