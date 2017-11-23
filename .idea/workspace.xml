@@ -31,7 +31,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="introduce.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="introduce.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newPingbanche/introduce.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="132">
@@ -63,12 +63,29 @@
       <file leaf-file-name="aboutUs.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newPingbanche/aboutUs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="60" column="48" lean-forward="false" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="48" />
+            <state relative-caret-position="128">
+              <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
               <folding>
                 <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="关于我们幻灯片(1).jpg" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/关于我们幻灯片(1).jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="aboutUs.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newPingbanche/css/aboutUs.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -201,7 +218,6 @@
         <option value="$PROJECT_DIR$/newPingbanche/css/head.css" />
         <option value="$PROJECT_DIR$/newPingbanche/css/common.css" />
         <option value="$PROJECT_DIR$/newPingbanche/js/aboutUs.js" />
-        <option value="$PROJECT_DIR$/newPingbanche/css/aboutUs.css" />
         <option value="$PROJECT_DIR$/newPingbanche/css/main.css" />
         <option value="$PROJECT_DIR$/newPingbanche/index.html" />
         <option value="$PROJECT_DIR$/newPingbanche/login.html" />
@@ -210,6 +226,7 @@
         <option value="$PROJECT_DIR$/newPingbanche/css/introduce.css" />
         <option value="$PROJECT_DIR$/newPingbanche/aboutUs.html" />
         <option value="$PROJECT_DIR$/newPingbanche/introduce.html" />
+        <option value="$PROJECT_DIR$/newPingbanche/css/aboutUs.css" />
       </list>
     </option>
   </component>
@@ -355,6 +372,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="newPingbanche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="mobileWebFreeList" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -440,8 +479,8 @@
       <recent name="$PROJECT_DIR$/mobileWebFreeList/haul" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/newPingbanche/img/two" />
       <recent name="$PROJECT_DIR$/newPingbanche/img/images" />
+      <recent name="$PROJECT_DIR$/newPingbanche/img/two" />
       <recent name="$PROJECT_DIR$/newPingbanche/js" />
       <recent name="$PROJECT_DIR$/other/css" />
       <recent name="$PROJECT_DIR$/cordova/testApp/www/img" />
@@ -598,12 +637,12 @@
       <workItem from="1505806510667" duration="2507000" />
       <workItem from="1506737521329" duration="899000" />
       <workItem from="1508987250286" duration="24906000" />
-      <workItem from="1510823339004" duration="90407000" />
+      <workItem from="1510823339004" duration="90627000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="970133000" />
+    <option name="totallyTimeSpent" value="970353000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -675,11 +714,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/introduce_43.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/images/平板车网站_03.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -821,14 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="28" column="26" lean-forward="true" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newPingbanche/css/aboutUs.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="22" lean-forward="true" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -984,17 +1010,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newPingbanche/aboutUs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="60" column="48" lean-forward="false" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="48" />
-          <folding>
-            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newPingbanche/introduce.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -1007,6 +1022,30 @@
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newPingbanche/css/aboutUs.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newPingbanche/aboutUs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+          <folding>
+            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/关于我们幻灯片(1).jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>
