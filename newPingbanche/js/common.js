@@ -109,7 +109,7 @@ var showObject={
                     showObject.changClass(contain,_this,"show");
                     showObject.addAnimation(contain,_this,{
                         opacity:1,
-                    },2000);
+                    },500);
                 })
             })
         }
