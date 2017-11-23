@@ -31,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="introduce.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="introduce.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newPingbanche/introduce.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="79" column="57" lean-forward="true" selection-start-line="79" selection-start-column="57" selection-end-line="79" selection-end-column="57" />
+            <state relative-caret-position="285">
+              <caret line="51" column="29" lean-forward="true" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#ul#0;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -92,15 +92,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addUs.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="addUs.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/newPingbanche/addUs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+            <state relative-caret-position="243">
+              <caret line="111" column="22" lean-forward="true" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
               <folding>
-                <element signature="n#ul#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addUs.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newPingbanche/css/addUs.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="103" column="22" lean-forward="true" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -206,19 +215,19 @@
         <option value="$PROJECT_DIR$/newPingbanche/css/login.css" />
         <option value="$PROJECT_DIR$/newPingbanche/css/introduce.html" />
         <option value="$PROJECT_DIR$/newPingbanche/userShow.html" />
-        <option value="$PROJECT_DIR$/newPingbanche/css/addUs.css" />
         <option value="$PROJECT_DIR$/newPingbanche/css/head.css" />
         <option value="$PROJECT_DIR$/newPingbanche/css/common.css" />
         <option value="$PROJECT_DIR$/newPingbanche/js/aboutUs.js" />
         <option value="$PROJECT_DIR$/newPingbanche/css/main.css" />
         <option value="$PROJECT_DIR$/newPingbanche/index.html" />
         <option value="$PROJECT_DIR$/newPingbanche/login.html" />
-        <option value="$PROJECT_DIR$/newPingbanche/addUs.html" />
         <option value="$PROJECT_DIR$/newPingbanche/css/introduce.css" />
         <option value="$PROJECT_DIR$/newPingbanche/aboutUs.html" />
         <option value="$PROJECT_DIR$/newPingbanche/css/aboutUs.css" />
         <option value="$PROJECT_DIR$/newPingbanche/js/common.js" />
         <option value="$PROJECT_DIR$/newPingbanche/introduce.html" />
+        <option value="$PROJECT_DIR$/newPingbanche/addUs.html" />
+        <option value="$PROJECT_DIR$/newPingbanche/css/addUs.css" />
       </list>
     </option>
   </component>
@@ -629,12 +638,12 @@
       <workItem from="1505806510667" duration="2507000" />
       <workItem from="1506737521329" duration="899000" />
       <workItem from="1508987250286" duration="24906000" />
-      <workItem from="1510823339004" duration="91592000" />
+      <workItem from="1510823339004" duration="94160000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="971318000" />
+    <option name="totallyTimeSpent" value="973886000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -819,14 +828,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newPingbanche/css/addUs.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="1" lean-forward="false" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newPingbanche/css/common.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -961,17 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newPingbanche/addUs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
-          <folding>
-            <element signature="n#ul#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newPingbanche/css/introduce.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
@@ -1028,13 +1018,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/newPingbanche/introduce.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="79" column="57" lean-forward="true" selection-start-line="79" selection-start-column="57" selection-end-line="79" selection-end-column="57" />
+        <state relative-caret-position="285">
+          <caret line="51" column="29" lean-forward="true" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#ul#0;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newPingbanche/css/addUs.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="103" column="22" lean-forward="true" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newPingbanche/addUs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="111" column="22" lean-forward="true" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
+          <folding>
+            <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

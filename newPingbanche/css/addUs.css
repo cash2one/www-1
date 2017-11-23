@@ -94,14 +94,29 @@
 }
 .cooperative-partner li{
     width: 476px;
-    height: 570px;
-    margin-left: 36px;
+    height: 700px;
+    /*margin-left: 36px;*/
+}
+.cooperative-partner-left{
+    margin-left: 20px;
+}
+.cooperative-partner-right{
+    margin-left: 40px;
+}
+.outlineBlock{
+    width: 472px;
+    height: 500px;
+    margin-top: 35px;
+    border: 1px solid #2a88c1;
+    padding-left: 30px;
+    padding-top: 40px;
 }
 .cooperative-partner p{
     text-align: left;
     font-size: 16px;
     color: #282828;
-    margin-bottom: 70px;
+    text-indent: 0.5em;
+    /*margin-bottom: 70px;*/
 }
 .cooperative-partner-left a{
     display: inline-block;
