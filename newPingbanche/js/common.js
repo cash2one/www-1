@@ -49,7 +49,7 @@ function readyHandle() {
 }
 //板块点击显示消失
 var showObject={
-    times:3000,
+    times:4000,
     time:"",
     clickOrder:["a","b","c","d"],
     run:function () {
@@ -109,7 +109,7 @@ var showObject={
                     showObject.changClass(contain,_this,"show");
                     showObject.addAnimation(contain,_this,{
                         opacity:1,
-                    },1000);
+                    },2000);
                 })
             })
         }
@@ -129,7 +129,7 @@ var showObject={
         for(var i=0;i<obj.length;i++){
             $(obj[i]).stop();
             $(obj[i]).css({
-                opacity:0.7,
+                opacity:0.85,
             });
             if($(_this).attr("data-match")==$(obj[i]).attr("data-match")){
                 $(obj[i]).animate(aObj,time);

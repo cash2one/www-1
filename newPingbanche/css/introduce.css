@@ -84,8 +84,10 @@
 }
 /*introduce2*/
 .introduce2{
-    background-color: #f7f7f7;
     padding-bottom: 60px;
+}
+.introduce3{
+    background-color: #f7f7f7;
 }
 .ul-4col{
     margin-top: 56px;
