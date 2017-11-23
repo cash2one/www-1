@@ -29,6 +29,7 @@
     line-height: 38px;
     font-size: 14px;
     margin: 0 20px;
+    outline: none;
 }
 .select-btns a:hover{
     color: white;

@@ -36,7 +36,8 @@
     background: url("../img/images/幻灯片2(1).jpg") no-repeat center;
 }
 .hs-b4{
-    background: url("../img/images/aboutUs.jpg") no-repeat center;
+    position: relative;
+    background: url("../img/images/addUsBigBg_01.png") no-repeat center;
 }
 .content-column-li{
     width: 33.3%;
@@ -103,22 +104,40 @@
     margin-bottom: 20px;
 }
 .cm-div1{
-    background: url("../img/images/peisong.png") no-repeat center;
+    background: url("../img/two/normal (1).png") no-repeat center;
+}
+.cm-li .cm-div1:hover{
+    background: url("../img/two/selected (1).png") no-repeat center;
 }
 .cm-div2{
-    background: url("../img/images/qiche.png") no-repeat center;
+    background: url("../img/two/normal (2).png") no-repeat center;
+}
+.cm-li .cm-div2:hover{
+    background: url("../img/two/selected (2).png") no-repeat center;
 }
 .cm-div3{
-    background: url("../img/images/daolu.png") no-repeat center;
+    background: url("../img/two/normal (3).png") no-repeat center;
+}
+.cm-li .cm-div3:hover{
+    background: url("../img/two/selected (3).png") no-repeat center;
 }
 .cm-div4{
-    background: url("../img/images/xinche.png") no-repeat center;
+    background: url("../img/two/normal (4).png") no-repeat center;
+}
+.cm-li .cm-div4:hover{
+    background: url("../img/two/selected (4).png") no-repeat center;
 }
 .cm-div5{
-    background: url("../img/images/kuaisu.png") no-repeat center;
+    background: url("../img/two/normal (5).png") no-repeat center;
+}
+.cm-li .cm-div5:hover{
+    background: url("../img/two/selected (5).png") no-repeat center;
 }
 .cm-div6{
-    background: url("../img/images/4s.png") no-repeat center;
+    background: url("../img/two/normal (6).png") no-repeat center;
+}
+.cm-li .cm-div6:hover{
+    background: url("../img/two/selected (6).png") no-repeat center;
 }
 .cm-li-first{
     margin-left: 10px;
@@ -154,6 +173,7 @@
     margin: 50px auto;
     outline: none;
     cursor: pointer;
+    line-height: 54px;
 }
 .content-download{
     height: 448px;

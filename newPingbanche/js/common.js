@@ -46,7 +46,6 @@ function readyHandle() {
     showObject.clickTitle();
     // $(".js_select_scroll div")[2].click();
     showObject.time= setInterval((showObject.run()),showObject.times)
-
 }
 //板块点击显示消失
 var showObject={
@@ -55,7 +54,6 @@ var showObject={
     clickOrder:["a","b","c","d"],
     run:function () {
         var obj=$(".js_select_scroll div");
-        console.log("obj",obj);
         function ooo() {
             showObject.interval(obj);
         }
@@ -72,7 +70,6 @@ var showObject={
               }
               for(var j=0;j<obj.length;j++){
                   if($(obj[j]).attr("data-match")==showObject.clickOrder[z]){
-                      console.log("sssss");
                       obj[j].click();
                   }
               }
@@ -88,14 +85,12 @@ var showObject={
     clickTitle:function () {
         var select=showObject.slecttTitle(".js_select_title a");
         var select2=showObject.slecttTitle(".js_select_scroll div");
-        console.log(select);
         if(select && select.length>0){
             select.each(function (i) {
                 var _this=this;
                 var contain=showObject.selectCotain(".js_select_contain");
                 var bg=showObject.selectCotain(".js_select_bg");
                 $(this).click(function () {
-                    console.log(_this);
                     showObject.changClass(select,_this,"select-btns-click1");
                     showObject.changClass(contain,_this,"show");
                     showObject.changClass(bg,_this,"show");
@@ -141,5 +136,13 @@ var showObject={
             }
         }
     },
+    queryAt:function (string) {
+        var arr=string.split("#");
+        if(arr[1]){
+            return arr;
+        }
+        return null;
+
+    }
 };
 
