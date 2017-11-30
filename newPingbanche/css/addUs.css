@@ -94,7 +94,7 @@
 }
 .cooperative-partner li{
     width: 476px;
-    height: 700px;
+    height: 670px;
     /*margin-left: 36px;*/
 }
 .cooperative-partner-left{
@@ -111,12 +111,16 @@
     padding-left: 30px;
     padding-top: 40px;
 }
+.outlineBlock-a2{
+    margin-left: 60px;
+}
 .cooperative-partner p{
     text-align: left;
     font-size: 16px;
     color: #282828;
     text-indent: 0.5em;
     /*margin-bottom: 70px;*/
+    text-align: center;
 }
 .cooperative-partner-left a{
     display: inline-block;
@@ -136,7 +140,7 @@
     line-height: 36px;
 }
 .cooperative-partner-right-div{
-    margin-top: 46px;
+    margin-top: 10px;
 }
 /*cooperative-recruitment*/
 .cooperative-recruitment{

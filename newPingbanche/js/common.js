@@ -43,9 +43,15 @@ function readyHandle() {
     $("#js_introduce_login").mouseleave(mouseLeaveHandle);
     $("#js_head_wx").mouseenter(clickHandle);
     $("#js_head_wx").mouseleave(leaveHideen);
+
+    //验证码
+    $("#captchaImg").click(function () {
+        showObject.changeCode(this);
+    });
     showObject.clickTitle();
     // $(".js_select_scroll div")[2].click();
-    showObject.time= setInterval((showObject.run()),showObject.times)
+    showObject.time= setInterval((showObject.run()),showObject.times);
+    showObject.transSrc("/haul");
 }
 //板块点击显示消失
 var showObject={
@@ -143,6 +149,46 @@ var showObject={
         }
         return null;
 
-    }
+    },
+    srcJadge:function (string,jadeString) {
+      if(string.indexOf(jadeString)>=0){
+          return true;
+      }
+      return false;
+    },
+    addSrcPrefix:function (obj,prefix) {
+        var arr=[];
+        for(var i=0;i<obj.length;i++){
+            if(obj[i].tagName=="FORM"){
+                $(obj[i]).attr("action",prefix+$(obj[i]).attr("data-src"));
+                //obj[i].action=prefix+obj[i]["data-src"];
+            }
+            if(obj[i].tagName=="IMG"){
+                $(obj[i]).attr("src",prefix+$(obj[i]).attr("data-src"));
+                //obj[i].src=prefix+obj[i]["data-src"];
+            }
+            if(obj[i].tagName=="A"){
+                $(obj[i]).attr("href",prefix+$(obj[i]).attr("data-src"));
+                //obj[i].src=prefix+obj[i]["data-src"];
+            }
+        }
+    },
+//    路径切换
+    transSrc:function (string) {
+        var href=window.location.href;
+        var obj=$('[data-src]');
+        if(showObject.srcJadge(href,string)){
+            showObject.addSrcPrefix(obj,string)
+        }else {
+            showObject.addSrcPrefix(obj,'')
+        }
+    },
+    //点击切换验证码
+    changeCode:function (_thi) {
+         var _this=$(_thi),
+             src=_this.attr('src').split("?")[0],
+             src1=src+"?"+Math.random();
+            _this.attr('src',src1);
+    },
 };
 
