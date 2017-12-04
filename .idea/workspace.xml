@@ -75,31 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="aboutUs.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newPingbanche/css/aboutUs.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/newPingbanche/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="51" column="35" lean-forward="true" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newPingbanche/css/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+            <state relative-caret-position="405">
+              <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -122,7 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>服务li</find>
       <find>服务lin</find>
       <find>服务li'nian</find>
       <find>f6</find>
@@ -152,6 +131,7 @@
       <find>登录</find>
       <find>head-nav-phone1</find>
       <find>点击下载安卓版到本地</find>
+      <find>introduce-title</find>
     </findStrings>
     <replaceStrings>
       <replace>db.createUser</replace>
@@ -383,8 +363,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/newPingbanche/img/images/images" />
       <recent name="$PROJECT_DIR$/newPingbanche/img/images" />
+      <recent name="$PROJECT_DIR$/newPingbanche/img/images/images" />
       <recent name="$PROJECT_DIR$/newPingbanche/img/two" />
       <recent name="$PROJECT_DIR$/newPingbanche/js" />
       <recent name="$PROJECT_DIR$/other/css" />
@@ -555,12 +535,12 @@
       <workItem from="1511947145164" duration="2427000" />
       <workItem from="1511965263335" duration="7284000" />
       <workItem from="1512097176698" duration="462000" />
-      <workItem from="1512350902688" duration="11199000" />
+      <workItem from="1512350902688" duration="11979000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1002795000" />
+    <option name="totallyTimeSpent" value="1003575000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -632,11 +612,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/contact.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/daolu.png" />
     <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/kuaisu.png" />
     <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/qiche.png" />
@@ -909,6 +884,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/huandengpian1.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/addUsBigBg_01.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newPingbanche/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/newPingbanche/css/aboutUs.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -925,23 +918,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newPingbanche/img/images/huandengpian1.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newPingbanche/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newPingbanche/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="51" column="35" lean-forward="true" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+        <state relative-caret-position="405">
+          <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding />
         </state>
       </provider>
