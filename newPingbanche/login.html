@@ -15,6 +15,9 @@
     <div class="head-nav center-show">
         <a href="/index.html" class="head-nav-logo"></a>
         <div class="head-nav-contact">
+            <!--<span class="head-nav-phone1">-->
+                <!--<a href="./index.html#js_login_block">登录</a>-->
+            <!--</span>-->
             <span class="font-color-r head-nav-phone">服务热线：400-100-5116</span>
             <a href="javascript:void(0)" id="js_head_wx" class="head-nav-wx">
                 <div id="js_head_wx_block" class="head-nav-wx-block">
@@ -50,11 +53,14 @@
             <div class="lc-group">
                 <div class="lc-form">
                     <form  method="POST" data-src="/login">
-                        <input type="text" class="lc-input lci1" placeholder="请输入用户名" name="username">
-                        <input type="password" class="lc-input lci2" placeholder="请输入密码" name="password">
-                        <input type="text" class="lc-input lci3 lc-input-short" placeholder="请输入验证码" name="verifyCode">
+                        <input id="login_username" type="text" class="lc-input lci1" placeholder="请输入用户名" name="username">
+                        <input id="login_password" type="password" class="lc-input lci2" placeholder="请输入密码" name="password">
+                        <input id="login_verifyCode" type="text" class="lc-input lci3 lc-input-short" placeholder="请输入验证码" name="verifyCode">
                         <img class="lc-img" id="captchaImg" data-src="/captcha" >
-                        <button type="submit" class="lc-button">登 录</button>
+                        <button type="submit" class="lc-button" id="login_button">登 录</button>
+                        <p class="lc-p1">
+                            <span id="login_msg" class="hidden"></span>
+                        </p>
                     </form>
                 </div>
                 <div class="lc-bc">
@@ -95,5 +101,6 @@
 
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/common.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>

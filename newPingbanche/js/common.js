@@ -51,10 +51,11 @@ function readyHandle() {
     showObject.clickTitle();
     // $(".js_select_scroll div")[2].click();
     showObject.time= setInterval((showObject.run()),showObject.times);
-    showObject.transSrc("/haul");
+    showObject.transSrc(showObject.prefix);
 }
 //板块点击显示消失
 var showObject={
+    prefix:"/haul",
     times:4000,
     time:"",
     clickOrder:["a","b","c","d"],

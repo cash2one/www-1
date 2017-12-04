@@ -73,10 +73,20 @@
     border: none;
     font-size: 16px;
     letter-spacing: 1em;
+    cursor: pointer;
 }
 .lc-p{
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: 170px;
     font-size: 14px;
     color: #8b8b8b;
+}
+.lc-p1{
+    color: #ff0703;
+    font-size: 12px;
+    text-align: center;
+    width: 310px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 10px;
 }

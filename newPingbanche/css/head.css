@@ -14,6 +14,11 @@
     vertical-align: middle;
     padding-right: 8px;
 }
+.head-nav-contact .head-nav-phone1 a{
+    vertical-align: middle;
+    background: center;
+    display: inline;
+}
 .position-head{
     position: absolute;
     z-index: 1;
